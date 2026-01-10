@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detail Unit — Green Orchid Residence</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Detail unit Green Orchid Residence: spesifikasi, fitur, denah ringkas, dan tombol cepat tanya via WhatsApp.">
+  <meta name="keywords" content="green orchid residence, detail unit, tipe rumah, perumahan, rumah minimalis, cluster, kpr, hunian keluarga">
+  <meta name="author" content="Green Orchid Residence">
+  <meta name="robots" content="index,follow">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#eaf0f6;
+      --text:#1f2a37;
+      --muted:rgba(31,42,55,.72);
+
+      /* aksen hijau muda */
+      --accent:#2fd08a;
+      --accent2:#1fbf79;
+
+      --shadowSoft: 0 12px 28px rgba(2, 6, 23, .10);
+      --shadow: 0 18px 45px rgba(2, 6, 23, .12);
+
+      --radius:26px;
+      --radius2:20px;
+      --line:rgba(15,23,42,.10);
+    }
+
+    body{
+      font-family:"Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(47,208,138,.18), transparent 50%),
+        radial-gradient(1000px 600px at 85% 15%, rgba(47,208,138,.12), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    .container{max-width:1160px}
+
+    /* =========================
+       NAVBAR (KONSISTEN SEMUA HALAMAN)
+       ========================= */
+    .go-floatNav-wrap{
+      position:sticky;
+      top:0;
+      z-index:999;
+      padding:16px 16px 0;
+    }
+    .go-floatNav{
+      background:rgba(255,255,255,.55);
+      border:1px solid rgba(255,255,255,.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius:999px;
+      box-shadow: var(--shadowSoft);
+      padding:10px 14px;
+    }
+    .go-brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none;
+      padding:6px 10px;
+      border-radius:999px;
+    }
+    .go-logo{
+      width:44px; height:44px;
+      border-radius:16px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(47,208,138,.35), transparent 60%),
+        linear-gradient(145deg, rgba(255,255,255,.75), rgba(255,255,255,.35));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+      border:1px solid rgba(15,23,42,.08);
+    }
+    .go-brandTitle{font-weight:800; line-height:1.1}
+    .go-brandSub{font-size:13px; color:rgba(31,42,55,.65); margin-top:2px}
+
+    .go-navPills{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+    }
+    .go-pill{
+      text-decoration:none;
+      padding:10px 18px;
+      border-radius:999px;
+      font-weight:700;
+      color:rgba(31,42,55,.70);
+      background:rgba(255,255,255,.45);
+      border:1px solid rgba(15,23,42,.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.70);
+      transition:.2s ease;
+      white-space:nowrap;
+    }
+    .go-pill:hover{transform:translateY(-1px); filter:brightness(.99)}
+    .go-pill.is-active{
+      background:rgba(255,255,255,.75);
+      color:rgba(31,42,55,.92);
+    }
+
+    .go-cta{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .go-ctaBtn{
+      border:0;
+      border-radius:999px;
+      padding:10px 18px;
+      font-weight:800;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color:#fff;
+      box-shadow: 0 14px 30px rgba(47,208,138,.30);
+      display:flex; align-items:center; gap:10px;
+      transition:.2s ease;
+      white-space:nowrap;
+    }
+    .go-ctaBtn:hover{transform:translateY(-1px)}
+    .navbar-toggler{
+      border:0 !important;
+      box-shadow:none !important;
+      border-radius:14px;
+      padding:10px 12px;
+      background:rgba(255,255,255,.55);
+    }
+
+    @media (max-width: 991px){
+      .go-navPills{flex-direction:column; align-items:stretch; padding:12px 0}
+      .go-pill{width:100%; text-align:center}
+      .go-cta{padding-bottom:6px}
+    }
+
+    /* =========================
+       HERO / HEADER DETAIL
+       ========================= */
+    .go-hero{
+      padding: 22px 16px 10px;
+    }
+    .go-heroCard{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.42);
+      border:1px solid rgba(255,255,255,.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .go-heroCard::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(420px 420px at 18% 30%, rgba(47,208,138,.26), transparent 60%),
+        radial-gradient(360px 360px at 90% 20%, rgba(47,208,138,.16), transparent 60%);
+      pointer-events:none;
+      z-index:0;
+    }
+    .go-heroInner{position:relative; z-index:1; padding:22px}
+    .go-kicker{
+      font-weight:800;
+      letter-spacing:.12em;
+      font-size:12px;
+      color:rgba(31,42,55,.60);
+    }
+    .go-title{
+      font-weight:900;
+      line-height:1.05;
+      font-size: clamp(28px, 3.4vw, 44px);
+      margin:10px 0 10px;
+    }
+    .go-title .accent{color:var(--accent2)}
+    .go-desc{
+      margin:0;
+      max-width: 70ch;
+      color: rgba(31,42,55,.72);
+      line-height:1.7;
+      font-weight:600;
+    }
+    .go-chipRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+    .go-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:800;
+      color:rgba(31,42,55,.72);
+      background:rgba(255,255,255,.55);
+      border:1px solid rgba(15,23,42,.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
+      font-size:13px;
+    }
+
+    .go-media{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.75);
+      background:#fff;
+      box-shadow: var(--shadowSoft);
+      height:100%;
+      min-height: 260px;
+    }
+    .go-media img{width:100%; height:100%; object-fit:cover; display:block}
+
+    /* =========================
+       CONTENT CARDS
+       ========================= */
+    .go-section{
+      padding: 10px 16px 28px;
+    }
+    .go-card{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.45);
+      border:1px solid rgba(255,255,255,.65);
+      box-shadow: var(--shadowSoft);
+      padding:18px;
+      height:100%;
+    }
+    .go-cardTitle{
+      font-weight:900;
+      margin:0 0 10px;
+      font-size:16px;
+    }
+    .go-list{
+      margin:0;
+      padding-left:18px;
+      color:rgba(31,42,55,.72);
+      font-weight:600;
+      line-height:1.7;
+    }
+
+    .go-ctaBar{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.55);
+      border:1px solid rgba(15,23,42,.08);
+      box-shadow: var(--shadowSoft);
+      padding:14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .go-ctaBar strong{font-weight:900}
+    .go-btn{
+      border:0;
+      border-radius: 18px;
+      padding:12px 14px;
+      font-weight:900;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color:#fff;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      box-shadow: 0 14px 30px rgba(47,208,138,.30);
+      text-decoration:none;
+    }
+    .go-btn:hover{transform:translateY(-1px)}
+    .go-btnSoft{
+      border:1px solid rgba(15,23,42,.10);
+      background:rgba(255,255,255,.60);
+      border-radius:18px;
+      padding:12px 14px;
+      font-weight:900;
+      color:rgba(31,42,55,.78);
+      display:inline-flex; gap:10px; align-items:center;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
+      text-decoration:none;
+    }
+
+    /* =========================
+       FOOTER (KONSISTEN SEMUA HALAMAN)
+       ========================= */
+    .go-footerWrap{padding: 0 16px 28px}
+    .go-footer{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.45);
+      border:1px solid rgba(255,255,255,.65);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+    .go-footerBrand{
+      display:flex; align-items:flex-start; gap:12px;
+    }
+    .go-footerLogo{
+      width:44px; height:44px;
+      border-radius:16px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(47,208,138,.35), transparent 60%),
+        linear-gradient(145deg, rgba(255,255,255,.75), rgba(255,255,255,.35));
+      border:1px solid rgba(15,23,42,.08);
+    }
+    .go-footerText{color:rgba(31,42,55,.72); font-weight:600; line-height:1.65; margin:6px 0 0}
+    .go-footerMenu{
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.55);
+      border:1px solid rgba(15,23,42,.08);
+      padding:14px;
+      box-shadow: var(--shadowSoft);
+      height:100%;
+    }
+    .go-footerMenu h6{font-weight:900; margin:0 0 10px}
+    .go-footerLink{
+      display:block;
+      padding:10px 12px;
+      border-radius:18px;
+      font-weight:800;
+      color:rgba(31,42,55,.72);
+      background:rgba(255,255,255,.55);
+      border:1px solid rgba(15,23,42,.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.75);
+      text-decoration:none;
+      margin-bottom:10px;
+    }
+    .go-footerLink:last-child{margin-bottom:0}
+    .go-footerLink:hover{transform:translateY(-1px)}
+
+    .go-footerContact{
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.55);
+      border:1px solid rgba(15,23,42,.08);
+      padding:14px;
+      box-shadow: var(--shadowSoft);
+      height:100%;
+    }
+    .go-footerContact h6{font-weight:900; margin:0 0 10px}
+    .go-footerMeta{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      color:rgba(31,42,55,.62);
+      font-weight:700;
+      margin-top:14px;
+      padding-top:14px;
+      border-top:1px solid rgba(15,23,42,.10);
+    }
+
+    /* =========================
+       FLOATING BUTTONS (UP + WA)
+       ========================= */
+    .go-up{
+      position:fixed;
+      right:18px;
+      bottom:82px;
+      z-index:998;
+      width:46px;
+      height:46px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.75);
+      background:rgba(255,255,255,.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: var(--shadowSoft);
+      display:grid;
+      place-items:center;
+      color:rgba(31,42,55,.78);
+      text-decoration:none;
+      transition:.2s ease;
+      opacity:0;
+      pointer-events:none;
+    }
+    .go-up.show{opacity:1; pointer-events:auto}
+    .go-up:hover{transform:translateY(-1px)}
+
+    .go-wa{
+      position:fixed;
+      right:18px;
+      bottom:24px;
+      z-index:998;
+      width:46px;
+      height:46px;
+      border-radius:999px;
+      border:0;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 14px 30px rgba(47,208,138,.32);
+      display:grid;
+      place-items:center;
+      color:#fff;
+      text-decoration:none;
+      transition:.2s ease;
+    }
+    .go-wa:hover{transform:translateY(-1px)}
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <div class="go-floatNav-wrap">
+    <nav class="navbar navbar-expand-lg go-floatNav">
+      <div class="container-fluid">
+        <a class="go-brand" href="index.html" aria-label="Green Orchid Residence">
+          <span class="go-logo" aria-hidden="true"></span>
+          <span>
+            <div class="go-brandTitle">Green Orchid Residence</div>
+            <div class="go-brandSub">Hunian modern • Sejuk • Tertata</div>
+          </span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#goNav"
+          aria-controls="goNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list fs-4"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="goNav">
+          <div class="mx-auto"></div>
+
+          <div class="go-navPills my-3 my-lg-0">
+            <a class="go-pill" href="index.html">Beranda</a>
+            <a class="go-pill" href="tentang-kami.html">Tentang Kami</a>
+            <a class="go-pill" href="unit.html">Unit</a>
+            <a class="go-pill" href="artikel.html">Artikel</a>
+          </div>
+
+          <div class="ms-lg-3 go-cta">
+            <button type="button" class="go-ctaBtn" data-bs-toggle="modal" data-bs-target="#pricelistModal">
+              <i class="bi bi-card-list"></i> Pricelist
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- HERO DETAIL -->
+  <section class="go-hero">
+    <div class="container">
+      <div class="go-heroCard">
+        <div class="row g-3 align-items-stretch">
+          <div class="col-lg-7">
+            <div class="go-heroInner">
+              <div class="go-kicker">DETAIL UNIT • GREEN ORCHID RESIDENCE</div>
+
+              <h1 class="go-title" id="unitTitle">
+                Detail <span class="accent">Unit</span>
+              </h1>
+
+              <p class="go-desc" id="unitDesc">
+                Informasi ringkas unit untuk membantu kamu membandingkan pilihan. Untuk harga & promo terbaru, silakan hubungi tim marketing.
+              </p>
+
+              <div class="go-chipRow" id="chipRow">
+                <!-- chips dari JS -->
+              </div>
+
+              <div class="go-ctaBar mt-3">
+                <div>
+                  <strong>Butuh pricelist & simulasi KPR?</strong>
+                  <div class="text-muted small fw-semibold">Klik tombol di samping untuk chat WhatsApp secara otomatis.</div>
+                </div>
+                <div class="d-flex gap-2 flex-wrap">
+                  <a class="go-btnSoft" href="unit.html"><i class="bi bi-arrow-left"></i> Kembali ke Unit</a>
+                  <a class="go-btn" href="#" id="btnAskWA"><i class="bi bi-whatsapp"></i> Tanya Marketing</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="p-3 p-lg-3 h-100">
+              <div class="go-media">
+                <!-- gambar diisi JS (ringan, 1200x800) -->
+                <img id="unitImg"
+                     src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1200&q=70"
+                     alt="Foto unit Green Orchid Residence"
+                     loading="eager"
+                     decoding="async">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="go-section">
+    <div class="container">
+      <div class="row g-3">
+
+        <div class="col-lg-6">
+          <div class="go-card">
+            <div class="go-cardTitle">Spesifikasi Utama</div>
+            <ul class="go-list" id="specList">
+              <!-- JS -->
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="go-card">
+            <div class="go-cardTitle">Fitur & Kelebihan</div>
+            <ul class="go-list" id="featureList">
+              <!-- JS -->
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="go-card">
+            <div class="go-cardTitle">Catatan</div>
+            <p class="mb-0" style="color:rgba(31,42,55,.72); font-weight:600; line-height:1.7">
+              Denah dan detail teknis dapat menyesuaikan update pengembang. Untuk memastikan unit siap survey, ketersediaan, serta promo berjalan,
+              silakan chat marketing melalui WhatsApp.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (KONSISTEN) -->
+  <div class="go-footerWrap">
+    <footer class="go-footer">
+      <div class="container p-0">
+        <div class="row g-3 align-items-stretch">
+          <div class="col-lg-5">
+            <div class="go-footerBrand">
+              <div class="go-footerLogo" aria-hidden="true"></div>
+              <div>
+                <div class="fw-black" style="font-weight:900; font-size:18px">Green Orchid Residence</div>
+                <div class="go-footerText">
+                  Hunian modern bernuansa hijau yang mengutamakan kenyamanan, keamanan, dan tata ruang yang rapi untuk keluarga.
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex gap-10 flex-wrap mt-3">
+              <a class="go-footerLink d-inline-block" href="index.html">Beranda</a>
+              <a class="go-footerLink d-inline-block" href="unit.html">Unit</a>
+              <button class="go-footerLink d-inline-block" type="button" data-bs-toggle="modal" data-bs-target="#pricelistModal">Pricelist</button>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="go-footerMenu">
+              <h6>Menu</h6>
+              <a class="go-footerLink" href="index.html">Beranda</a>
+              <a class="go-footerLink" href="tentang-kami.html">Tentang Kami</a>
+              <a class="go-footerLink" href="artikel.html">Artikel</a>
+              <a class="go-footerLink" href="unit.html">Unit</a>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="go-footerContact">
+              <h6>Kontak</h6>
+              <div class="fw-bold">WhatsApp: <span class="text-muted">08xx-xxxx-xxxx</span></div>
+              <div class="fw-bold mt-1">Email: <span class="text-muted">marketing@greenorchid.id</span></div>
+              <div class="fw-bold mt-1">Jam layanan: <span class="text-muted">09.00–20.00</span></div>
+
+              <a class="go-btnSoft mt-3 w-100 justify-content-center" href="#" id="btnFooterWA">
+                <i class="bi bi-whatsapp"></i> Tanya via WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="go-footerMeta">
+          <div>© <span id="year"></span> Green Orchid Residence. All rights reserved.</div>
+          <div>Neumorphism Soft UI • Bootstrap</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- FLOATING BUTTONS -->
+  <a class="go-up" id="btnUp" href="#" aria-label="Kembali ke atas"><i class="bi bi-arrow-up"></i></a>
+  <a class="go-wa" id="btnWAFloat" href="#" aria-label="Chat WhatsApp"><i class="bi bi-whatsapp"></i></a>
+
+  <!-- PRICELIST MODAL (6 TIPE) -->
+  <div class="modal fade" id="pricelistModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="border-radius:24px; overflow:hidden; border:1px solid rgba(255,255,255,.65); background:rgba(255,255,255,.85); backdrop-filter: blur(12px);">
+        <div class="modal-header" style="border-bottom:1px solid rgba(15,23,42,.10)">
+          <h5 class="modal-title fw-black" style="font-weight:900">Pricelist (Pilih Tipe)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="row g-3">
+            <!-- 6 tipe -->
+            <div class="col-md-6">
+              <a class="go-card d-block text-decoration-none" href="detail-unit.html?unit=orchid-36-72">
+                <div class="fw-black" style="font-weight:900">Orchid 36/72</div>
+                <div class="text-muted fw-semibold">2 KT • 1 KM • 1 Carport</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a class="go-card d-block text-decoration-none" href="detail-unit.html?unit=orchid-45-90">
+                <div class="fw-black" style="font-weight:900">Orchid 45/90</div>
+                <div class="text-muted fw-semibold">2–3 KT • 2 KM • Taman</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a class="go-card d-block text-decoration-none" href="detail-unit.html?unit=orchid-60-120">
+                <div class="fw-black" style="font-weight:900">Orchid 60/120</div>
+                <div class="text-muted fw-semibold">3 KT • 2 KM • Carport luas</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a class="go-card d-block text-decoration-none" href="detail-unit.html?unit=orchid-corner">
+                <div class="fw-black" style="font-weight:900">Orchid Corner</div>
+                <div class="text-muted fw-semibold">Kavling sudut • Potensi taman</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a class="go-card d-block text-decoration-none" href="detail-unit.html?unit=orchid-a-plus">
+                <div class="fw-black" style="font-weight:900">Orchid A+</div>
+                <div class="text-muted fw-semibold">Upgrade • Ruang fleksibel</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a class="go-card d-block text-decoration-none" href="detail-unit.html?unit=orchid-b-plus">
+                <div class="fw-black" style="font-weight:900">Orchid B+</div>
+                <div class="text-muted fw-semibold">Best value • Lebih luas</div>
+              </a>
+            </div>
+          </div>
+
+          <div class="mt-3 text-muted small fw-semibold">
+            Catatan: Harga & promo mengikuti update marketing. Klik tipe untuk membuka halaman detail.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
+  <script>
+    (function(){
+      // ====== KONFIG WA ======
+      const MARKETING_WA = "628xxxxxxxxxx"; // ganti: format internasional tanpa +
+
+      // ====== DATA UNIT ======
+      const UNITS = {
+        "orchid-36-72": {
+          title: "Orchid 36/72",
+          badgeChips: ["2 KT", "1 KM", "1 Carport", "Starter"],
+          desc: "Unit efisien untuk pasangan dan keluarga kecil. Tata ruang fungsional, pencahayaan baik, dan biaya perawatan ringan.",
+          img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=70",
+          specs: [
+            "Luas Bangunan ±36 m² (sesuaikan data real)",
+            "Luas Tanah ±72 m² (sesuaikan data real)",
+            "2 Kamar Tidur • 1 Kamar Mandi",
+            "Carport 1 mobil",
+            "Ruang keluarga + dapur fungsional"
+          ],
+          features: [
+            "Sirkulasi udara & pencahayaan optimal",
+            "Layout ringkas, mudah ditata",
+            "Cocok untuk first home / investasi"
+          ]
+        },
+        "orchid-45-90": {
+          title: "Orchid 45/90",
+          badgeChips: ["2–3 KT", "2 KM", "Taman", "Family"],
+          desc: "Pilihan seimbang untuk keluarga muda. Ruang lebih lega, opsi kamar tambahan, dan area hijau yang mendukung kualitas hidup.",
+          img: "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1200&q=70",
+          specs: [
+            "Luas Bangunan ±45 m² (sesuaikan data real)",
+            "Luas Tanah ±90 m² (sesuaikan data real)",
+            "2–3 Kamar Tidur • 2 Kamar Mandi",
+            "Carport + ruang terbuka",
+            "Taman depan/belakang (sesuai kavling)"
+          ],
+          features: [
+            "Cocok untuk keluarga berkembang",
+            "Area hijau & ruang fleksibel",
+            "Nyaman untuk aktivitas harian"
+          ]
+        },
+        "orchid-60-120": {
+          title: "Orchid 60/120",
+          badgeChips: ["3 KT", "2 KM", "Carport luas", "Premium"],
+          desc: "Unit lebih luas untuk keluarga besar. Nyaman untuk jangka panjang dengan kebutuhan ruang yang lebih dinamis.",
+          img: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=70",
+          specs: [
+            "Luas Bangunan ±60 m² (sesuaikan data real)",
+            "Luas Tanah ±120 m² (sesuaikan data real)",
+            "3 Kamar Tidur • 2 Kamar Mandi",
+            "Carport luas",
+            "Ruang keluarga lega"
+          ],
+          features: [
+            "Lebih lega untuk family",
+            "Potensi pengembangan ruang",
+            "Ideal untuk jangka panjang"
+          ]
+        },
+        "orchid-corner": {
+          title: "Orchid Corner",
+          badgeChips: ["Corner", "Taman", "Value"],
+          desc: "Kavling sudut dengan potensi taman lebih luas dan sirkulasi udara lebih terbuka. Cocok untuk kamu yang ingin ruang luar ekstra.",
+          img: "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1200&q=70",
+          specs: [
+            "Kavling sudut (corner)",
+            "Ruang luar/taman lebih fleksibel",
+            "Potensi akses cahaya dari dua sisi",
+            "Ruang keluarga & area servis lebih lega"
+          ],
+          features: [
+            "Sirkulasi udara lebih optimal",
+            "Taman/halaman lebih luas",
+            "Value tinggi untuk kebutuhan keluarga"
+          ]
+        },
+        "orchid-a-plus": {
+          title: "Orchid A+",
+          badgeChips: ["Upgrade", "Fleksibel", "Modern"],
+          desc: "Versi upgrade dengan ruang lebih fleksibel untuk kebutuhan kerja/anak. Cocok untuk gaya hidup modern.",
+          img: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=70",
+          specs: [
+            "Ruang fleksibel (opsi workspace)",
+            "Finishing modern (sesuaikan spesifikasi real)",
+            "Layout adaptif untuk kebutuhan keluarga",
+            "Area servis tertata"
+          ],
+          features: [
+            "Cocok untuk WFH",
+            "Ruang bisa diubah sesuai kebutuhan",
+            "Desain modern minimalis"
+          ]
+        },
+        "orchid-b-plus": {
+          title: "Orchid B+",
+          badgeChips: ["Best Value", "Family", "Lebih luas"],
+          desc: "Pilihan best value untuk family. Ruang lebih luas dan layout nyaman untuk aktivitas harian.",
+          img: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=70",
+          specs: [
+            "Ruang utama lebih lega",
+            "Kebutuhan family-friendly",
+            "Opsi ruang tambahan (sesuaikan data real)",
+            "Carport & area depan rapi"
+          ],
+          features: [
+            "Nilai terbaik untuk luasan",
+            "Nyaman untuk jangka panjang",
+            "Layout efisien & enak ditata"
+          ]
+        }
+      };
+
+      // ====== HELPERS ======
+      const qs = new URLSearchParams(location.search);
+      const key = (qs.get("unit") || "orchid-45-90").toLowerCase();
+      const data = UNITS[key] || UNITS["orchid-45-90"];
+
+      const elTitle = document.getElementById("unitTitle");
+      const elDesc  = document.getElementById("unitDesc");
+      const elImg   = document.getElementById("unitImg");
+      const chipRow = document.getElementById("chipRow");
+
+      const specList = document.getElementById("specList");
+      const featureList = document.getElementById("featureList");
+
+      elTitle.innerHTML = `${data.title} <span class="accent">— Detail</span>`;
+      elDesc.textContent = data.desc;
+      elImg.src = data.img;
+      elImg.alt = `Foto ${data.title} Green Orchid Residence`;
+
+      chipRow.innerHTML = "";
+      data.badgeChips.forEach(t=>{
+        const span = document.createElement("span");
+        span.className = "go-chip";
+        span.innerHTML = `<i class="bi bi-check2-circle" style="color:var(--accent2)"></i> ${t}`;
+        chipRow.appendChild(span);
+      });
+
+      function fillList(el, arr){
+        el.innerHTML = "";
+        arr.forEach(item=>{
+          const li = document.createElement("li");
+          li.textContent = item;
+          el.appendChild(li);
+        });
+      }
+      fillList(specList, data.specs);
+      fillList(featureList, data.features);
+
+      // ====== WHATSAPP CTA ======
+      function openWA(){
+        const text = encodeURIComponent(
+          `Halo Green Orchid Residence, saya ingin info detail unit.\n\n` +
+          `Tipe: ${data.title}\n` +
+          `Mohon kirim pricelist & promo terbaru, serta jadwal survey.\n\nTerima kasih.`
+        );
+        window.open(`https://wa.me/${MARKETING_WA}?text=${text}`, "_blank", "noopener,noreferrer");
+      }
+      document.getElementById("btnAskWA").addEventListener("click", (e)=>{ e.preventDefault(); openWA(); });
+      document.getElementById("btnFooterWA").addEventListener("click", (e)=>{ e.preventDefault(); openWA(); });
+      document.getElementById("btnWAFloat").addEventListener("click", (e)=>{ e.preventDefault(); openWA(); });
+
+      // ====== YEAR ======
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // ====== UP BUTTON ======
+      const btnUp = document.getElementById("btnUp");
+      function onScroll(){
+        if(window.scrollY > 260) btnUp.classList.add("show");
+        else btnUp.classList.remove("show");
+      }
+      window.addEventListener("scroll", onScroll, {passive:true});
+      onScroll();
+
+      btnUp.addEventListener("click", (e)=>{
+        e.preventDefault();
+        window.scrollTo({top:0, behavior:"smooth"});
+      });
+
+      // set active nav (detail dianggap bagian "Unit")
+      const pills = document.querySelectorAll(".go-pill");
+      pills.forEach(p=>{
+        if(p.getAttribute("href") === "unit.html") p.classList.add("is-active");
+      });
+    })();
+  </script>
+</body>
+</html>

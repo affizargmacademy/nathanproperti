@@ -1,0 +1,1012 @@
+  <!doctype html>
+  <html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Unit — Green Orchid Residence</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+
+    <style>
+      :root{
+        --bg:#E0E5EC;
+        --fg:#3D4852;
+        --muted:#6B7280;
+
+        --accent:#2FBF8F;
+        --accentLight:#6FE7C6;
+
+        --shadowDark: rgba(163,177,198,0.65);
+        --shadowLight: rgba(255,255,255,0.55);
+
+        --r-card: 32px;
+        --r-base: 16px;
+
+        --sh-extruded: 9px 9px 16px var(--shadowDark), -9px -9px 16px var(--shadowLight);
+        --sh-extrudedHover: 12px 12px 20px rgba(163,177,198,0.75), -12px -12px 20px rgba(255,255,255,0.6);
+        --sh-small: 5px 5px 10px rgba(163,177,198,0.65), -5px -5px 10px rgba(255,255,255,0.55);
+
+        --sh-inset: inset 6px 6px 10px rgba(163,177,198,0.65), inset -6px -6px 10px rgba(255,255,255,0.55);
+        --sh-insetDeep: inset 10px 10px 20px rgba(163,177,198,0.75), inset -10px -10px 20px rgba(255,255,255,0.6);
+        --sh-insetSmall: inset 3px 3px 6px rgba(163,177,198,0.65), inset -3px -3px 6px rgba(255,255,255,0.55);
+
+        --ease: cubic-bezier(.2,.8,.2,1);
+      }
+
+      html,body{ height:100%; }
+      body{
+        background: var(--bg);
+        color: var(--fg);
+        font-family: "DM Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        scroll-behavior: smooth;
+      }
+      .font-display{ font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
+      .text-accent{ color: var(--accent); }
+      .fw-black{ font-weight: 900; letter-spacing: -0.01em; }
+      .kicker{
+        color: var(--muted);
+        letter-spacing: .02em;
+        font-weight: 800;
+        font-size: 14px;
+      }
+
+      /* ===== NAVBAR (diambil feel-nya seperti detail-unit) ===== */
+      .header-blur{
+        background: rgba(224,229,236,0.78);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      .nav-shell{
+        border-radius: 9999px;
+        box-shadow: var(--sh-extruded);
+        background: rgba(224,229,236,0.92);
+        border: 1px solid rgba(255,255,255,0.35);
+      }
+      .brand-logo{
+        width:44px;height:44px;
+        border-radius:16px;
+        box-shadow: var(--sh-extruded);
+        background:
+          radial-gradient(circle at 30% 30%, rgba(255,255,255,0.85), rgba(255,255,255,0) 55%),
+          linear-gradient(135deg, rgba(47,191,143,0.20), rgba(111,231,198,0.14));
+        position:relative;
+        overflow:hidden;
+        flex: 0 0 auto;
+      }
+      .brand-logo::after{
+        content:"";
+        position:absolute;
+        inset:10px;
+        border-radius:12px;
+        box-shadow: var(--sh-inset);
+        opacity:.9;
+      }
+      .brand-title{ display:block; font-size:18px; line-height:1.1; font-weight:900; }
+      .brand-subtitle{ display:block; margin-top:2px; color: var(--muted); font-size:13px; font-weight:600; }
+
+      .nav-pill{
+        padding: 10px 16px !important;
+        border-radius: 9999px !important;
+        background: var(--bg) !important;
+        box-shadow: var(--sh-insetSmall);
+        color: var(--muted) !important;
+        font-weight: 900;
+        text-decoration: none;
+        transition: transform .3s var(--ease), box-shadow .3s var(--ease), color .3s var(--ease);
+        white-space: nowrap;
+      }
+      .nav-pill:hover{ transform: translateY(-1px); box-shadow: var(--sh-small); color: var(--fg) !important; }
+      .nav-pill.active{
+        color: var(--fg) !important;
+        box-shadow: var(--sh-inset);
+      }
+
+      .btn-soft{
+        background: var(--bg) !important;
+        border: 0 !important;
+        border-radius: 9999px !important;
+        box-shadow: var(--sh-extruded);
+        transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+        height: 48px;
+        padding: 0 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: var(--fg) !important;
+        text-decoration: none;
+        user-select: none;
+        font-weight: 900;
+      }
+      .btn-soft:hover{ transform: translateY(-1px); box-shadow: var(--sh-extrudedHover); }
+      .btn-soft:active{ transform: translateY(0.5px); box-shadow: var(--sh-insetSmall); }
+
+      .btn-primary-soft{
+        border:0 !important;
+        border-radius: 9999px !important;
+        background: linear-gradient(135deg, var(--accent), var(--accentLight)) !important;
+        color: #fff !important;
+        box-shadow: 9px 9px 16px rgba(163,177,198,0.55), -9px -9px 16px rgba(255,255,255,0.45);
+        transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+        height: 48px;
+        padding: 0 18px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        text-decoration: none;
+        user-select: none;
+        font-weight: 900;
+      }
+      .btn-primary-soft:hover{ transform: translateY(-1px); box-shadow: var(--sh-extrudedHover); }
+      .btn-primary-soft:active{
+        transform: translateY(0.5px);
+        box-shadow: inset 3px 3px 10px rgba(0,0,0,0.16), inset -3px -3px 10px rgba(255,255,255,0.22);
+      }
+
+      .btn-icon{
+        width:48px;
+        min-width:48px;
+        padding:0;
+        border-radius: 16px !important;
+      }
+      .hamburger{ width:20px;height:20px; position:relative; display:inline-block; }
+      .hamburger span{
+        position:absolute; left:0; right:0;
+        height:2px; border-radius:999px;
+        background: var(--fg);
+        opacity:.85;
+      }
+      .hamburger span:nth-child(1){ top:5px; }
+      .hamburger span:nth-child(2){ top:9px; }
+      .hamburger span:nth-child(3){ top:13px; }
+
+      /* ===== KONTEN UNIT (punyamu) ===== */
+      .card-soft{
+        background: var(--bg);
+        border-radius: var(--r-card);
+        box-shadow: var(--sh-extruded);
+        transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+      }
+      .card-soft:hover{ transform: translateY(-2px); box-shadow: var(--sh-extrudedHover); }
+
+      .hero-title{
+        font-size: clamp(34px, 5vw, 56px);
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        font-weight: 900;
+      }
+      .hero-desc{ max-width: 64ch; }
+      .hero-decor{
+        position:absolute;
+        right: -46px;
+        top: -46px;
+        width: 220px;
+        height: 220px;
+        border-radius: 9999px;
+        background: var(--bg);
+        box-shadow: var(--sh-extruded);
+        pointer-events:none;
+        z-index: 0;
+        opacity: .95;
+      }
+      .hero-decor::before{
+        content:"";
+        position:absolute; inset: 22px;
+        border-radius: 9999px;
+        background: var(--bg);
+        box-shadow: var(--sh-insetDeep);
+        opacity:.95;
+      }
+      .hero-decor::after{
+        content:"";
+        position:absolute; inset: 66px;
+        border-radius: 9999px;
+        background: linear-gradient(135deg, rgba(47,191,143,0.24), rgba(111,231,198,0.18));
+        box-shadow: var(--sh-small);
+      }
+      .hero-content{ position: relative; z-index: 2; }
+
+      .media-soft{
+        border-radius: 28px;
+        box-shadow: var(--sh-inset);
+        background: var(--bg);
+        overflow: hidden;
+      }
+      .media-img{
+        width: 100%;
+        height: 360px;
+        object-fit: cover;
+        display:block;
+      }
+      @media (max-width: 991.98px){
+        .media-img{ height: 280px; }
+        .hero-decor{ width: 170px; height: 170px; right: -40px; top: -40px; }
+        .nav-shell{ border-radius: 26px; }
+      }
+
+      .input-soft{
+        width: 100%;
+        height: 48px;
+        padding: 0 16px;
+        border: 0;
+        border-radius: var(--r-base);
+        background: var(--bg);
+        box-shadow: var(--sh-inset);
+        color: var(--fg);
+        transition: box-shadow .3s var(--ease);
+      }
+      .input-soft::placeholder{ color:#A0AEC0; }
+      .input-soft:focus{
+        outline:none;
+        box-shadow: var(--sh-insetDeep), 0 0 0 2px var(--accent), 0 0 0 6px var(--bg);
+      }
+
+      .badge-soft{
+        display:inline-flex;
+        align-items:center;
+        gap:8px;
+        padding:10px 14px;
+        border-radius:9999px;
+        background: var(--bg);
+        box-shadow: var(--sh-insetSmall);
+        color: var(--muted);
+        font-size:14px;
+        line-height:1;
+        white-space:nowrap;
+        font-weight: 800;
+      }
+
+      .unit-card{
+        height: 100%;
+        overflow: hidden;
+        display:flex;
+        flex-direction: column;
+      }
+      .unit-body{ padding: 18px 18px 16px; }
+      .unit-title{
+        font-size: 22px;
+        letter-spacing: -0.02em;
+        margin: 0 0 6px;
+      }
+      .unit-desc{
+        margin: 0 0 12px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .unit-meta{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom: 12px; }
+      .unit-actions{
+        margin-top: auto;
+        padding: 0 18px 18px;
+        display:flex;
+        gap:10px;
+        align-items:center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      .tag-float{
+        position:absolute;
+        left: 14px;
+        top: 14px;
+        padding: 8px 12px;
+        border-radius: 9999px;
+        background: rgba(224,229,236,0.86);
+        box-shadow: var(--sh-extruded);
+        font-weight: 900;
+        color: var(--fg);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      /* Footer */
+      .footer-wrap{ padding-bottom: 110px; }
+      .footer-grid .card-soft{ height: 100%; }
+      .footer-menu a{
+        display:block;
+        padding: 12px 14px;
+        border-radius: 16px;
+        box-shadow: var(--sh-insetSmall);
+        color: var(--muted);
+        font-weight: 900;
+        text-decoration:none;
+        margin-bottom: 10px;
+        background: var(--bg);
+      }
+      .footer-menu a:hover{ box-shadow: var(--sh-small); color: var(--fg); }
+
+      /* ===== FLOATING UP + WA (persis feel di screenshot) ===== */
+      .float-stack{
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 9999;
+        align-items: flex-end;
+      }
+      .float-circle{
+        width: 54px;
+        height: 54px;
+        border-radius: 9999px;
+        border: 0;
+        display: grid;
+        place-items: center;
+        box-shadow: var(--sh-extruded);
+        transition: transform .3s var(--ease), box-shadow .3s var(--ease), opacity .3s var(--ease);
+        user-select: none;
+      }
+      .float-circle:hover{ transform: translateY(-2px); box-shadow: var(--sh-extrudedHover); }
+      .float-circle:active{ transform: translateY(0.5px); box-shadow: var(--sh-insetSmall); }
+
+      .float-up{
+        background: rgba(224,229,236,0.92);
+        color: var(--fg);
+      }
+      .float-wa{
+        background: linear-gradient(135deg, var(--accent), var(--accentLight));
+        color: #fff;
+      }
+
+      /* Modal */
+      .modal-content{
+        background: var(--bg);
+        border: 0;
+        border-radius: 28px;
+        box-shadow: var(--sh-extrudedHover);
+      }
+      .modal-header, .modal-footer{ border: 0; }
+      .modal-title{ letter-spacing: -0.02em; }
+
+      .price-item{
+        display:flex;
+        justify-content: space-between;
+        align-items:center;
+        gap: 12px;
+        padding: 14px 14px;
+        border-radius: 18px;
+        background: var(--bg);
+        box-shadow: var(--sh-insetSmall);
+        text-decoration: none;
+        color: var(--fg);
+        transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+      }
+      .price-item:hover{
+        transform: translateY(-1px);
+        box-shadow: var(--sh-small);
+        color: var(--fg);
+      }
+      .price-left strong{ display:block; font-weight: 900; }
+      .price-left span{ display:block; font-size: 13px; color: var(--muted); font-weight: 700; }
+      .price-pill{
+        padding: 10px 12px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, rgba(47,191,143,0.18), rgba(111,231,198,0.14));
+        box-shadow: var(--sh-extruded);
+        font-weight: 900;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+
+  <body id="top">
+    <!-- HEADER (navbar model detail-unit) -->
+    <header class="sticky-top header-blur">
+      <div class="container py-3">
+        <nav class="nav-shell navbar navbar-expand-lg px-3 px-lg-4 py-3">
+          <a class="navbar-brand d-flex align-items-center gap-3" href="index.html" aria-label="Green Orchid Residence">
+            <span class="brand-logo" aria-hidden="true"></span>
+            <span class="d-flex flex-column">
+              <span class="brand-title font-display">Green Orchid Residence</span>
+              <span class="brand-subtitle">Hunian modern • Sejuk • Tertata</span>
+            </span>
+          </a>
+
+          <button class="btn btn-soft btn-icon d-lg-none ms-auto" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navMain"
+            aria-controls="navMain" aria-expanded="false" aria-label="Buka menu">
+            <span class="hamburger" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navMain">
+            <ul class="navbar-nav mx-lg-auto gap-2 mt-3 mt-lg-0 align-items-lg-center">
+              <li class="nav-item"><a class="nav-link nav-pill" href="index.html">Beranda</a></li>
+              <li class="nav-item"><a class="nav-link nav-pill" href="tentang-kami.html">Tentang Kami</a></li>
+              <li class="nav-item"><a class="nav-link nav-pill active" href="unit.html" aria-current="page">Unit</a></li>
+              <li class="nav-item"><a class="nav-link nav-pill" href="artikel.html">Artikel</a></li>
+            </ul>
+
+            <div class="mt-3 mt-lg-0 d-flex">
+              <button class="btn-primary-soft w-100 w-lg-auto" type="button" data-bs-toggle="modal" data-bs-target="#modalPricelist" aria-label="Buka Pricelist">
+                <span aria-hidden="true">
+                  <!-- icon list -->
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M8 6h13M8 12h13M8 18h13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M3 6h1M3 12h1M3 18h1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                Pricelist
+              </button>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+
+      <!-- HERO -->
+      <section class="py-4 py-md-5">
+        <div class="container">
+          <div class="row g-3 align-items-stretch">
+
+            <div class="col-lg-7">
+              <article class="card-soft p-4 p-md-5 position-relative overflow-hidden h-100">
+                <div class="hero-decor" aria-hidden="true"></div>
+
+                <div class="hero-content">
+                  <p class="kicker mb-2">DAFTAR UNIT • RINGKAS & CEPAT</p>
+
+                  <h1 class="font-display hero-title mb-3">
+                    Pilih unit yang cocok untuk keluarga di
+                    <span class="text-accent">Green Orchid</span>
+                  </h1>
+
+                  <p class="text-muted hero-desc mb-4">
+                    Halaman unit dibuat <strong>ringkas</strong>: kamu cukup pilih tipe → klik kartu → masuk ke halaman detail.
+                  </p>
+
+                  <div class="d-flex flex-wrap gap-2 mb-3">
+                    <span class="badge-soft">✅ One Gate • Security 24 Jam</span>
+                    <span class="badge-soft">🌿 Lingkungan hijau</span>
+                    <span class="badge-soft">📄 Bantuan ‘‘KPR’’</span>
+                  </div>
+
+                  <div class="card-soft p-3 p-md-3">
+                    <div class="row g-2 align-items-center">
+                      <div class="col-md-7">
+                        <label class="fw-bold mb-1" for="q">Cari tipe / kata kunci</label>
+                        <input id="q" class="input-soft" type="text" placeholder="Contoh: Orchid 45, 3 kamar, corner..." autocomplete="off" />
+                        <div class="small fw-bold" style="color:var(--muted);">Tip: ketik “corner”, “premium”, atau “starter”.</div>
+                      </div>
+                      <div class="col-md-5 d-grid">
+                        <button id="resetBtn" class="btn-primary-soft" type="button">Reset Filter</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-wrap gap-2 mt-3">
+                    <a class="btn-soft" href="#list">Lihat daftar unit</a>
+                    <button class="btn-soft" type="button" data-bs-toggle="modal" data-bs-target="#modalPricelist">Buka pricelist</button>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="col-lg-5">
+              <aside class="card-soft p-3 h-100">
+                <div class="media-soft">
+                  <img
+                    class="media-img"
+                    src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=60"
+                    srcset="
+                      https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=640&q=60 640w,
+                      https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=960&q=60 960w,
+                      https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=60 1200w
+                    "
+                    sizes="(max-width: 992px) 100vw, 520px"
+                    alt="Hunian modern minimalis yang nyaman"
+                    loading="eager"
+                    decoding="async"
+                    fetchpriority="high"
+                  />
+                </div>
+
+                <div class="p-3 p-md-4">
+                  <p class="kicker mb-2">TIPS</p>
+                  <h2 class="font-display h4 fw-black mb-2">Klik kartu = langsung ke detail</h2>
+                  <p class="text-muted mb-3">
+                    Detail spesifikasi ditaruh di halaman detail-unit biar rapi dan enak untuk SEO.
+                  </p>
+
+                  <div class="d-grid gap-2">
+                    <a class="btn-primary-soft" href="#list">Lihat Unit</a>
+                    <button class="btn-soft" type="button" data-bs-toggle="modal" data-bs-target="#modalPricelist">Lihat Pricelist</button>
+                  </div>
+                </div>
+              </aside>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- LIST UNIT -->
+      <section class="py-4" id="list">
+        <div class="container">
+          <div class="d-flex flex-column flex-md-row gap-2 justify-content-between align-items-md-end mb-3">
+            <div>
+              <p class="kicker mb-1">DAFTAR UNIT TERSEDIA</p>
+              <h2 class="font-display fw-black mb-0" style="letter-spacing:-0.02em;">Daftar unit tersedia (ringkas)</h2>
+            </div>
+            <p class="text-muted mb-0" style="max-width:60ch;">
+              Klik untuk detail. Harga & promo mengikuti update marketing.
+            </p>
+          </div>
+
+          <div class="row g-3" id="unitGrid">
+
+            <!-- 1 -->
+            <div class="col-md-6 col-lg-4 unit-item" data-key="orchid 36 72 starter 2 kamar 1 km">
+              <article class="card-soft unit-card position-relative">
+                <div class="media-soft position-relative">
+                  <span class="tag-float">Starter</span>
+                  <img class="media-img"
+                    src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1200&q=60"
+                    alt="Tipe Orchid 36/72"
+                    loading="lazy"
+                    decoding="async" />
+                </div>
+
+                <div class="unit-body">
+                  <h3 class="font-display fw-black unit-title">Orchid 36/72</h3>
+                  <p class="unit-desc">
+                    Unit efisien untuk pasangan & keluarga kecil. Tata ruang simple, mudah dirawat, dan tetap nyaman.
+                  </p>
+                  <div class="unit-meta">
+                    <span class="badge-soft">🛏️ 2 KT</span>
+                    <span class="badge-soft">🛁 1 KM</span>
+                    <span class="badge-soft">🚗 1 Carport</span>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-muted"><span class="fw-bold text-body">Mulai dari</span><br><span class="fw-semibold">Hubungi marketing</span></div>
+                    <a class="btn-soft" href="detail-unit.html?unit=orchid-36-72" aria-label="Detail Orchid 36/72">Detail ↗</a>
+                  </div>
+                </div>
+
+                <div class="unit-actions">
+                  <a class="btn-primary-soft flex-grow-1" href="detail-unit.html?unit=orchid-36-72" aria-label="Lihat detail Orchid 36/72">
+                    Lihat Detail
+                  </a>
+                </div>
+              </article>
+            </div>
+
+            <!-- 2 -->
+            <div class="col-md-6 col-lg-4 unit-item" data-key="orchid 45 90 family 3 kamar 2 km taman">
+              <article class="card-soft unit-card position-relative">
+                <div class="media-soft position-relative">
+                  <span class="tag-float">Family</span>
+                  <img class="media-img"
+                    src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=60"
+                    alt="Tipe Orchid 45/90"
+                    loading="lazy"
+                    decoding="async" />
+                </div>
+
+                <div class="unit-body">
+                  <h3 class="font-display fw-black unit-title">Orchid 45/90</h3>
+                  <p class="unit-desc">
+                    Lebih lega untuk keluarga muda. Ideal untuk aktivitas harian, dengan opsi penataan ruang yang fleksibel.
+                  </p>
+                  <div class="unit-meta">
+                    <span class="badge-soft">🛏️ 2–3 KT</span>
+                    <span class="badge-soft">🛁 2 KM</span>
+                    <span class="badge-soft">🌿 Taman</span>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-muted"><span class="fw-bold text-body">Mulai dari</span><br><span class="fw-semibold">Hubungi marketing</span></div>
+                    <a class="btn-soft" href="detail-unit.html?unit=orchid-45-90" aria-label="Detail Orchid 45/90">Detail ↗</a>
+                  </div>
+                </div>
+
+                <div class="unit-actions">
+                  <a class="btn-primary-soft flex-grow-1" href="detail-unit.html?unit=orchid-45-90">Lihat Detail</a>
+                </div>
+              </article>
+            </div>
+
+            <!-- 3 -->
+            <div class="col-md-6 col-lg-4 unit-item" data-key="orchid 60 120 premium 3 kamar carport luas">
+              <article class="card-soft unit-card position-relative">
+                <div class="media-soft position-relative">
+                  <span class="tag-float">Premium</span>
+                  <img class="media-img"
+                    src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1200&q=60"
+                    alt="Tipe Orchid 60/120"
+                    loading="lazy"
+                    decoding="async" />
+                </div>
+
+                <div class="unit-body">
+                  <h3 class="font-display fw-black unit-title">Orchid 60/120</h3>
+                  <p class="unit-desc">
+                    Nyaman untuk keluarga besar & ruang tambahan. Cocok untuk kebutuhan jangka panjang yang stabil.
+                  </p>
+                  <div class="unit-meta">
+                    <span class="badge-soft">🛏️ 3 KT</span>
+                    <span class="badge-soft">🛁 2 KM</span>
+                    <span class="badge-soft">🚗 Carport luas</span>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-muted"><span class="fw-bold text-body">Mulai dari</span><br><span class="fw-semibold">Hubungi marketing</span></div>
+                    <a class="btn-soft" href="detail-unit.html?unit=orchid-60-120" aria-label="Detail Orchid 60/120">Detail ↗</a>
+                  </div>
+                </div>
+
+                <div class="unit-actions">
+                  <a class="btn-primary-soft flex-grow-1" href="detail-unit.html?unit=orchid-60-120">Lihat Detail</a>
+                </div>
+              </article>
+            </div>
+
+            <!-- 4 -->
+            <div class="col-md-6 col-lg-4 unit-item" data-key="orchid corner family kavling sudut taman corner">
+              <article class="card-soft unit-card position-relative">
+                <div class="media-soft position-relative">
+                  <span class="tag-float">Family</span>
+                  <img class="media-img"
+                    src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=60"
+                    alt="Tipe Orchid Corner"
+                    loading="lazy"
+                    decoding="async" />
+                </div>
+
+                <div class="unit-body">
+                  <h3 class="font-display fw-black unit-title">Orchid Corner</h3>
+                  <p class="unit-desc">
+                    Kavling sudut dengan potensi taman lebih lega dan sirkulasi udara lebih terbuka.
+                  </p>
+                  <div class="unit-meta">
+                    <span class="badge-soft">✅ Corner</span>
+                    <span class="badge-soft">🌿 Taman</span>
+                    <span class="badge-soft">⭐ Value</span>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-muted"><span class="fw-bold text-body">Mulai dari</span><br><span class="fw-semibold">Hubungi marketing</span></div>
+                    <a class="btn-soft" href="detail-unit.html?unit=orchid-corner" aria-label="Detail Orchid Corner">Detail ↗</a>
+                  </div>
+                </div>
+
+                <div class="unit-actions">
+                  <a class="btn-primary-soft flex-grow-1" href="detail-unit.html?unit=orchid-corner">Lihat Detail</a>
+                </div>
+              </article>
+            </div>
+
+            <!-- 5 -->
+            <div class="col-md-6 col-lg-4 unit-item" data-key="orchid a plus upgrade fleksibel modern">
+              <article class="card-soft unit-card position-relative">
+                <div class="media-soft position-relative">
+                  <span class="tag-float">Starter</span>
+                  <img class="media-img"
+                    src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=60"
+                    alt="Tipe Orchid A+"
+                    loading="lazy"
+                    decoding="async" />
+                </div>
+
+                <div class="unit-body">
+                  <h3 class="font-display fw-black unit-title">Orchid A+</h3>
+                  <p class="unit-desc">
+                    Versi upgrade dengan ruang lebih fleksibel untuk kebutuhan kerja/anak. Tampilan modern dan rapi.
+                  </p>
+                  <div class="unit-meta">
+                    <span class="badge-soft">✅ Upgrade</span>
+                    <span class="badge-soft">✅ Fleksibel</span>
+                    <span class="badge-soft">✅ Modern</span>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-muted"><span class="fw-bold text-body">Mulai dari</span><br><span class="fw-semibold">Hubungi marketing</span></div>
+                    <a class="btn-soft" href="detail-unit.html?unit=orchid-a-plus" aria-label="Detail Orchid A+">Detail ↗</a>
+                  </div>
+                </div>
+
+                <div class="unit-actions">
+                  <a class="btn-primary-soft flex-grow-1" href="detail-unit.html?unit=orchid-a-plus">Lihat Detail</a>
+                </div>
+              </article>
+            </div>
+
+            <!-- 6 -->
+            <div class="col-md-6 col-lg-4 unit-item" data-key="orchid b plus premium best value lebih luas family">
+              <article class="card-soft unit-card position-relative">
+                <div class="media-soft position-relative">
+                  <span class="tag-float">Premium</span>
+                  <img class="media-img"
+                    src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=60"
+                    alt="Tipe Orchid B+"
+                    loading="lazy"
+                    decoding="async" />
+                </div>
+
+                <div class="unit-body">
+                  <h3 class="font-display fw-black unit-title">Orchid B+</h3>
+                  <p class="unit-desc">
+                    Lebih luas untuk family dengan value terbaik. Cocok untuk rencana hunian jangka panjang.
+                  </p>
+                  <div class="unit-meta">
+                    <span class="badge-soft">✅ Best Value</span>
+                    <span class="badge-soft">✅ Family</span>
+                    <span class="badge-soft">✅ Lebih luas</span>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-muted"><span class="fw-bold text-body">Mulai dari</span><br><span class="fw-semibold">Hubungi marketing</span></div>
+                    <a class="btn-soft" href="detail-unit.html?unit=orchid-b-plus" aria-label="Detail Orchid B+">Detail ↗</a>
+                  </div>
+                </div>
+
+                <div class="unit-actions">
+                  <a class="btn-primary-soft flex-grow-1" href="detail-unit.html?unit=orchid-b-plus">Lihat Detail</a>
+                </div>
+              </article>
+            </div>
+
+          </div>
+
+          <div class="card-soft p-3 mt-3">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2">
+              <div class="text-muted">
+                <span class="fw-bold text-body">Catatan:</span> Pricelist & promo dapat berubah. Untuk update cepat, silakan chat marketing via WhatsApp.
+              </div>
+              <button class="btn-primary-soft" type="button" data-bs-toggle="modal" data-bs-target="#modalPricelist">
+                Lihat Pricelist
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <section class="py-4 footer-wrap">
+        <div class="container">
+          <div class="card-soft p-3 p-md-4">
+            <div class="row g-3 align-items-stretch footer-grid">
+              <div class="col-lg-5">
+                <div class="card-soft p-4 h-100">
+                  <div class="d-flex align-items-center gap-3 mb-3">
+                    <span class="brand-logo" aria-hidden="true"></span>
+                    <div>
+                      <div class="font-display fw-black" style="font-size:20px;">Green Orchid Residence</div>
+                      <div class="text-muted">Hunian modern • Sejuk • Tertata</div>
+                    </div>
+                  </div>
+                  <p class="text-muted mb-3" style="max-width:62ch;">
+                    Kami menghadirkan lingkungan hunian yang tertata, nyaman, dan aman untuk keluarga.
+                    Mulai dari pemilihan unit, simulasi KPR, hingga penjadwalan survey—kami bantu sampai tuntas.
+                  </p>
+
+                  <div class="d-flex flex-wrap gap-2">
+                    <a class="btn-soft" href="index.html">Beranda</a>
+                    <a class="btn-soft" href="unit.html">Unit</a>
+                    <button class="btn-primary-soft" type="button" data-bs-toggle="modal" data-bs-target="#modalPricelist">Pricelist</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4">
+                <div class="card-soft p-4 h-100">
+                  <div class="font-display fw-black mb-3" style="font-size:18px;">Menu</div>
+                  <div class="footer-menu">
+                    <a href="index.html">Beranda</a>
+                    <a href="tentang-kami.html">Tentang Kami</a>
+                    <a href="artikel.html">Artikel</a>
+                    <a href="unit.html">Unit</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-3">
+                <div class="card-soft p-4 h-100">
+                  <div class="font-display fw-black mb-3" style="font-size:18px;">Kontak</div>
+                  <div class="text-muted fw-semibold">
+                    WhatsApp: <strong class="text-body">08xx-xxxx-xxxx</strong><br />
+                    Email: <strong class="text-body">marketing@greenorchid.id</strong><br />
+                    Jam layanan: <strong class="text-body">09.00–20.00</strong>
+                  </div>
+
+                  <div class="mt-3 d-grid gap-2">
+                    <button class="btn-soft" type="button" id="footerWA">
+                      <span aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                          <path d="M20.5 11.8c0 4.7-3.9 8.6-8.6 8.6-1.5 0-2.9-.4-4.1-1l-3.3.9.9-3.2c-.7-1.3-1-2.7-1-4.3C4.4 7.1 8.3 3.2 13 3.2c4.7 0 8.5 3.9 8.5 8.6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                          <path d="M10.4 9.3c.2-.4.4-.4.7-.3l.7.2c.2.1.3.2.4.4l.3 1c.1.2 0 .4-.1.5l-.3.4c-.1.1-.1.3 0 .4.3.6 1 1.4 2.1 1.9.1.1.3 0 .4-.1l.4-.3c.1-.1.3-.2.5-.1l1 .3c.2.1.3.2.4.4l.2.7c.1.3 0 .5-.3.7-.3.2-.9.5-1.7.4-1.1-.1-2.6-.7-4.1-2.2-1.5-1.5-2.1-3-2.2-4.1-.1-.8.2-1.4.4-1.7Z" fill="currentColor"/>
+                        </svg>
+                      </span>
+                      Tanya via WhatsApp
+                    </button>
+                    <button class="btn-primary-soft" type="button" data-bs-toggle="modal" data-bs-target="#modalPricelist">Buka Pricelist</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mt-3">
+              <div class="text-muted">© <span id="year"></span> Green Orchid Residence. All rights reserved.</div>
+              <div class="text-muted">Neumorphism Soft UI • Bootstrap</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FLOATING (UP + WA) -->
+    <div class="float-stack" aria-label="Aksi cepat">
+      <button class="float-circle float-up" type="button" id="toTop" aria-label="Kembali ke atas" title="Kembali ke atas">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 5l-7 7m7-7l7 7M12 5v14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <button class="float-circle float-wa" type="button" id="floatWA" aria-label="Chat WhatsApp" title="Chat WhatsApp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M20.5 11.8c0 4.7-3.9 8.6-8.6 8.6-1.5 0-2.9-.4-4.1-1l-3.3.9.9-3.2c-.7-1.3-1-2.7-1-4.3C4.4 7.1 8.3 3.2 13 3.2c4.7 0 8.5 3.9 8.5 8.6Z" stroke="white" stroke-width="2" stroke-linejoin="round" opacity=".95"/>
+          <path d="M10.4 9.3c.2-.4.4-.4.7-.3l.7.2c.2.1.3.2.4.4l.3 1c.1.2 0 .4-.1.5l-.3.4c-.1.1-.1.3 0 .4.3.6 1 1.4 2.1 1.9.1.1.3 0 .4-.1l.4-.3c.1-.1.3-.2.5-.1l1 .3c.2.1.3.2.4.4l.2.7c.1.3 0 .5-.3.7-.3.2-.9.5-1.7.4-1.1-.1-2.6-.7-4.1-2.2-1.5-1.5-2.1-3-2.2-4.1-.1-.8.2-1.4.4-1.7Z" fill="white"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- MODAL: PRICELIST -->
+    <div class="modal fade" id="modalPricelist" tabindex="-1" aria-labelledby="modalPricelistLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header px-4 pt-4">
+            <div>
+              <div class="kicker mb-1">PRICELIST</div>
+              <h3 class="modal-title font-display fw-black" id="modalPricelistLabel">Pilih tipe unit (6 opsi)</h3>
+              <div class="text-muted fw-semibold mt-1">Klik tipe untuk masuk ke halaman detail.</div>
+            </div>
+            <button type="button" class="btn-soft btn-icon" data-bs-dismiss="modal" aria-label="Tutup">✕</button>
+          </div>
+
+          <div class="modal-body px-4 pb-2">
+            <div class="row g-2">
+              <div class="col-md-6">
+                <a class="price-item" href="detail-unit.html?unit=orchid-36-72">
+                  <div class="price-left">
+                    <strong>Orchid 36/72</strong>
+                    <span>Starter • 2 KT • 1 KM • 1 Carport</span>
+                  </div>
+                  <div class="price-pill">Detail ↗</div>
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a class="price-item" href="detail-unit.html?unit=orchid-45-90">
+                  <div class="price-left">
+                    <strong>Orchid 45/90</strong>
+                    <span>Family • 2–3 KT • 2 KM • Taman</span>
+                  </div>
+                  <div class="price-pill">Detail ↗</div>
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a class="price-item" href="detail-unit.html?unit=orchid-60-120">
+                  <div class="price-left">
+                    <strong>Orchid 60/120</strong>
+                    <span>Premium • 3 KT • 2 KM • Carport luas</span>
+                  </div>
+                  <div class="price-pill">Detail ↗</div>
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a class="price-item" href="detail-unit.html?unit=orchid-corner">
+                  <div class="price-left">
+                    <strong>Orchid Corner</strong>
+                    <span>Family • Kavling sudut • Potensi taman</span>
+                  </div>
+                  <div class="price-pill">Detail ↗</div>
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a class="price-item" href="detail-unit.html?unit=orchid-a-plus">
+                  <div class="price-left">
+                    <strong>Orchid A+</strong>
+                    <span>Upgrade • Fleksibel • Modern</span>
+                  </div>
+                  <div class="price-pill">Detail ↗</div>
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a class="price-item" href="detail-unit.html?unit=orchid-b-plus">
+                  <div class="price-left">
+                    <strong>Orchid B+</strong>
+                    <span>Premium • Best Value • Lebih luas</span>
+                  </div>
+                  <div class="price-pill">Detail ↗</div>
+                </a>
+              </div>
+            </div>
+
+            <div class="card-soft p-3 mt-3">
+              <div class="d-flex flex-column flex-md-row gap-2 justify-content-between align-items-md-center">
+                <div class="text-muted">
+                  <span class="fw-bold text-body">Catatan:</span> Harga & promo mengikuti update marketing.
+                </div>
+                <button class="btn-primary-soft" type="button" id="modalWA">Minta info via WA</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer px-4 pb-4 pt-2">
+            <button type="button" class="btn-soft" data-bs-dismiss="modal">Tutup</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+
+    <script>
+      (function () {
+        // YEAR
+        const yearEl = document.getElementById("year");
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        // ===== WA CONFIG (GANTI NOMOR INI) =====
+        const MARKETING_WA = "628xxxxxxxxxx"; // format internasional tanpa +
+
+        function openWA(context) {
+          const text = encodeURIComponent(
+            "Halo Green Orchid, saya ingin info unit.\n\n" +
+            "Kebutuhan: " + (context || "Konsultasi umum") + "\n" +
+            "Mohon dibantu info harga, ketersediaan, dan promo terbaru. Terima kasih."
+          );
+          window.open("https://wa.me/" + MARKETING_WA + "?text=" + text, "_blank", "noopener,noreferrer");
+        }
+
+        // Floating WA + footer WA + modal WA
+        const floatWA = document.getElementById("floatWA");
+        const footerWA = document.getElementById("footerWA");
+        const modalWA  = document.getElementById("modalWA");
+
+        if (floatWA) floatWA.addEventListener("click", () => openWA("Konsultasi umum"));
+        if (footerWA) footerWA.addEventListener("click", () => openWA("Konsultasi umum"));
+        if (modalWA)  modalWA.addEventListener("click", () => openWA("Minta pricelist"));
+
+        // Floating UP (muncul setelah scroll)
+        const toTop = document.getElementById("toTop");
+        function updateToTop() {
+          if (!toTop) return;
+          const show = window.scrollY > 300;
+          toTop.style.opacity = show ? "1" : "0";
+          toTop.style.pointerEvents = show ? "auto" : "none";
+        }
+        if (toTop) toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+        updateToTop();
+        window.addEventListener("scroll", updateToTop, { passive: true });
+
+        // Search filter
+        const q = document.getElementById("q");
+        const resetBtn = document.getElementById("resetBtn");
+        const items = Array.from(document.querySelectorAll(".unit-item"));
+
+        function applyFilter() {
+          const val = (q?.value || "").trim().toLowerCase();
+          if (!val) { items.forEach(it => it.classList.remove("d-none")); return; }
+          items.forEach(it => {
+            const key = (it.getAttribute("data-key") || "").toLowerCase();
+            it.classList.toggle("d-none", !key.includes(val));
+          });
+        }
+        if (q) q.addEventListener("input", applyFilter);
+        if (resetBtn) resetBtn.addEventListener("click", () => { q.value = ""; applyFilter(); });
+      })();
+    </script>
+  </body>
+  </html>
