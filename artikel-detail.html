@@ -65,7 +65,6 @@
 
     .font-display{ font-family: "Plus Jakarta Sans", system-ui, sans-serif; }
     .fw-black{ font-weight: 1000; letter-spacing: -0.01em; }
-    .text-accent{ color: var(--accentDeep); }
 
     .kicker{
       color: var(--muted);
@@ -83,7 +82,7 @@
     }
     .skip-link:focus{ left:10px; }
 
-    /* ===== NAVBAR FLOATING (disamakan dengan versi terbaru) ===== */
+    /* NAVBAR */
     .header-blur{
       background: rgba(224,229,236,0.78);
       backdrop-filter: blur(10px);
@@ -95,6 +94,18 @@
       background: rgba(224,229,236,0.92);
       border: 1px solid rgba(255,255,255,0.35);
     }
+
+    /* LOGO IMAGE */
+    .brand-img{
+      width:44px; height:44px;
+      border-radius: 16px;
+      box-shadow: var(--sh-extruded);
+      object-fit: cover;
+      background: var(--bg);
+      flex: 0 0 auto;
+    }
+
+    /* For footer snippet compatibility (it uses .brand-logo) */
     .brand-logo{
       width:44px;height:44px;
       border-radius:16px;
@@ -112,6 +123,7 @@
       box-shadow: var(--sh-inset);
       opacity:.9;
     }
+
     .brand-title{ display:block; font-size:18px; line-height:1.1; font-weight:1000; }
     .brand-subtitle{ display:block; margin-top:2px; color: var(--muted); font-size:13px; font-weight:700; }
 
@@ -174,11 +186,10 @@
     }
 
     .btn-icon{
-      width:48px;
-      min-width:48px;
-      padding:0;
+      width:48px; min-width:48px; padding:0;
       border-radius: 16px !important;
     }
+
     .hamburger{ width:20px;height:20px; position:relative; display:inline-block; }
     .hamburger span{
       position:absolute; left:0; right:0;
@@ -189,7 +200,7 @@
     .hamburger span:nth-child(2){ top:9px; }
     .hamburger span:nth-child(3){ top:13px; }
 
-    /* ===== konten asli kamu (tetap) ===== */
+    /* CARD */
     .card-soft{
       background: var(--bg);
       border-radius: var(--r-card);
@@ -198,6 +209,7 @@
     }
     .card-soft:hover{ transform: translateY(-2px); box-shadow: var(--sh-extrudedHover); }
 
+    /* HERO + GALLERY */
     .media-soft{
       border-radius: 28px;
       box-shadow: var(--sh-inset);
@@ -210,7 +222,6 @@
       object-fit: cover;
       display:block;
     }
-
     figure{ margin: 0; }
     figcaption{
       padding: 12px 14px;
@@ -219,7 +230,44 @@
       font-size: 13px;
     }
 
-    /* article typography */
+    .gallery-strip{
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .thumb{
+      border: 0;
+      padding: 0;
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--bg);
+      box-shadow: var(--sh-insetSmall);
+      cursor: pointer;
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease), opacity .25s var(--ease);
+      height: 92px;
+      display: block;
+    }
+    .thumb:hover{ transform: translateY(-1px); box-shadow: var(--sh-small); }
+    .thumb:active{ transform: translateY(0.5px); box-shadow: var(--sh-insetSmall); }
+    .thumb:focus-visible{
+      outline: none;
+      box-shadow: var(--sh-small), 0 0 0 2px var(--accentDeep), 0 0 0 6px var(--bg);
+    }
+    .thumb img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display:block;
+      opacity: .92;
+    }
+    .thumb.active{
+      box-shadow: var(--sh-inset), 0 0 0 2px rgba(16,185,129,0.35);
+      transform: translateY(-1px);
+    }
+    .thumb.active img{ opacity: 1; }
+
+    /* ARTICLE */
     .article-wrap{
       line-height: 1.75;
       font-weight: 600;
@@ -261,7 +309,7 @@
       font-size: 13px;
     }
 
-    /* TOC */
+    /* TOC box (tanpa badge/label) */
     .toc-box{
       border-radius: 28px;
       background: var(--bg);
@@ -347,11 +395,7 @@
     }
 
     /* share */
-    .share-grid{
-      display:flex;
-      gap:10px;
-      flex-wrap: wrap;
-    }
+    .share-grid{ display:flex; gap:10px; flex-wrap: wrap; }
 
     /* related cards */
     .rel-card{
@@ -371,7 +415,7 @@
     .rel-desc{ margin:0 0 12px; color: var(--muted); font-weight:700; line-height:1.55; }
     .rel-actions{ padding: 0 14px 14px; margin-top:auto; }
 
-    /* tiny divider */
+    /* divider */
     .hr-soft{
       border:0;
       height:1px;
@@ -379,7 +423,7 @@
       margin: 18px 0;
     }
 
-    /* ===== FLOATING UP + WA (disamakan dengan versi terbaru) ===== */
+    /* floating */
     .float-stack{
       position: fixed;
       right: 18px;
@@ -403,14 +447,33 @@
     }
     .float-circle:hover{ transform: translateY(-2px); box-shadow: var(--sh-extrudedHover); }
     .float-circle:active{ transform: translateY(0.5px); box-shadow: var(--sh-insetSmall); }
+    .float-up{ background: rgba(224,229,236,0.92); color: var(--fg); }
+    .float-wa{ background: linear-gradient(135deg, var(--accentDeep), var(--accent)); color: #0b1b12; }
 
-    .float-up{
-      background: rgba(224,229,236,0.92);
+    /* FOOTER extras */
+    .footer-wrap .footer-menu a{
+      display:block;
+      text-decoration:none;
       color: var(--fg);
+      font-weight: 800;
+      padding: 10px 12px;
+      border-radius: 18px;
+      background: var(--bg);
+      box-shadow: var(--sh-insetSmall);
+      margin-bottom: 10px;
+      transition: transform .25s var(--ease), box-shadow .25s var(--ease);
     }
-    .float-wa{
-      background: linear-gradient(135deg, var(--accentDeep), var(--accent));
-      color: #0b1b12;
+    .footer-wrap .footer-menu a:hover{ transform: translateY(-1px); box-shadow: var(--sh-small); }
+
+    .footer-actions{
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .footer-actions .btn-soft,
+    .footer-actions .btn-primary-soft{
+      flex: 1 1 auto;
     }
 
     @media (max-width: 991.98px){
@@ -422,59 +485,54 @@
 <body id="top">
   <a class="skip-link" href="#main">Lewati ke konten utama</a>
 
-    <!-- HEADER (navbar model detail-unit) -->
-    <header class="sticky-top header-blur">
-        <div class="container py-3">
-          <nav class="nav-shell navbar navbar-expand-lg px-3 px-lg-4 py-3">
-            <a class="navbar-brand d-flex align-items-center gap-3" href="index.html" aria-label="Green Orchid Residence">
-              <span class="brand-logo" aria-hidden="true"></span>
-              <span class="d-flex flex-column">
-                <span class="brand-title font-display">Green Orchid Residence</span>
-                <span class="brand-subtitle">Hunian modern • Sejuk • Tertata</span>
+  <header class="sticky-top header-blur">
+    <div class="container py-3">
+      <nav class="nav-shell navbar navbar-expand-lg px-3 px-lg-4 py-3">
+        <a class="navbar-brand d-flex align-items-center gap-3" href="index.html" aria-label="Green Orchid Residence">
+          <img class="brand-img" src="assets/img/logo green orchid.png" alt="Logo Green Orchid Residence" width="44" height="44" loading="eager" decoding="async" />
+          <span class="d-flex flex-column">
+            <span class="brand-title font-display">Green Orchid Residence</span>
+            <span class="brand-subtitle">Hunian modern • Sejuk • Tertata</span>
+          </span>
+        </a>
+
+        <button class="btn btn-soft btn-icon d-lg-none ms-auto" type="button"
+          data-bs-toggle="collapse" data-bs-target="#navMain"
+          aria-controls="navMain" aria-expanded="false" aria-label="Buka menu">
+          <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMain">
+          <ul class="navbar-nav mx-lg-auto gap-2 mt-3 mt-lg-0 align-items-lg-center">
+            <li class="nav-item"><a class="nav-link nav-pill" href="index.html">Beranda</a></li>
+            <li class="nav-item"><a class="nav-link nav-pill" href="tentang-kami.html">Tentang Kami</a></li>
+            <li class="nav-item"><a class="nav-link nav-pill" href="unit.html">Unit</a></li>
+            <li class="nav-item"><a class="nav-link nav-pill active" href="artikel.html" aria-current="page">Artikel</a></li>
+          </ul>
+
+          <div class="mt-3 mt-lg-0 d-flex">
+            <button class="btn-primary-soft w-100 w-lg-auto" type="button" data-bs-toggle="modal" data-bs-target="#modalPricelist" aria-label="Buka Pricelist">
+              <span aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M8 6h13M8 12h13M8 18h13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M3 6h1M3 12h1M3 18h1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
               </span>
-            </a>
-  
-            <button class="btn btn-soft btn-icon d-lg-none ms-auto" type="button"
-              data-bs-toggle="collapse" data-bs-target="#navMain"
-              aria-controls="navMain" aria-expanded="false" aria-label="Buka menu">
-              <span class="hamburger" aria-hidden="true">
-                <span></span><span></span><span></span>
-              </span>
+              Pricelist
             </button>
-  
-            <div class="collapse navbar-collapse" id="navMain">
-              <ul class="navbar-nav mx-lg-auto gap-2 mt-3 mt-lg-0 align-items-lg-center">
-                <li class="nav-item"><a class="nav-link nav-pill" href="index.html">Beranda</a></li>
-                <li class="nav-item"><a class="nav-link nav-pill" href="tentang-kami.html">Tentang Kami</a></li>
-                <li class="nav-item"><a class="nav-link nav-pill active" href="unit.html" aria-current="page">Unit</a></li>
-                <li class="nav-item"><a class="nav-link nav-pill" href="artikel.html">Artikel</a></li>
-              </ul>
-  
-              <div class="mt-3 mt-lg-0 d-flex">
-                <button class="btn-primary-soft w-100 w-lg-auto" type="button" data-bs-toggle="modal" data-bs-target="#modalPricelist" aria-label="Buka Pricelist">
-                  <span aria-hidden="true">
-                    <!-- icon list -->
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                      <path d="M8 6h13M8 12h13M8 18h13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                      <path d="M3 6h1M3 12h1M3 18h1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                  </span>
-                  Pricelist
-                </button>
-              </div>
-            </div>
-          </nav>
+          </div>
         </div>
-      </header>
+      </nav>
+    </div>
+  </header>
 
   <main id="main">
-
-    <!-- HEADER ARTIKEL: H1 + META -->
     <section class="py-4 py-md-5">
       <div class="container">
         <div class="card-soft p-4 p-md-5">
-
-          <p class="kicker mb-2" id="articleCategory">ARTIKEL</p>
+          <p class="text-muted fw-semibold mb-2" id="articleCategory" style="letter-spacing:.04em; font-weight:900; font-size:12px; text-transform:uppercase;">
+            ARTIKEL
+          </p>
 
           <h1 class="font-display fw-black mb-3" id="articleTitle"
               style="letter-spacing:-0.03em; font-size:clamp(30px,4.8vw,54px); line-height:1.05;">
@@ -496,19 +554,11 @@
             <figcaption id="heroCap">Deskripsi foto utama.</figcaption>
           </figure>
 
+          <div class="gallery-strip" id="galleryStrip" aria-label="Galeri gambar pendukung"></div>
+
           <div class="hr-soft"></div>
 
-          <!-- SHARE BUTTONS -->
-          <div id="share" class="d-flex flex-column flex-md-row justify-content-between gap-2 align-items-md-center">
-            <div class="text-muted fw-semibold" style="max-width:72ch;">
-              Suka artikelnya? Bagikan ke teman kamu. (Share aktif ke WhatsApp & sosial media)
-            </div>
-            <div class="share-grid">
-              <a class="btn-soft" id="shareWa" href="#" target="_blank" rel="noopener">Share WA</a>
-              <a class="btn-soft" id="shareFb" href="#" target="_blank" rel="noopener">Facebook</a>
-              <a class="btn-soft" id="shareX"  href="#" target="_blank" rel="noopener">X</a>
-              <a class="btn-soft" id="shareLn" href="#" target="_blank" rel="noopener">LinkedIn</a>
-              <button class="btn-primary-soft" id="copyLink" type="button">Copy Link</button>
+
             </div>
           </div>
 
@@ -516,21 +566,17 @@
       </div>
     </section>
 
-    <!-- KONTEN + SIDEBAR TOC -->
     <section class="py-4">
       <div class="container">
         <div class="row g-3 align-items-start">
 
-          <!-- CONTENT -->
           <div class="col-lg-8">
             <article class="card-soft p-4 p-md-5">
               <div class="article-wrap" id="articleContent"></div>
 
               <div class="hr-soft"></div>
 
-              <!-- GIF PROMO (1) -->
               <div class="callout">
-                <div class="kicker mb-2">PROMO</div>
                 <div class="fw-black font-display mb-2">Cek unit & promo berjalan via WhatsApp</div>
                 <img id="promoGif1" src="" alt="Gambar promosi (GIF) Green Orchid" style="width:100%; border-radius:22px; box-shadow: var(--sh-insetSmall); display:block;" loading="lazy" decoding="async" />
                 <div class="text-muted fw-semibold small mt-2">*GIF promosi: bisa kamu ganti sesuai materi marketing.</div>
@@ -542,35 +588,28 @@
 
               <div class="hr-soft"></div>
 
-              <!-- BACA JUGA (minimal 2) -->
               <section id="baca-juga">
-                <div class="kicker mb-2">BACA JUGA</div>
+                <div class="fw-black font-display mb-2">Baca juga</div>
                 <div class="row g-3" id="readAlsoGrid"></div>
               </section>
 
               <div class="hr-soft"></div>
 
-              <!-- FAQ -->
               <section id="faq">
-                <div class="kicker mb-2">FAQ</div>
-                <h2>Pertanyaan yang sering ditanya</h2>
+                <h2 class="font-display fw-black mb-3">Pertanyaan yang sering ditanya</h2>
                 <div id="faqWrap"></div>
               </section>
 
               <div class="hr-soft"></div>
 
-              <!-- KESIMPULAN -->
               <section id="kesimpulan">
-                <div class="kicker mb-2">KESIMPULAN</div>
-                <h2>Ringkasnya</h2>
+                <h2 class="font-display fw-black mb-2">Ringkasnya</h2>
                 <div id="conclusion" class="text-muted fw-semibold"></div>
               </section>
 
               <div class="hr-soft"></div>
 
-              <!-- GIF PROMO (2) -->
               <div class="callout">
-                <div class="kicker mb-2">PROMO</div>
                 <div class="fw-black font-display mb-2">Mau dibantu simulasi KPR & jadwal survey?</div>
                 <img id="promoGif2" src="" alt="Gambar promosi (GIF) konsultasi" style="width:100%; border-radius:22px; box-shadow: var(--sh-insetSmall); display:block;" loading="lazy" decoding="async" />
                 <div class="d-flex gap-2 flex-wrap mt-3">
@@ -581,9 +620,8 @@
 
               <div class="hr-soft"></div>
 
-              <!-- PROFIL PENULIS -->
               <section id="author">
-                <div class="kicker mb-2">PROFIL PENULIS</div>
+                <h2 class="font-display fw-black mb-3">Profil penulis</h2>
                 <div class="author">
                   <div class="avatar" aria-hidden="true"></div>
                   <div>
@@ -603,14 +641,11 @@
             </article>
           </div>
 
-          <!-- SIDEBAR -->
           <div class="col-lg-4">
             <aside class="card-soft p-4 position-sticky" style="top: 110px;">
-              <div class="kicker mb-2">DAFTAR ISI</div>
-
               <div class="toc-box" id="toc">
                 <details open>
-                  <summary class="fw-black font-display" style="cursor:pointer;">Buka / Tutup TOC</summary>
+                  <summary class="fw-black font-display" style="cursor:pointer;">Buka / Tutup Isi Artikel</summary>
                   <div class="mt-3" id="tocInner">
                     <ol class="toc-list" id="tocList"></ol>
                   </div>
@@ -619,8 +654,8 @@
 
               <div class="hr-soft"></div>
 
-              <div class="kicker mb-2">ARTIKEL TERKAIT</div>
-              <div class="text-muted fw-semibold mb-2">3 artikel terkait dengan gambar, judul, deskripsi, tombol.</div>
+              <div class="fw-black font-display mb-2">Artikel terkait</div>
+              <div class="text-muted fw-semibold mb-2">3 artikel yang mungkin kamu suka.</div>
               <div class="row g-3" id="relatedGrid"></div>
 
               <div class="hr-soft"></div>
@@ -633,22 +668,83 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="py-4">
+    <!-- ✅ FOOTER DIPASANG: sesuai snippet kamu -->
+    <section class="py-4 footer-wrap">
       <div class="container">
-        <div class="card-soft p-4">
-          <div class="d-flex flex-column flex-md-row justify-content-between gap-2 text-muted fw-semibold">
-            <div>© <span id="year"></span> Green Orchid Residence. All rights reserved.</div>
-            <div>Neumorphism Soft UI • Bootstrap</div>
+        <div class="card-soft p-3 p-md-4">
+          <div class="row g-3 align-items-stretch footer-grid">
+            <div class="col-lg-5">
+              <div class="card-soft p-4 h-100">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                  <span class="brand-logo" aria-hidden="true"></span>
+                  <div>
+                    <div class="font-display fw-black" style="font-size:20px;">Green Orchid Residence</div>
+                    <div class="text-muted">Hunian modern • Sejuk • Tertata</div>
+                  </div>
+                </div>
+                <p class="text-muted mb-3" style="max-width:62ch;">
+                  Kami menghadirkan lingkungan hunian yang tertata, nyaman, dan aman untuk keluarga.
+                  Mulai dari pemilihan unit, simulasi KPR, hingga penjadwalan survey—kami bantu sampai tuntas.
+                </p>
+
+                <div class="d-flex flex-wrap gap-2">
+                  <a class="btn-soft" href="index.html">Beranda</a>
+                  <a class="btn-soft" href="unit.html">Unit</a>
+                  <button class="btn-primary-soft" type="button" data-bs-toggle="modal" data-bs-target="#modalPricelist">Pricelist</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4">
+              <div class="card-soft p-4 h-100">
+                <div class="font-display fw-black mb-3" style="font-size:18px;">Menu</div>
+                <div class="footer-menu">
+                  <a href="index.html">Beranda</a>
+                  <a href="tentang-kami.html">Tentang Kami</a>
+                  <a href="artikel.html">Artikel</a>
+                  <a href="unit.html">Unit</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3">
+              <div class="card-soft p-4 h-100">
+                <div class="font-display fw-black mb-3" style="font-size:18px;">Kontak</div>
+                <div class="text-muted fw-semibold">
+                  WhatsApp: <strong class="text-body">08xx-xxxx-xxxx</strong><br />
+                  Email: <strong class="text-body">marketing@greenorchid.id</strong><br />
+                  Jam layanan: <strong class="text-body">09.00–20.00</strong>
+                </div>
+
+                <div class="mt-3 d-grid gap-2">
+                  <button class="btn-soft" type="button" id="footerWA">
+                    <span aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path d="M20.5 11.8c0 4.7-3.9 8.6-8.6 8.6-1.5 0-2.9-.4-4.1-1l-3.3.9.9-3.2c-.7-1.3-1-2.7-1-4.3C4.4 7.1 8.3 3.2 13 3.2c4.7 0 8.5 3.9 8.5 8.6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M10.4 9.3c.2-.4.4-.4.7-.3l.7.2c.2.1.3.2.4.4l.3 1c.1.2 0 .4-.1.5l-.3.4c-.1.1-.1.3 0 .4.3.6 1 1.4 2.1 1.9.1.1.3 0 .4-.1l.4-.3c.1-.1.3-.2.5-.1l1 .3c.2.1.3.2.4.4l.2.7c.1.3 0 .5-.3.7-.3.2-.9.5-1.7.4-1.1-.1-2.6-.7-4.1-2.2-1.5-1.5-2.1-3-2.2-4.1-.1-.8.2-1.4.4-1.7Z" fill="currentColor"/>
+                      </svg>
+                    </span>
+                    Tanya via WhatsApp
+                  </button>
+                  <button class="btn-primary-soft" type="button" data-bs-toggle="modal" data-bs-target="#modalPricelist">Buka Pricelist</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mt-3">
+            <div class="text-muted">© <span id="year"></span> Green Orchid Residence. All rights reserved.</div>
+            <div class="text-muted">Neumorphism Soft UI • Bootstrap</div>
           </div>
         </div>
       </div>
-    </footer>
+    </section>
+
   </main>
 
   <!-- FLOATING (UP + WA) -->
   <div class="float-stack" aria-label="Aksi cepat">
-    <button class="float-circle float-up" type="button" id="toTop" aria-label="Kembali ke atas" title="Kembali ke atas">
+    <button class="float-circle float-up" type="button" id="toTop" aria-label="Kembali ke atas" title="Kembali ke atas" style="opacity:0; pointer-events:none;">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 5l-7 7m7-7l7 7M12 5v14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -656,16 +752,105 @@
 
     <button class="float-circle float-wa" type="button" id="floatWA" aria-label="Chat WhatsApp" title="Chat WhatsApp">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M20.5 11.8c0 4.7-3.9 8.6-8.6 8.6-1.5 0-2.9-.4-4.1-1l-3.3.9.9-3.2c-.7-1.3-1-2.7-1-4.3C4.4 7.1 8.3 3.2 13 3.2c4.7 0 8.5 3.9 8.5 8.6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" opacity=".95"/>
-        <path d="M10.4 9.3c.2-.4.4-.4.7-.3l.7.2c.2.1.3.2.4.4l.3 1c.1.2 0 .4-.1.5l-.3.4c-.1.1-.1.3 0 .4.3.6 1 1.4 2.1 1.9.1.1.3 0 .4-.1l.4-.3c.1-.1.3-.2.5-.1l1 .3c.2.1.3.2.4.4l.2.7c.1.3 0 .5-.3.7-.3.2-.9.5-1.7.4-1.1-.1-2.6-.7-4.1-2.2-1.5-1.5-2.1-3-2.2-4.1-.1-.8.2-1.4.4-1.7Z" fill="currentColor"/>
+        <path d="M20.5 11.8c0 4.7-3.9 8.6-8.6 8.6-1.5 0-2.9-.4-4.1-1l-3.3.9.9-3.2c-.7-1.3-1-2.7-1-4.3C4.4 7.1 8.3 3.2 13 3.2c4.7 0 8.5 3.9 8.5 8.6Z" stroke="white" stroke-width="2" stroke-linejoin="round" opacity=".95"/>
+        <path d="M10.4 9.3c.2-.4.4-.4.7-.3l.7.2c.2.1.3.2.4.4l.3 1c.1.2 0 .4-.1.5l-.3.4c-.1.1-.1.3 0 .4.3.6 1 1.4 2.1 1.9.1.1.3 0 .4-.1l.4-.3c.1-.1.3-.2.5-.1l1 .3c.2.1.3.2.4.4l.2.7c.1.3 0 .5-.3.7-.3.2-.9.5-1.7.4-1.1-.1-2.6-.7-4.1-2.2-1.5-1.5-2.1-3-2.2-4.1-.1-.8.2-1.4.4-1.7Z" fill="white"/>
       </svg>
     </button>
+  </div>
+
+  <!-- MODAL: PRICELIST -->
+  <div class="modal fade" id="modalPricelist" tabindex="-1" aria-labelledby="modalPricelistLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header px-4 pt-4">
+          <div>
+            <div class="kicker mb-1">PRICELIST</div>
+            <h3 class="modal-title font-display fw-black" id="modalPricelistLabel">Pilih tipe unit (6 opsi)</h3>
+            <div class="text-muted fw-semibold mt-1">Klik tipe untuk masuk ke halaman detail.</div>
+          </div>
+          <button type="button" class="btn-soft btn-icon" data-bs-dismiss="modal" aria-label="Tutup">✕</button>
+        </div>
+
+        <div class="modal-body px-4 pb-2">
+          <div class="row g-2">
+            <div class="col-md-6">
+              <a class="price-item" href="detail-unit.html?unit=orchid-36-72">
+                <div class="price-left">
+                  <strong>Orchid 36/72</strong>
+                  <span>Starter • 2 KT • 1 KM • 1 Carport</span>
+                </div>
+                <div class="price-pill">Detail ↗</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a class="price-item" href="detail-unit.html?unit=orchid-45-90">
+                <div class="price-left">
+                  <strong>Orchid 45/90</strong>
+                  <span>Family • 2–3 KT • 2 KM • Taman</span>
+                </div>
+                <div class="price-pill">Detail ↗</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a class="price-item" href="detail-unit.html?unit=orchid-60-120">
+                <div class="price-left">
+                  <strong>Orchid 60/120</strong>
+                  <span>Premium • 3 KT • 2 KM • Carport luas</span>
+                </div>
+                <div class="price-pill">Detail ↗</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a class="price-item" href="detail-unit.html?unit=orchid-corner">
+                <div class="price-left">
+                  <strong>Orchid Corner</strong>
+                  <span>Family • Kavling sudut • Potensi taman</span>
+                </div>
+                <div class="price-pill">Detail ↗</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a class="price-item" href="detail-unit.html?unit=orchid-a-plus">
+                <div class="price-left">
+                  <strong>Orchid A+</strong>
+                  <span>Upgrade • Fleksibel • Modern</span>
+                </div>
+                <div class="price-pill">Detail ↗</div>
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a class="price-item" href="detail-unit.html?unit=orchid-b-plus">
+                <div class="price-left">
+                  <strong>Orchid B+</strong>
+                  <span>Premium • Best Value • Lebih luas</span>
+                </div>
+                <div class="price-pill">Detail ↗</div>
+              </a>
+            </div>
+          </div>
+
+          <div class="card-soft p-3 mt-3">
+            <div class="d-flex flex-column flex-md-row gap-2 justify-content-between align-items-md-center">
+              <div class="text-muted">
+                <span class="fw-bold text-body">Catatan:</span> Harga & promo mengikuti update marketing.
+              </div>
+              <button class="btn-primary-soft" type="button" id="modalWA">Minta info via WA</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer px-4 pb-4 pt-2">
+          <button type="button" class="btn-soft" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 
   <script>
     (function () {
+      // YEAR
       const yearEl = document.getElementById("year");
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
@@ -682,23 +867,25 @@
       }
 
       // WA triggers
-      const navWA   = document.getElementById("navWA");
-      const floatWA = document.getElementById("floatWA");
+      const floatWA  = document.getElementById("floatWA");
       const promoWA1 = document.getElementById("promoWA1");
       const promoWA2 = document.getElementById("promoWA2");
       const authorWA = document.getElementById("authorWA");
+      const footerWA = document.getElementById("footerWA");
+      const modalWA  = document.getElementById("modalWA");
 
-      if (navWA)   navWA.addEventListener("click", () => openWA("Tanya cepat dari navbar"));
-      if (floatWA) floatWA.addEventListener("click", () => openWA("Konsultasi cepat dari tombol melayang"));
+      if (floatWA)  floatWA.addEventListener("click", () => openWA("Konsultasi umum"));
       if (promoWA1) promoWA1.addEventListener("click", () => openWA("Tanya promo dari section promo 1"));
       if (promoWA2) promoWA2.addEventListener("click", () => openWA("Tanya simulasi KPR & jadwal survey dari promo 2"));
       if (authorWA) authorWA.addEventListener("click", () => openWA("Kontak penulis / tim marketing"));
+      if (footerWA) footerWA.addEventListener("click", () => openWA("Konsultasi umum"));
+      if (modalWA)  modalWA.addEventListener("click", () => openWA("Minta pricelist"));
 
-      // Floating UP (muncul setelah scroll)
+      // Floating UP
       const toTop = document.getElementById("toTop");
       function updateToTop() {
         if (!toTop) return;
-        const show = window.scrollY > 280;
+        const show = window.scrollY > 300;
         toTop.style.opacity = show ? "1" : "0";
         toTop.style.pointerEvents = show ? "auto" : "none";
       }
@@ -706,439 +893,461 @@
       updateToTop();
       window.addEventListener("scroll", updateToTop, { passive: true });
 
-      // auto close navbar collapse on click (mobile)
-      const nav = document.getElementById("mainNavbar");
-      if (nav) {
-        nav.querySelectorAll("a.nav-link, a.nav-pill").forEach((a) => {
-          a.addEventListener("click", () => {
-            const isShown = nav.classList.contains("show");
-            if (isShown && window.bootstrap) {
-              const inst = window.bootstrap.Collapse.getOrCreateInstance(nav);
-              inst.hide();
-            }
-          });
-        });
-      }
-
       // helpers
       const $ = (s, root=document) => root.querySelector(s);
       const $$ = (s, root=document) => Array.from(root.querySelectorAll(s));
       const esc = (str="") => String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 
-      // data artikel (9)
-      const ARTICLES = [
-        {
-          id: 1,
-          category: "KPR",
-          title: "Panduan KPR Pemula: dari DP sampai akad",
-          desc: "Langkah paling penting agar proses KPR lebih rapi dan minim drama.",
-          date: "10 Jan 2026",
-          read: "6 menit baca",
-          heroImg: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1400&q=60",
-          heroCap: "Foto: ilustrasi rumah modern yang nyaman untuk keluarga.",
-          promoGif1: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif",
-          promoGif2: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif",
-          author: { name:"Tim Green Orchid", role:"Marketing & Customer Care", bio:"Membantu calon pembeli memahami unit, proses KPR, dan tips hunian yang nyaman." },
-          conclusion: "Mulai dari menyiapkan DP, cek SLIK OJK, hingga simulasi cicilan—kuncinya adalah rapi di dokumen dan realistis di kemampuan bayar.",
-          faq: [
-            { q:"Berapa DP minimal untuk KPR?", a:"Tergantung kebijakan bank & program. Umumnya ada opsi mulai dari 10–20%. Tanya marketing untuk skema yang tersedia." },
-            { q:"Apa yang paling sering bikin KPR ditolak?", a:"Riwayat kredit buruk, data dokumen tidak konsisten, dan rasio cicilan terlalu tinggi." },
-            { q:"Kapan waktu terbaik mengajukan KPR?", a:"Saat dokumen siap dan kondisi keuangan stabil minimal 3–6 bulan terakhir." }
-          ],
-          contentHtml: `
-            <p>Kalau kamu baru pertama kali mengajukan KPR, jangan mulai dari “bank mana” dulu. Mulailah dari <strong>kesiapan dokumen</strong> dan <strong>kesiapan cashflow bulanan</strong>.</p>
+// data artikel (9) — versi lengkap + tiap artikel punya 3 foto (gallery)
+const ARTICLES = [
+  {
+    id: 1,
+    category: "KPR",
+    title: "Panduan KPR Pemula: dari DP sampai akad",
+    desc: "Langkah paling penting agar proses KPR lebih rapi dan minim drama.",
+    date: "10 Jan 2026",
+    read: "6 menit baca",
+    heroImg: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1400&q=60",
+    heroCap: "Foto: ilustrasi rumah modern yang nyaman untuk keluarga.",
+    gallery: [
+      { img:"https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=60", cap:"Foto: ruang keluarga minimalis yang nyaman." },
+      { img:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=60", cap:"Foto: interior rapi yang membuat rumah terasa luas." },
+      { img:"https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=60", cap:"Foto: persiapan dokumen & simulasi cicilan." }
+    ],
+    promoGif1: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif",
+    promoGif2: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif",
+    author: {
+      name: "Tim Green Orchid",
+      role: "Marketing & Customer Care",
+      bio: "Membantu calon pembeli memahami unit, proses KPR, dan tips hunian yang nyaman."
+    },
+    conclusion:
+      "Mulai dari menyiapkan DP, cek SLIK OJK, hingga simulasi cicilan—kuncinya adalah rapi di dokumen dan realistis di kemampuan bayar.",
+    faq: [
+      { q:"Berapa DP minimal untuk KPR?", a:"Tergantung kebijakan bank & program. Umumnya ada opsi mulai dari 10–20%. Tanya marketing untuk skema yang tersedia." },
+      { q:"Apa yang paling sering bikin KPR ditolak?", a:"Riwayat kredit buruk, data dokumen tidak konsisten, dan rasio cicilan terlalu tinggi." },
+      { q:"Kapan waktu terbaik mengajukan KPR?", a:"Saat dokumen siap dan kondisi keuangan stabil minimal 3–6 bulan terakhir." }
+    ],
+    contentHtml: `
+      <p>Kalau kamu baru pertama kali mengajukan KPR, jangan mulai dari “bank mana” dulu. Mulailah dari <strong>kesiapan dokumen</strong> dan <strong>kesiapan cashflow bulanan</strong>.</p>
 
-            <h2>1. Pahami komponen biaya di awal</h2>
-            <p>Selain DP, kamu perlu menyiapkan biaya administrasi, appraisal, asuransi, dan biaya akad (tergantung bank).</p>
-            <h3>Checklist cepat</h3>
-            <ul>
-              <li>DP (uang muka)</li>
-              <li>Biaya proses bank & appraisal</li>
-              <li>Biaya notaris/akad</li>
-              <li>Dana cadangan 3–6 bulan cicilan</li>
-            </ul>
+      <h2>1. Pahami komponen biaya di awal</h2>
+      <p>Selain DP, kamu perlu menyiapkan biaya administrasi, appraisal, asuransi, dan biaya akad (tergantung bank).</p>
+      <h3>Checklist cepat</h3>
+      <ul>
+        <li>DP (uang muka)</li>
+        <li>Biaya proses bank & appraisal</li>
+        <li>Biaya notaris/akad</li>
+        <li>Dana cadangan 3–6 bulan cicilan</li>
+      </ul>
 
-            <blockquote>
-              <p>“KPR yang aman bukan yang cicilannya paling kecil, tapi yang masih nyaman saat kondisi keuangan berubah.”</p>
-              <footer>— Catatan tim marketing</footer>
-            </blockquote>
+      <blockquote>
+        <p>“KPR yang aman bukan yang cicilannya paling kecil, tapi yang masih nyaman saat kondisi keuangan berubah.”</p>
+        <footer>— Catatan tim marketing</footer>
+      </blockquote>
 
-            <h2>2. Simulasi cicilan yang realistis</h2>
-            <p>Idealnya cicilan total (termasuk cicilan lain) tidak terlalu berat dibanding pemasukan bulanan.</p>
-            <h3>Trik sederhana</h3>
-            <p>Pilih tenor yang masuk akal, tapi tetap perhatikan total bunga. Jangan hanya fokus “cicilan kecil”.</p>
+      <h2>2. Simulasi cicilan yang realistis</h2>
+      <p>Idealnya cicilan total (termasuk cicilan lain) tidak terlalu berat dibanding pemasukan bulanan.</p>
+      <h3>Trik sederhana</h3>
+      <p>Pilih tenor yang masuk akal, tapi tetap perhatikan total bunga. Jangan hanya fokus “cicilan kecil”.</p>
 
-            <h2>3. Rapikan dokumen sejak awal</h2>
-            <p>KTP, NPWP, slip gaji/rek koran, dan bukti usaha (untuk wiraswasta) harus konsisten.</p>
+      <h2>3. Rapikan dokumen sejak awal</h2>
+      <p>KTP, NPWP, slip gaji/rek koran, dan bukti usaha (untuk wiraswasta) harus konsisten.</p>
 
-            <h2>4. Pastikan skor kredit aman</h2>
-            <p>Kalau ada tunggakan, selesaikan dulu. Ini sering jadi penyebab utama pengajuan mandek.</p>
+      <h2>4. Pastikan skor kredit aman</h2>
+      <p>Kalau ada tunggakan, selesaikan dulu. Ini sering jadi penyebab utama pengajuan mandek.</p>
 
-            <h2>5. Siapkan rencana cadangan</h2>
-            <p>Punya dana darurat dan skenario “kalau income turun” itu penting, apalagi untuk jangka panjang.</p>
+      <h2>5. Siapkan rencana cadangan</h2>
+      <p>Punya dana darurat dan skenario “kalau income turun” itu penting, apalagi untuk jangka panjang.</p>
+    `
+  },
 
-            <h3>Gambar pendukung</h3>
-            <figure class="media-soft">
-              <img class="media-img" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=60" alt="Dokumen dan perhitungan KPR" loading="lazy" decoding="async" />
-              <figcaption>Foto: siapkan dokumen dan simulasi agar proses pengajuan lebih lancar.</figcaption>
-            </figure>
-          `
-        },
+  {
+    id: 2,
+    category: "KEUANGAN",
+    title: "BI Checking / SLIK OJK: cara cek & memperbaiki skor",
+    desc: "Apa yang bikin pengajuan KPR tersendat dan cara beresinnya dengan aman.",
+    date: "10 Jan 2026",
+    read: "7 menit baca",
+    heroImg: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=60",
+    heroCap: "Foto: dokumen kredit dan catatan finansial untuk referensi pengajuan KPR.",
+    gallery: [
+      { img:"https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=900&q=60", cap:"Foto: kalkulasi finansial sebelum pengajuan." },
+      { img:"https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=60", cap:"Foto: dokumen rapi mempercepat proses." },
+      { img:"https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=900&q=60", cap:"Foto: evaluasi catatan kredit & budgeting." }
+    ],
+    promoGif1: "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif",
+    promoGif2: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
+    author: {
+      name: "Tim Green Orchid",
+      role: "Marketing & Customer Care",
+      bio: "Membantu cek kesiapan dokumen dan alur pengajuan KPR."
+    },
+    conclusion:
+      "Cek lebih awal, rapikan tunggakan, dan hindari pengajuan kredit beruntun saat mau KPR.",
+    faq: [
+      { q:"SLIK OJK itu apa?", a:"Sistem informasi layanan keuangan berisi riwayat kredit debitur (pengganti BI Checking)." },
+      { q:"Berapa lama perbaikan skor kredit?", a:"Tergantung kasus. Setelah pelunasan, update bisa butuh beberapa waktu sesuai pelaporan." },
+      { q:"Apa yang harus dihindari sebelum KPR?", a:"Nambah cicilan baru atau telat bayar tagihan kartu kredit/pinjaman." }
+    ],
+    contentHtml: `
+      <p>SLIK OJK adalah salah satu faktor penting penilaian bank saat memproses KPR. Jadi lebih baik cek dari awal.</p>
 
-        // === 2..9 sama persis dengan kode kamu (tidak dipotong) ===
-        {
-          id: 2,
-          category: "KEUANGAN",
-          title: "BI Checking / SLIK OJK: cara cek & memperbaiki skor",
-          desc: "Apa yang bikin pengajuan KPR tersendat dan cara beresinnya dengan aman.",
-          date: "10 Jan 2026",
-          read: "7 menit baca",
-          heroImg: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=60",
-          heroCap: "Foto: dokumen kredit dan catatan finansial untuk referensi pengajuan KPR.",
-          promoGif1: "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif",
-          promoGif2: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
-          author: { name:"Tim Green Orchid", role:"Marketing & Customer Care", bio:"Membantu cek kesiapan dokumen dan alur pengajuan KPR." },
-          conclusion: "Cek lebih awal, rapikan tunggakan, dan hindari pengajuan kredit beruntun saat mau KPR.",
-          faq: [
-            { q:"SLIK OJK itu apa?", a:"Sistem informasi layanan keuangan berisi riwayat kredit debitur (pengganti BI Checking)." },
-            { q:"Berapa lama perbaikan skor kredit?", a:"Tergantung kasus. Setelah pelunasan, update bisa butuh beberapa waktu sesuai pelaporan." },
-            { q:"Apa yang harus dihindari sebelum KPR?", a:"Nambah cicilan baru atau telat bayar tagihan kartu kredit/pinjaman." }
-          ],
-          contentHtml: `
-            <p>SLIK OJK adalah salah satu faktor penting penilaian bank saat memproses KPR. Jadi lebih baik cek dari awal.</p>
+      <h2>1. Kenapa skor kredit berpengaruh?</h2>
+      <p>Bank menilai kebiasaan pembayaran kamu. Telat bayar kecil tapi sering bisa jadi red flag.</p>
 
-            <h2>1. Kenapa skor kredit berpengaruh?</h2>
-            <p>Bank menilai kebiasaan pembayaran kamu. Telat bayar kecil tapi sering bisa jadi red flag.</p>
+      <h2>2. Cara cek SLIK OJK</h2>
+      <h3>Siapkan dokumen</h3>
+      <ul>
+        <li>KTP</li>
+        <li>NPWP (jika ada)</li>
+        <li>Dokumen pendukung lain sesuai kebutuhan</li>
+      </ul>
 
-            <h2>2. Cara cek SLIK OJK</h2>
-            <h3>Siapkan dokumen</h3>
-            <ul>
-              <li>KTP</li>
-              <li>NPWP (jika ada)</li>
-              <li>Dokumen pendukung lain sesuai kebutuhan</li>
-            </ul>
+      <blockquote>
+        <p>“Kalau mau KPR, bersih dulu riwayat cicilan. Itu fondasi paling aman.”</p>
+        <footer>— Catatan tim</footer>
+      </blockquote>
 
-            <blockquote>
-              <p>“Kalau mau KPR, bersih dulu riwayat cicilan. Itu fondasi paling aman.”</p>
-              <footer>— Catatan tim</footer>
-            </blockquote>
+      <h2>3. Cara memperbaiki catatan kredit</h2>
+      <p>Lunasi tunggakan, minta surat keterangan, dan pastikan pelaporan sudah diperbarui.</p>
+    `
+  },
 
-            <h2>3. Cara memperbaiki catatan kredit</h2>
-            <p>Lunasi tunggakan, minta surat keterangan, dan pastikan pelaporan sudah diperbarui.</p>
+  {
+    id: 3,
+    category: "DESAIN",
+    title: "Renovasi Hemat: 7 prioritas yang bikin rumah makin nyaman",
+    desc: "Urutan renovasi yang masuk akal biar budget nggak kebakar duluan.",
+    date: "10 Jan 2026",
+    read: "5 menit baca",
+    heroImg: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=60",
+    heroCap: "Foto: proses renovasi ringan yang fokus pada prioritas fungsi.",
+    gallery: [
+      { img:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=60", cap:"Foto: pekerjaan renovasi bertahap sesuai prioritas." },
+      { img:"https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=900&q=60", cap:"Foto: penataan ruang agar lebih fungsional." },
+      { img:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=60", cap:"Foto: sentuhan interior sederhana yang berdampak besar." }
+    ],
+    promoGif1: "https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif",
+    promoGif2: "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif",
+    author: {
+      name:"Tim Green Orchid",
+      role:"Marketing & Customer Care",
+      bio:"Berbagi tips renovasi hemat yang tetap rapi dan fungsional."
+    },
+    conclusion: "Utamakan perbaikan yang berdampak besar: kebocoran, ventilasi, pencahayaan, lalu estetika.",
+    faq: [
+      { q:"Renovasi dulu atau isi rumah dulu?", a:"Kalau ada masalah struktur/kebocoran, renovasi dulu. Kalau hanya estetika, bisa bertahap." },
+      { q:"Biar hemat, mulai dari mana?", a:"Mulai dari area paling sering dipakai: dapur, kamar mandi, dan sirkulasi udara." },
+      { q:"Kapan perlu tenaga profesional?", a:"Untuk listrik, plumbing besar, dan perubahan struktur." }
+    ],
+    contentHtml: `
+      <p>Renovasi hemat itu bukan berarti murahan. Kuncinya: <strong>prioritas</strong> dan <strong>bertahap</strong>.</p>
 
-            <h3>Gambar pendukung</h3>
-            <figure class="media-soft">
-              <img class="media-img" src="https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1400&q=60" alt="Kalkulasi keuangan untuk kredit" loading="lazy" decoding="async" />
-              <figcaption>Foto: evaluasi kemampuan bayar dan rapikan cicilan sebelum mengajukan KPR.</figcaption>
-            </figure>
-          `
-        },
+      <h2>1. Bereskan masalah utama dulu</h2>
+      <p>Kebocoran, rembes, dan instalasi listrik bermasalah harus jadi prioritas.</p>
 
-        {
-          id: 3,
-          category: "DESAIN",
-          title: "Renovasi Hemat: 7 prioritas yang bikin rumah makin nyaman",
-          desc: "Urutan renovasi yang masuk akal biar budget nggak kebakar duluan.",
-          date: "10 Jan 2026",
-          read: "5 menit baca",
-          heroImg: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=60",
-          heroCap: "Foto: proses renovasi ringan yang fokus pada prioritas fungsi.",
-          promoGif1: "https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif",
-          promoGif2: "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif",
-          author: { name:"Tim Green Orchid", role:"Marketing & Customer Care", bio:"Berbagi tips renovasi hemat yang tetap rapi dan fungsional." },
-          conclusion: "Utamakan perbaikan yang berdampak besar: kebocoran, ventilasi, pencahayaan, lalu estetika.",
-          faq: [
-            { q:"Renovasi dulu atau isi rumah dulu?", a:"Kalau ada masalah struktur/kebocoran, renovasi dulu. Kalau hanya estetika, bisa bertahap." },
-            { q:"Biar hemat, mulai dari mana?", a:"Mulai dari area paling sering dipakai: dapur, kamar mandi, dan sirkulasi udara." },
-            { q:"Kapan perlu tenaga profesional?", a:"Untuk listrik, plumbing besar, dan perubahan struktur." }
-          ],
-          contentHtml: `
-            <p>Renovasi hemat itu bukan berarti murahan. Kuncinya: <strong>prioritas</strong> dan <strong>bertahap</strong>.</p>
+      <h2>2. Optimalkan ventilasi & cahaya</h2>
+      <h3>Efeknya besar</h3>
+      <p>Rumah lebih sehat, lebih hemat listrik, dan lebih nyaman.</p>
 
-            <h2>1. Bereskan masalah utama dulu</h2>
-            <p>Kebocoran, rembes, dan instalasi listrik bermasalah harus jadi prioritas.</p>
+      <blockquote>
+        <p>“Kalau budget terbatas, jangan mulai dari dekor. Mulai dari kenyamanan dan keamanan.”</p>
+        <footer>— Tips renovasi</footer>
+      </blockquote>
 
-            <h2>2. Optimalkan ventilasi & cahaya</h2>
-            <h3>Efeknya besar</h3>
-            <p>Rumah lebih sehat, lebih hemat listrik, dan lebih nyaman.</p>
+      <h2>3. Baru estetika</h2>
+      <p>Cat, pencahayaan, dan storage rapi biasanya memberi efek “baru” paling terasa.</p>
+    `
+  },
 
-            <blockquote>
-              <p>“Kalau budget terbatas, jangan mulai dari dekor. Mulai dari kenyamanan dan keamanan.”</p>
-              <footer>— Tips renovasi</footer>
-            </blockquote>
+  {
+    id: 4,
+    category: "RUMAH SEHAT",
+    title: "Rumah Sehat: ventilasi, cahaya, dan sirkulasi yang benar",
+    desc: "Biar rumah nggak lembap, minim jamur, dan nyaman jangka panjang.",
+    date: "10 Jan 2026",
+    read: "6 menit baca",
+    heroImg: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1400&q=60",
+    heroCap: "Foto: ruang keluarga dengan cahaya alami dan sirkulasi yang baik.",
+    gallery: [
+      { img:"https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=900&q=60", cap:"Foto: ruang dengan cahaya alami yang stabil." },
+      { img:"https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=900&q=60", cap:"Foto: ventilasi dan bukaan yang membuat udara bergerak." },
+      { img:"https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=60", cap:"Foto: tata ruang rapi mendukung sirkulasi harian." }
+    ],
+    promoGif1: "https://media.giphy.com/media/26BRrSvJUa0crqw4E/giphy.gif",
+    promoGif2: "https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif",
+    author: {
+      name:"Tim Green Orchid",
+      role:"Marketing & Customer Care",
+      bio:"Berbagi tips hunian sehat dan nyaman."
+    },
+    conclusion: "Kombinasi ventilasi, sinar matahari, dan alur udara membuat rumah lebih sehat dan hemat energi.",
+    faq: [
+      { q:"Apa tanda rumah kurang ventilasi?", a:"Lembap, bau apek, jamur muncul, dan sering pengap." },
+      { q:"Solusi cepat rumah lembap?", a:"Perbaiki ventilasi, cek sumber rembes, dan pastikan ada sinar matahari masuk." },
+      { q:"Berapa ideal bukaan jendela?", a:"Tergantung desain. Intinya ada aliran udara silang dan pencahayaan cukup." }
+    ],
+    contentHtml: `
+      <p>Rumah sehat bukan soal mahal, tapi soal alur udara dan pencahayaan yang benar.</p>
 
-            <h2>3. Baru estetika</h2>
-            <p>Cat, pencahayaan, dan storage rapi biasanya memberi efek “baru” paling terasa.</p>
+      <h2>1. Ventilasi silang</h2>
+      <p>Pastikan ada bukaan di dua sisi agar udara bergerak.</p>
 
-            <figure class="media-soft">
-              <img class="media-img" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=60" alt="Interior nyaman setelah renovasi" loading="lazy" decoding="async" />
-              <figcaption>Foto: perubahan kecil pada lighting dan tata ruang bisa terasa besar.</figcaption>
-            </figure>
-          `
-        },
+      <h2>2. Cahaya alami</h2>
+      <h3>Efek ke suasana</h3>
+      <p>Ruang terasa lebih luas dan hemat listrik.</p>
 
-        {
-          id: 4,
-          category: "RUMAH SEHAT",
-          title: "Rumah Sehat: ventilasi, cahaya, dan sirkulasi yang benar",
-          desc: "Biar rumah nggak lembap, minim jamur, dan nyaman jangka panjang.",
-          date: "10 Jan 2026",
-          read: "6 menit baca",
-          heroImg: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1400&q=60",
-          heroCap: "Foto: ruang keluarga dengan cahaya alami dan sirkulasi yang baik.",
-          promoGif1: "https://media.giphy.com/media/26BRrSvJUa0crqw4E/giphy.gif",
-          promoGif2: "https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif",
-          author: { name:"Tim Green Orchid", role:"Marketing & Customer Care", bio:"Berbagi tips hunian sehat dan nyaman." },
-          conclusion: "Kombinasi ventilasi, sinar matahari, dan alur udara membuat rumah lebih sehat dan hemat energi.",
-          faq: [
-            { q:"Apa tanda rumah kurang ventilasi?", a:"Lembap, bau apek, jamur muncul, dan sering pengap." },
-            { q:"Solusi cepat rumah lembap?", a:"Perbaiki ventilasi, cek sumber rembes, dan pastikan ada sinar matahari masuk." },
-            { q:"Berapa ideal bukaan jendela?", a:"Tergantung desain. Intinya ada aliran udara silang dan pencahayaan cukup." }
-          ],
-          contentHtml: `
-            <p>Rumah sehat bukan soal mahal, tapi soal alur udara dan pencahayaan yang benar.</p>
+      <blockquote>
+        <p>“Rumah yang terang dan berangin biasanya lebih betah ditinggali.”</p>
+        <footer>— Catatan praktis</footer>
+      </blockquote>
 
-            <h2>1. Ventilasi silang</h2>
-            <p>Pastikan ada bukaan di dua sisi agar udara bergerak.</p>
+      <h2>3. Cegah jamur & lembap</h2>
+      <p>Perhatikan area kamar mandi, dapur, dan sudut-sudut rumah.</p>
+    `
+  },
 
-            <h2>2. Cahaya alami</h2>
-            <h3>Efek ke suasana</h3>
-            <p>Ruang terasa lebih luas dan hemat listrik.</p>
+  {
+    id: 5,
+    category: "KEAMANAN",
+    title: "One Gate System: kenapa lebih aman & tertata?",
+    desc: "Poin penting yang sering dicari keluarga sebelum memutuskan beli rumah.",
+    date: "10 Jan 2026",
+    read: "4 menit baca",
+    heroImg: "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=60",
+    heroCap: "Foto: gerbang perumahan sebagai kontrol akses keluar masuk.",
+    gallery: [
+      { img:"https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=900&q=60", cap:"Foto: akses masuk perumahan yang terkontrol." },
+      { img:"https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=900&q=60", cap:"Foto: lingkungan rapi mendukung kenyamanan." },
+      { img:"https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=900&q=60", cap:"Foto: pencahayaan area membantu keamanan malam hari." }
+    ],
+    promoGif1: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif",
+    promoGif2: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
+    author: {
+      name:"Tim Green Orchid",
+      role:"Marketing & Customer Care",
+      bio:"Membantu jelaskan benefit lingkungan tertata dan aman."
+    },
+    conclusion: "One gate memudahkan kontrol akses, meningkatkan rasa aman, dan membuat lingkungan lebih tertib.",
+    faq: [
+      { q:"One gate selalu lebih aman?", a:"Lebih aman jika didukung SOP security, pencatatan tamu, dan penerangan area." },
+      { q:"Apa keuntungan untuk keluarga?", a:"Lebih tenang, akses lebih terkontrol, dan lingkungan lebih rapi." },
+      { q:"Apakah ada jam operasional?", a:"Tergantung pengelolaan. Umumnya akses utama tetap terjaga 24 jam." }
+    ],
+    contentHtml: `
+      <p>One gate system adalah konsep akses masuk-keluar yang terkontrol.</p>
 
-            <blockquote>
-              <p>“Rumah yang terang dan berangin biasanya lebih betah ditinggali.”</p>
-              <footer>— Catatan praktis</footer>
-            </blockquote>
+      <h2>1. Kontrol akses lebih rapi</h2>
+      <p>Arus kendaraan dan tamu bisa dipantau lebih mudah.</p>
 
-            <h2>3. Cegah jamur & lembap</h2>
-            <p>Perhatikan area kamar mandi, dapur, dan sudut-sudut rumah.</p>
+      <h2>2. Lingkungan lebih tertata</h2>
+      <h3>Efek samping yang bagus</h3>
+      <p>Area jadi lebih tenang dan tidak “ramai lewat”.</p>
 
-            <figure class="media-soft">
-              <img class="media-img" src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1400&q=60" alt="Ruang terang dengan ventilasi" loading="lazy" decoding="async" />
-              <figcaption>Foto: pencahayaan dan ventilasi membuat rumah lebih nyaman.</figcaption>
-            </figure>
-          `
-        },
+      <blockquote>
+        <p>“Keamanan itu sistem + kebiasaan. One gate membantu keduanya.”</p>
+        <footer>— Catatan lingkungan</footer>
+      </blockquote>
 
-        {
-          id: 5,
-          category: "KEAMANAN",
-          title: "One Gate System: kenapa lebih aman & tertata?",
-          desc: "Poin penting yang sering dicari keluarga sebelum memutuskan beli rumah.",
-          date: "10 Jan 2026",
-          read: "4 menit baca",
-          heroImg: "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=60",
-          heroCap: "Foto: gerbang perumahan sebagai kontrol akses keluar masuk.",
-          promoGif1: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif",
-          promoGif2: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
-          author: { name:"Tim Green Orchid", role:"Marketing & Customer Care", bio:"Membantu jelaskan benefit lingkungan tertata dan aman." },
-          conclusion: "One gate memudahkan kontrol akses, meningkatkan rasa aman, dan membuat lingkungan lebih tertib.",
-          faq: [
-            { q:"One gate selalu lebih aman?", a:"Lebih aman jika didukung SOP security, pencatatan tamu, dan penerangan area." },
-            { q:"Apa keuntungan untuk keluarga?", a:"Lebih tenang, akses lebih terkontrol, dan lingkungan lebih rapi." },
-            { q:"Apakah ada jam operasional?", a:"Tergantung pengelolaan. Umumnya akses utama tetap terjaga 24 jam." }
-          ],
-          contentHtml: `
-            <p>One gate system adalah konsep akses masuk-keluar yang terkontrol.</p>
+      <h2>3. Dukungan security 24 jam</h2>
+      <p>Jika ada, ini menambah rasa aman penghuni.</p>
+    `
+  },
 
-            <h2>1. Kontrol akses lebih rapi</h2>
-            <p>Arus kendaraan dan tamu bisa dipantau lebih mudah.</p>
+  {
+    id: 6,
+    category: "KPR",
+    title: "Simulasi KPR: cara baca tenor, bunga, dan cicilan",
+    desc: "Supaya kamu nggak salah ambil tenor dan tetap aman di pengeluaran bulanan.",
+    date: "10 Jan 2026",
+    read: "8 menit baca",
+    heroImg: "https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1400&q=60",
+    heroCap: "Foto: simulasi cicilan membantu menentukan tenor yang aman.",
+    gallery: [
+      { img:"https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=900&q=60", cap:"Foto: hitung beberapa skenario tenor." },
+      { img:"https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=60", cap:"Foto: rapikan dokumen untuk proses bank." },
+      { img:"https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=60", cap:"Foto: dokumen rapi mempercepat approval." }
+    ],
+    promoGif1: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif",
+    promoGif2: "https://media.giphy.com/media/26BRrSvJUa0crqw4E/giphy.gif",
+    author: {
+      name:"Tim Green Orchid",
+      role:"Marketing & Customer Care",
+      bio:"Mendampingi simulasi KPR dan persiapan dokumen."
+    },
+    conclusion: "Jangan hanya lihat cicilan bulanan: pahami juga total bunga dan kemampuan bayar jangka panjang.",
+    faq: [
+      { q:"Tenor panjang selalu lebih baik?", a:"Cicilan lebih kecil, tapi total bunga bisa lebih besar. Pilih sesuai kemampuan dan target finansial." },
+      { q:"Bunga fixed vs floating?", a:"Fixed stabil di awal, floating bisa berubah. Pahami periodenya sebelum tanda tangan." },
+      { q:"Apa itu rasio cicilan?", a:"Perbandingan total cicilan bulanan dengan penghasilan. Bank biasanya punya batas aman." }
+    ],
+    contentHtml: `
+      <p>Simulasi KPR itu alat paling sederhana untuk menghindari keputusan impulsif.</p>
 
-            <h2>2. Lingkungan lebih tertata</h2>
-            <h3>Efek samping yang bagus</h3>
-            <p>Area jadi lebih tenang dan tidak “ramai lewat”.</p>
+      <h2>1. Tenor vs total bunga</h2>
+      <p>Tenor panjang menurunkan cicilan bulanan, tapi total bunga bisa lebih tinggi.</p>
 
-            <blockquote>
-              <p>“Keamanan itu sistem + kebiasaan. One gate membantu keduanya.”</p>
-              <footer>— Catatan lingkungan</footer>
-            </blockquote>
+      <h2>2. Pahami bunga</h2>
+      <h3>Fixed</h3>
+      <p>Bunga tetap selama periode tertentu.</p>
+      <h3>Floating</h3>
+      <p>Bisa naik turun mengikuti kebijakan bank/pasar.</p>
 
-            <h2>3. Dukungan security 24 jam</h2>
-            <p>Jika ada, ini menambah rasa aman penghuni.</p>
+      <blockquote>
+        <p>“KPR aman itu yang cicilannya masih nyaman meski ada perubahan kecil di keuangan.”</p>
+        <footer>— Catatan tim</footer>
+      </blockquote>
 
-            <figure class="media-soft">
-              <img class="media-img" src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1400&q=60" alt="Area perumahan tertata" loading="lazy" decoding="async" />
-              <figcaption>Foto: lingkungan rapi memberi kenyamanan untuk keluarga.</figcaption>
-            </figure>
-          `
-        },
+      <h2>3. Tips memilih</h2>
+      <p>Ambil tenor yang aman, dan tetap sisihkan dana darurat.</p>
+    `
+  },
 
-        {
-          id: 6,
-          category: "KPR",
-          title: "Simulasi KPR: cara baca tenor, bunga, dan cicilan",
-          desc: "Supaya kamu nggak salah ambil tenor dan tetap aman di pengeluaran bulanan.",
-          date: "10 Jan 2026",
-          read: "8 menit baca",
-          heroImg: "https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1400&q=60",
-          heroCap: "Foto: simulasi cicilan membantu menentukan tenor yang aman.",
-          promoGif1: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif",
-          promoGif2: "https://media.giphy.com/media/26BRrSvJUa0crqw4E/giphy.gif",
-          author: { name:"Tim Green Orchid", role:"Marketing & Customer Care", bio:"Mendampingi simulasi KPR dan persiapan dokumen." },
-          conclusion: "Jangan hanya lihat cicilan bulanan: pahami juga total bunga dan kemampuan bayar jangka panjang.",
-          faq: [
-            { q:"Tenor panjang selalu lebih baik?", a:"Cicilan lebih kecil, tapi total bunga bisa lebih besar. Pilih sesuai kemampuan dan target finansial." },
-            { q:"Bunga fixed vs floating?", a:"Fixed stabil di awal, floating bisa berubah. Pahami periodenya sebelum tanda tangan." },
-            { q:"Apa itu rasio cicilan?", a:"Perbandingan total cicilan bulanan dengan penghasilan. Bank biasanya punya batas aman." }
-          ],
-          contentHtml: `
-            <p>Simulasi KPR itu alat paling sederhana untuk menghindari keputusan impulsif.</p>
+  {
+    id: 7,
+    category: "DENAH",
+    title: "Cara menilai denah rumah: alur ruang & fungsi harian",
+    desc: "Biar kamu bisa membayangkan aktivitas harian sebelum beli.",
+    date: "10 Jan 2026",
+    read: "6 menit baca",
+    heroImg: "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1400&q=60",
+    heroCap: "Foto: alur ruang mempengaruhi kenyamanan harian.",
+    gallery: [
+      { img:"https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=60", cap:"Foto: tata ruang rapi membuat aktivitas nyaman." },
+      { img:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=60", cap:"Foto: interior minimalis memudahkan alur gerak." },
+      { img:"https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=60", cap:"Foto: ruang keluarga sebagai pusat aktivitas." }
+    ],
+    promoGif1: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
+    promoGif2: "https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif",
+    author: {
+      name:"Tim Green Orchid",
+      role:"Marketing & Customer Care",
+      bio:"Membantu memilih tipe unit sesuai kebutuhan keluarga."
+    },
+    conclusion: "Denah bagus itu yang alur ruangnya masuk akal: dapur dekat makan, kamar privat tidak terganggu, dan sirkulasi rapi.",
+    faq: [
+      { q:"Yang paling penting dari denah?", a:"Alur ruang harian: masuk rumah, aktivitas, area privat, dan area servis." },
+      { q:"Bagaimana cek sirkulasi?", a:"Pastikan jalur tidak berputar/sempit dan akses kamar mandi mudah." },
+      { q:"Kapan butuh ruang tambahan?", a:"Jika ada rencana keluarga bertambah atau WFH." }
+    ],
+    contentHtml: `
+      <p>Denah adalah “mesin” rumah. Kalau alurnya enak, hidup sehari-hari jadi lebih ringan.</p>
 
-            <h2>1. Tenor vs total bunga</h2>
-            <p>Tenor panjang menurunkan cicilan bulanan, tapi total bunga bisa lebih tinggi.</p>
+      <h2>1. Pisahkan area publik & privat</h2>
+      <p>Ruang tamu dan ruang keluarga sebaiknya tidak mengganggu kamar.</p>
 
-            <h2>2. Pahami bunga</h2>
-            <h3>Fixed</h3>
-            <p>Bunga tetap selama periode tertentu.</p>
-            <h3>Floating</h3>
-            <p>Bisa naik turun mengikuti kebijakan bank/pasar.</p>
+      <h2>2. Area servis harus gampang</h2>
+      <h3>Dapur, cuci, jemur</h3>
+      <p>Kalau alurnya ribet, capek tiap hari.</p>
 
-            <blockquote>
-              <p>“KPR aman itu yang cicilannya masih nyaman meski ada perubahan kecil di keuangan.”</p>
-              <footer>— Catatan tim</footer>
-            </blockquote>
+      <blockquote>
+        <p>“Denah terbaik adalah denah yang paling sesuai kebiasaan keluarga, bukan yang paling ramai desainnya.”</p>
+        <footer>— Catatan tim</footer>
+      </blockquote>
 
-            <h2>3. Tips memilih</h2>
-            <p>Ambil tenor yang aman, dan tetap sisihkan dana darurat.</p>
+      <h2>3. Cek kemungkinan upgrade</h2>
+      <p>Apakah ada area yang bisa dikembangkan tanpa merusak struktur utama.</p>
+    `
+  },
 
-            <figure class="media-soft">
-              <img class="media-img" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=60" alt="Dokumen dan perhitungan KPR" loading="lazy" decoding="async" />
-              <figcaption>Foto: selalu simulasikan beberapa skenario tenor & bunga.</figcaption>
-            </figure>
-          `
-        },
+  {
+    id: 8,
+    category: "INVESTASI",
+    title: "Beli rumah untuk investasi: apa yang wajib dicek?",
+    desc: "Lokasi, akses, dan fasilitas sering jadi pembeda nilai jual kembali.",
+    date: "10 Jan 2026",
+    read: "7 menit baca",
+    heroImg: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1400&q=60",
+    heroCap: "Foto: rumah modern di lokasi strategis cenderung punya nilai lebih stabil.",
+    gallery: [
+      { img:"https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=900&q=60", cap:"Foto: akses kawasan memengaruhi nilai." },
+      { img:"https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=900&q=60", cap:"Foto: lingkungan tertata menambah daya tarik." },
+      { img:"https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=900&q=60", cap:"Foto: pencahayaan alami membuat rumah lebih diminati." }
+    ],
+    promoGif1: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif",
+    promoGif2: "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif",
+    author: {
+      name:"Tim Green Orchid",
+      role:"Marketing & Customer Care",
+      bio:"Membantu calon pembeli menilai value jangka panjang."
+    },
+    conclusion: "Value investasi kuat jika akses bagus, kawasan tertata, dan demand sewa/jual kembali tinggi.",
+    faq: [
+      { q:"Apa faktor investasi paling utama?", a:"Lokasi, akses, dan perkembangan area." },
+      { q:"Rumah kecil bisa bagus untuk investasi?", a:"Bisa, kalau demand tinggi dan biaya maintenance rendah." },
+      { q:"Apa pentingnya fasilitas?", a:"Fasilitas sekitar meningkatkan minat pembeli/penyewa." }
+    ],
+    contentHtml: `
+      <p>Investasi rumah itu bukan cuma soal harga hari ini, tapi soal <strong>permintaan</strong> di masa depan.</p>
 
-        {
-          id: 7,
-          category: "DENAH",
-          title: "Cara menilai denah rumah: alur ruang & fungsi harian",
-          desc: "Biar kamu bisa membayangkan aktivitas harian sebelum beli.",
-          date: "10 Jan 2026",
-          read: "6 menit baca",
-          heroImg: "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1400&q=60",
-          heroCap: "Foto: alur ruang (terutama area tangga) mempengaruhi kenyamanan harian.",
-          promoGif1: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
-          promoGif2: "https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif",
-          author: { name:"Tim Green Orchid", role:"Marketing & Customer Care", bio:"Membantu memilih tipe unit sesuai kebutuhan keluarga." },
-          conclusion: "Denah bagus itu yang alur ruangnya masuk akal: dapur dekat makan, kamar privat tidak terganggu, dan sirkulasi rapi.",
-          faq: [
-            { q:"Yang paling penting dari denah?", a:"Alur ruang harian: masuk rumah, aktivitas, area privat, dan area servis." },
-            { q:"Bagaimana cek sirkulasi?", a:"Pastikan jalur tidak berputar/sempit dan akses kamar mandi mudah." },
-            { q:"Kapan butuh ruang tambahan?", a:"Jika ada rencana keluarga bertambah atau WFH." }
-          ],
-          contentHtml: `
-            <p>Denah adalah “mesin” rumah. Kalau alurnya enak, hidup sehari-hari jadi lebih ringan.</p>
+      <h2>1. Lokasi & akses</h2>
+      <p>Perhatikan kemudahan menuju pusat aktivitas, sekolah, dan jalan utama.</p>
 
-            <h2>1. Pisahkan area publik & privat</h2>
-            <p>Ruang tamu dan ruang keluarga sebaiknya tidak mengganggu kamar.</p>
+      <h2>2. Lingkungan & keamanan</h2>
+      <h3>One gate + tertata</h3>
+      <p>Biasanya jadi nilai tambah di mata keluarga.</p>
 
-            <h2>2. Area servis harus gampang</h2>
-            <h3>Dapur, cuci, jemur</h3>
-            <p>Kalau alurnya ribet, capek tiap hari.</p>
+      <blockquote>
+        <p>“Nilai investasi terbaik datang dari kawasan yang hidup dan tertata.”</p>
+        <footer>— Catatan investasi</footer>
+      </blockquote>
 
-            <blockquote>
-              <p>“Denah terbaik adalah denah yang paling sesuai kebiasaan keluarga, bukan yang paling ramai desainnya.”</p>
-              <footer>— Catatan tim</footer>
-            </blockquote>
+      <h2>3. Potensi kenaikan nilai</h2>
+      <p>Cek rencana pembangunan area sekitar, tapi tetap realistis.</p>
+    `
+  },
 
-            <h2>3. Cek kemungkinan upgrade</h2>
-            <p>Apakah ada area yang bisa dikembangkan tanpa merusak struktur utama.</p>
+  {
+    id: 9,
+    category: "SURVEY",
+    title: "Checklist survey rumah: yang wajib kamu cek di lokasi",
+    desc: "Biar kamu tahu apa yang harus ditanya dan dicek sebelum tanda tangan.",
+    date: "10 Jan 2026",
+    read: "5 menit baca",
+    heroImg: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1400&q=60",
+    heroCap: "Foto: survey lokasi membantu menghindari penyesalan setelah pembelian.",
+    gallery: [
+      { img:"https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=900&q=60", cap:"Foto: observasi kondisi rumah saat survey." },
+      { img:"https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=900&q=60", cap:"Foto: cek pencahayaan & ventilasi." },
+      { img:"https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=60", cap:"Foto: cek area keluarga & kualitas finishing." }
+    ],
+    promoGif1: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif",
+    promoGif2: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
+    author: {
+      name:"Tim Green Orchid",
+      role:"Marketing & Customer Care",
+      bio:"Membantu menyiapkan checklist survey dan pertanyaan penting."
+    },
+    conclusion: "Survey itu wajib: cek struktur, air, listrik, dan lingkungan sekitar sebelum memutuskan.",
+    faq: [
+      { q:"Apa yang paling sering terlewat saat survey?", a:"Tekanan air, titik rembes, dan kualitas penerangan malam." },
+      { q:"Survey sebaiknya jam berapa?", a:"Minimal 2 waktu: siang (cahaya/ventilasi) dan sore/malam (lingkungan)." },
+      { q:"Boleh bawa orang ahli?", a:"Boleh dan disarankan kalau kamu ragu menilai kondisi teknis." }
+    ],
+    contentHtml: `
+      <p>Survey adalah momen paling penting sebelum kamu “fix”. Jangan buru-buru.</p>
 
-            <figure class="media-soft">
-              <img class="media-img" src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1400&q=60" alt="Ruang modern untuk ilustrasi denah" loading="lazy" decoding="async" />
-              <figcaption>Foto: tata ruang rapi membuat aktivitas harian lebih nyaman.</figcaption>
-            </figure>
-          `
-        },
+      <h2>1. Cek struktur & finishing</h2>
+      <p>Perhatikan retak halus, pintu/jendela, dan kualitas cat.</p>
 
-        {
-          id: 8,
-          category: "INVESTASI",
-          title: "Beli rumah untuk investasi: apa yang wajib dicek?",
-          desc: "Lokasi, akses, dan fasilitas sering jadi pembeda nilai jual kembali.",
-          date: "10 Jan 2026",
-          read: "7 menit baca",
-          heroImg: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1400&q=60",
-          heroCap: "Foto: rumah modern di lokasi strategis cenderung punya nilai lebih stabil.",
-          promoGif1: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif",
-          promoGif2: "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif",
-          author: { name:"Tim Green Orchid", role:"Marketing & Customer Care", bio:"Membantu calon pembeli menilai value jangka panjang." },
-          conclusion: "Value investasi kuat jika akses bagus, kawasan tertata, dan demand sewa/jual kembali tinggi.",
-          faq: [
-            { q:"Apa faktor investasi paling utama?", a:"Lokasi, akses, dan perkembangan area." },
-            { q:"Rumah kecil bisa bagus untuk investasi?", a:"Bisa, kalau demand tinggi dan biaya maintenance rendah." },
-            { q:"Apa pentingnya fasilitas?", a:"Fasilitas sekitar meningkatkan minat pembeli/penyewa." }
-          ],
-          contentHtml: `
-            <p>Investasi rumah itu bukan cuma soal harga hari ini, tapi soal <strong>permintaan</strong> di masa depan.</p>
+      <h2>2. Cek air & listrik</h2>
+      <h3>Air</h3>
+      <p>Tekanan, bau, dan kelancaran pembuangan.</p>
+      <h3>Listrik</h3>
+      <p>Posisi MCB, titik stop kontak, dan lampu.</p>
 
-            <h2>1. Lokasi & akses</h2>
-            <p>Perhatikan kemudahan menuju pusat aktivitas, sekolah, dan jalan utama.</p>
+      <blockquote>
+        <p>“Survey yang teliti menghemat biaya perbaikan di belakang.”</p>
+        <footer>— Checklist tim</footer>
+      </blockquote>
 
-            <h2>2. Lingkungan & keamanan</h2>
-            <h3>One gate + tertata</h3>
-            <p>Biasanya jadi nilai tambah di mata keluarga.</p>
+      <h2>3. Cek lingkungan</h2>
+      <p>Drainase, akses, dan suasana sekitar.</p>
+    `
+  }
+];
 
-            <blockquote>
-              <p>“Nilai investasi terbaik datang dari kawasan yang hidup dan tertata.”</p>
-              <footer>— Catatan investasi</footer>
-            </blockquote>
-
-            <h2>3. Potensi kenaikan nilai</h2>
-            <p>Cek rencana pembangunan area sekitar, tapi tetap realistis.</p>
-
-            <figure class="media-soft">
-              <img class="media-img" src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=60" alt="Kawasan perumahan dengan akses" loading="lazy" decoding="async" />
-              <figcaption>Foto: akses dan lingkungan ikut menentukan nilai jual kembali.</figcaption>
-            </figure>
-          `
-        },
-
-        {
-          id: 9,
-          category: "SURVEY",
-          title: "Checklist survey rumah: yang wajib kamu cek di lokasi",
-          desc: "Biar kamu tahu apa yang harus ditanya dan dicek sebelum tanda tangan.",
-          date: "10 Jan 2026",
-          read: "5 menit baca",
-          heroImg: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1400&q=60",
-          heroCap: "Foto: survey lokasi membantu menghindari penyesalan setelah pembelian.",
-          promoGif1: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif",
-          promoGif2: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
-          author: { name:"Tim Green Orchid", role:"Marketing & Customer Care", bio:"Membantu menyiapkan checklist survey dan pertanyaan penting." },
-          conclusion: "Survey itu wajib: cek struktur, air, listrik, dan lingkungan sekitar sebelum memutuskan.",
-          faq: [
-            { q:"Apa yang paling sering terlewat saat survey?", a:"Tekanan air, titik rembes, dan kualitas penerangan malam." },
-            { q:"Survey sebaiknya jam berapa?", a:"Minimal 2 waktu: siang (cahaya/ventilasi) dan sore/malam (lingkungan)." },
-            { q:"Boleh bawa orang ahli?", a:"Boleh dan disarankan kalau kamu ragu menilai kondisi teknis." }
-          ],
-          contentHtml: `
-            <p>Survey adalah momen paling penting sebelum kamu “fix”. Jangan buru-buru.</p>
-
-            <h2>1. Cek struktur & finishing</h2>
-            <p>Perhatikan retak halus, pintu/jendela, dan kualitas cat.</p>
-
-            <h2>2. Cek air & listrik</h2>
-            <h3>Air</h3>
-            <p>Tekanan, bau, dan kelancaran pembuangan.</p>
-            <h3>Listrik</h3>
-            <p>Posisi MCB, titik stop kontak, dan lampu.</p>
-
-            <blockquote>
-              <p>“Survey yang teliti menghemat biaya perbaikan di belakang.”</p>
-              <footer>— Checklist tim</footer>
-            </blockquote>
-
-            <h2>3. Cek lingkungan</h2>
-            <p>Drainase, akses, dan suasana sekitar.</p>
-
-            <figure class="media-soft">
-              <img class="media-img" src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1400&q=60" alt="Area rumah untuk survey" loading="lazy" decoding="async" />
-              <figcaption>Foto: cek area, ventilasi, dan kualitas pencahayaan.</figcaption>
-            </figure>
-          `
-        }
-      ];
 
       // get id
       const params = new URLSearchParams(location.search);
@@ -1159,27 +1368,57 @@
       $("#ogUrl").setAttribute("content", location.href);
       $("#ogImage").setAttribute("content", article.heroImg);
 
-      // hero
-      $("#heroImg").src = article.heroImg;
-      $("#heroImg").alt = "Gambar utama: " + article.title;
-      $("#heroCap").textContent = article.heroCap;
+      // hero initial
+      const heroImg = $("#heroImg");
+      const heroCap = $("#heroCap");
+      heroImg.src = article.heroImg;
+      heroImg.alt = "Gambar utama: " + article.title;
+      heroCap.textContent = article.heroCap;
+
+      // build thumbnails
+      const galleryStrip = $("#galleryStrip");
+      galleryStrip.innerHTML = "";
+      const gallery = Array.isArray(article.gallery) ? article.gallery.slice(0,3) : [];
+
+      function setHero(src, cap) {
+        heroImg.src = src;
+        heroCap.textContent = cap || "";
+      }
+
+      gallery.forEach((g, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "thumb";
+        btn.setAttribute("aria-label", "Buka gambar pendukung " + (idx+1));
+        btn.innerHTML = `<img src="${esc(g.img)}" alt="${esc(g.cap || ("Gambar pendukung " + (idx+1)))}" loading="lazy" decoding="async">`;
+
+        btn.addEventListener("click", () => {
+          $$(".thumb", galleryStrip).forEach(el => el.classList.remove("active"));
+          btn.classList.add("active");
+          setHero(g.img, g.cap);
+        });
+
+        galleryStrip.appendChild(btn);
+      });
+
+      const firstThumb = $(".thumb", galleryStrip);
+      if (firstThumb) firstThumb.classList.add("active");
 
       // promo gif
       $("#promoGif1").src = article.promoGif1;
       $("#promoGif2").src = article.promoGif2;
 
       // author
-      $("#authorName").textContent = article.author.name;
-      $("#authorRole").textContent = article.author.role;
-      $("#authorBio").textContent = article.author.bio;
+      $("#authorName").textContent = article.author?.name || "Tim Green Orchid";
+      $("#authorRole").textContent = article.author?.role || "Marketing & Customer Care";
+      $("#authorBio").textContent  = article.author?.bio || "Tim kami siap membantu info unit dan proses pembelian.";
 
       // content
-      $("#articleContent").innerHTML = article.contentHtml;
+      $("#articleContent").innerHTML = article.contentHtml || "";
 
-      // build TOC from H2/H3
+      // TOC
       const tocList = $("#tocList");
       tocList.innerHTML = "";
-
       const contentRoot = $("#articleContent");
       const headings = $$("h2, h3", contentRoot);
 
@@ -1211,10 +1450,10 @@
         }
       });
 
-      // FAQ render (toggle)
+      // FAQ
       const faqWrap = $("#faqWrap");
       faqWrap.innerHTML = "";
-      article.faq.forEach((item) => {
+      (article.faq || []).forEach((item) => {
         const box = document.createElement("div");
         box.className = "faq-item";
         box.innerHTML = `
@@ -1235,7 +1474,7 @@
       });
 
       // conclusion
-      $("#conclusion").textContent = article.conclusion;
+      $("#conclusion").textContent = article.conclusion || "";
 
       // Share links
       const pageUrl = encodeURIComponent(location.href);
@@ -1256,22 +1495,16 @@
         }
       });
 
-      // pick related (3) excluding current
+      // Related (simple)
       const others = ARTICLES.filter(a => a.id !== article.id);
-      const start = (article.id - 1) % others.length;
-      const related = [];
-      for (let i=0; i<3; i++){
-        related.push(others[(start + i) % others.length]);
-      }
+      const related = others.slice(0,3);
 
-      // related sidebar
       const relatedGrid = $("#relatedGrid");
       relatedGrid.innerHTML = related.map(a => `
         <div class="col-12">
           <div class="rel-card">
             <img class="rel-img" src="${esc(a.heroImg)}" alt="Gambar artikel terkait: ${esc(a.title)}" loading="lazy" decoding="async" />
             <div class="rel-body">
-              <div class="kicker mb-1">${esc(a.category)}</div>
               <div class="rel-title font-display">${esc(a.title)}</div>
               <div class="rel-desc">${esc(a.desc)}</div>
             </div>
@@ -1282,7 +1515,7 @@
         </div>
       `).join("");
 
-      // Baca juga minimal 2
+      // Read also
       const readAlsoGrid = $("#readAlsoGrid");
       const readAlso = related.slice(0,2);
       readAlsoGrid.innerHTML = readAlso.map(a => `
@@ -1290,7 +1523,6 @@
           <div class="rel-card">
             <img class="rel-img" src="${esc(a.heroImg)}" alt="Baca juga: ${esc(a.title)}" loading="lazy" decoding="async" />
             <div class="rel-body">
-              <div class="kicker mb-1">${esc(a.category)}</div>
               <div class="rel-title font-display">${esc(a.title)}</div>
               <div class="rel-desc">${esc(a.desc)}</div>
             </div>
