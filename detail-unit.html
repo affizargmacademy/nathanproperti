@@ -400,6 +400,20 @@
       transition:.2s ease;
     }
     .go-wa:hover{transform:translateY(-1px)}
+    /* Logo navbar: aman untuk gambar landscape */
+.brand-img{
+  height: 44px;        /* tinggi konsisten sama navbar */
+  width: auto;         /* biar rasio gak rusak */
+  max-width: 180px;    /* batas biar gak kepanjangan */
+  object-fit: contain; /* kalau ada bounding box, tetap rapi */
+  display: block;
+}
+
+/* versi mobile: sedikit dikecilin biar muat */
+@media (max-width: 576px){
+  .brand-img{ height: 38px; max-width: 150px; }
+}
+
   </style>
 </head>
 
@@ -409,10 +423,12 @@
     <nav class="navbar navbar-expand-lg go-floatNav">
       <div class="container-fluid">
         <a class="go-brand" href="index.html" aria-label="Green Orchid Residence">
-          <img class="brand-img" src="assets/img/logo green orchid.png" alt="Logo Green Orchid Residence" width="44" height="44" loading="eager" decoding="async" />
+          <img class="brand-img" src="assets/img/logo.png"
+          alt="Logo Green Orchid Residence"
+          width="160" height="44"
+          loading="eager" decoding="async" />     
           <span>
-            <div class="go-brandTitle">Green Orchid Residence</div>
-            <div class="go-brandSub">Hunian modern • Sejuk • Tertata</div>
+
           </span>
         </a>
 
@@ -580,7 +596,6 @@
 
         <div class="go-footerMeta">
           <div>© <span id="year"></span> Green Orchid Residence. All rights reserved.</div>
-          <div>Neumorphism Soft UI • Bootstrap</div>
         </div>
       </div>
     </footer>
