@@ -391,6 +391,20 @@
       .media-img{ height: 290px; }
       .nav-shell{ border-radius: 26px; }
     }
+    /* Logo navbar: aman untuk gambar landscape */
+.brand-img{
+  height: 44px;        /* tinggi konsisten sama navbar */
+  width: auto;         /* biar rasio gak rusak */
+  max-width: 180px;    /* batas biar gak kepanjangan */
+  object-fit: contain; /* kalau ada bounding box, tetap rapi */
+  display: block;
+}
+
+/* versi mobile: sedikit dikecilin biar muat */
+@media (max-width: 576px){
+  .brand-img{ height: 38px; max-width: 150px; }
+}
+
   </style>
 </head>
 
@@ -400,10 +414,11 @@
       <div class="container py-3">
         <nav class="nav-shell navbar navbar-expand-lg px-3 px-lg-4 py-3">
           <a class="navbar-brand d-flex align-items-center gap-3" href="index.html" aria-label="Green Orchid Residence">
-            <img class="brand-img" src="assets/img/logo green orchid.png" alt="Logo Green Orchid Residence" width="44" height="44" loading="eager" decoding="async" />
+            <img class="brand-img" src="assets/img/logo.png"
+            alt="Logo Green Orchid Residence"
+            width="160" height="44"
+            loading="eager" decoding="async" />       
             <span class="d-flex flex-column">
-              <span class="brand-title font-display">Green Orchid Residence</span>
-              <span class="brand-subtitle">Hunian modern • Sejuk • Tertata</span>
             </span>
           </a>
 
@@ -463,29 +478,7 @@
                 <span class="badge-soft">📄 Bantuan KPR</span>
               </div>
 
-              <div class="row g-2 mb-4">
-                <div class="col-md-4">
-                  <div class="stat-chip">
-                    <div>6</div>
-                    <small>Tipe unit</small>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="stat-chip">
-                    <div>24/7</div>
-                    <small>Keamanan</small>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="stat-chip">
-                    <div>Fast</div>
-                    <small>Respons WA</small>
-                  </div>
-                </div>
-              </div>
-
               <div class="d-flex flex-wrap gap-2">
-                <a class="btn-primary-soft" href="unit.html">Lihat Unit</a>
                 <button class="btn-soft" type="button" data-bs-toggle="modal" data-bs-target="#modalPricelist">Buka Pricelist</button>
                 <button class="btn-soft" type="button" id="heroWA">Tanya via WhatsApp</button>
               </div>
@@ -653,7 +646,13 @@
                 <p class="unit-desc">Unit efisien untuk pasangan & keluarga kecil. Simple, mudah dirawat, tetap nyaman.</p>
                 <div class="d-flex gap-2">
                   <a class="btn-primary-soft flex-grow-1" href="detail-unit.html?unit=orchid-36-72">Lihat Detail</a>
-                  <a class="btn-soft" href="detail-unit.html?unit=orchid-36-72" aria-label="Buka detail">↗</a>
+                  <button class="btn-soft" type="button" data-wa-unit="Orchid 36/72" aria-label="Chat WhatsApp untuk Orchid 36/72">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M20.5 11.8c0 4.7-3.9 8.6-8.6 8.6-1.5 0-2.9-.4-4.1-1l-3.3.9.9-3.2c-.7-1.3-1-2.7-1-4.3C4.4 7.1 8.3 3.2 13 3.2c4.7 0 8.5 3.9 8.5 8.6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                      <path d="M10.4 9.3c.2-.4.4-.4.7-.3l.7.2c.2.1.3.2.4.4l.3 1c.1.2 0 .4-.1.5l-.3.4c-.1.1-.1.3 0 .4.3.6 1 1.4 2.1 1.9.1.1.3 0 .4-.1l.4-.3c.1-.1.3-.2.5-.1l1 .3c.2.1.3.2.4.4l.2.7c.1.3 0 .5-.3.7-.3.2-.9.5-1.7.4-1.1-.1-2.6-.7-4.1-2.2-1.5-1.5-2.1-3-2.2-4.1-.1-.8.2-1.4.4-1.7Z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                  
                 </div>
               </div>
             </article>
@@ -671,7 +670,12 @@
                 <p class="unit-desc">Lebih lega untuk keluarga muda. Ideal untuk aktivitas harian, fleksibel.</p>
                 <div class="d-flex gap-2">
                   <a class="btn-primary-soft flex-grow-1" href="detail-unit.html?unit=orchid-45-90">Lihat Detail</a>
-                  <a class="btn-soft" href="detail-unit.html?unit=orchid-45-90" aria-label="Buka detail">↗</a>
+                  <button class="btn-soft" type="button" data-wa-unit="Orchid 45/90" aria-label="Chat WhatsApp untuk Orchid 45/90">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M20.5 11.8c0 4.7-3.9 8.6-8.6 8.6-1.5 0-2.9-.4-4.1-1l-3.3.9.9-3.2c-.7-1.3-1-2.7-1-4.3C4.4 7.1 8.3 3.2 13 3.2c4.7 0 8.5 3.9 8.5 8.6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                      <path d="M10.4 9.3c.2-.4.4-.4.7-.3l.7.2c.2.1.3.2.4.4l.3 1c.1.2 0 .4-.1.5l-.3.4c-.1.1-.1.3 0 .4.3.6 1 1.4 2.1 1.9.1.1.3 0 .4-.1l.4-.3c.1-.1.3-.2.5-.1l1 .3c.2.1.3.2.4.4l.2.7c.1.3 0 .5-.3.7-.3.2-.9.5-1.7.4-1.1-.1-2.6-.7-4.1-2.2-1.5-1.5-2.1-3-2.2-4.1-.1-.8.2-1.4.4-1.7Z" fill="currentColor"/>
+                    </svg>
+                  </button>                  
                 </div>
               </div>
             </article>
@@ -689,7 +693,12 @@
                 <p class="unit-desc">Nyaman untuk keluarga besar. Cocok untuk kebutuhan jangka panjang yang stabil.</p>
                 <div class="d-flex gap-2">
                   <a class="btn-primary-soft flex-grow-1" href="detail-unit.html?unit=orchid-60-120">Lihat Detail</a>
-                  <a class="btn-soft" href="detail-unit.html?unit=orchid-60-120" aria-label="Buka detail">↗</a>
+                  <button class="btn-soft" type="button" data-wa-unit="Orchid 60/120" aria-label="Chat WhatsApp untuk Orchid 60/120">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <path d="M20.5 11.8c0 4.7-3.9 8.6-8.6 8.6-1.5 0-2.9-.4-4.1-1l-3.3.9.9-3.2c-.7-1.3-1-2.7-1-4.3C4.4 7.1 8.3 3.2 13 3.2c4.7 0 8.5 3.9 8.5 8.6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                      <path d="M10.4 9.3c.2-.4.4-.4.7-.3l.7.2c.2.1.3.2.4.4l.3 1c.1.2 0 .4-.1.5l-.3.4c-.1.1-.1.3 0 .4.3.6 1 1.4 2.1 1.9.1.1.3 0 .4-.1l.4-.3c.1-.1.3-.2.5-.1l1 .3c.2.1.3.2.4.4l.2.7c.1.3 0 .5-.3.7-.3.2-.9.5-1.7.4-1.1-.1-2.6-.7-4.1-2.2-1.5-1.5-2.1-3-2.2-4.1-.1-.8.2-1.4.4-1.7Z" fill="currentColor"/>
+                    </svg>
+                  </button>                  
                 </div>
               </div>
             </article>
@@ -1033,7 +1042,6 @@
 
           <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mt-3">
             <div class="text-muted fw-semibold">© <span id="year"></span> Green Orchid Residence. All rights reserved.</div>
-            <div class="text-muted fw-semibold">Neumorphism Soft UI • Bootstrap</div>
           </div>
         </div>
       </div>
@@ -1235,6 +1243,13 @@
       setActiveByScroll();
       window.addEventListener("scroll", setActiveByScroll, { passive: true });
     })();
+          // ===== WA triggers (unit kecil di kartu) =====
+          document.querySelectorAll("[data-wa-unit]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const unitName = btn.getAttribute("data-wa-unit") || "Unit";
+          openWA("Tanya unit " + unitName);
+        });
+      });
   </script>
 </body>
 </html>
