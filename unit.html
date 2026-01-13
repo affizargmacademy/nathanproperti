@@ -392,6 +392,20 @@
         font-weight: 900;
         white-space: nowrap;
       }
+      /* Logo navbar: aman untuk gambar landscape */
+.brand-img{
+  height: 44px;        /* tinggi konsisten sama navbar */
+  width: auto;         /* biar rasio gak rusak */
+  max-width: 180px;    /* batas biar gak kepanjangan */
+  object-fit: contain; /* kalau ada bounding box, tetap rapi */
+  display: block;
+}
+
+/* versi mobile: sedikit dikecilin biar muat */
+@media (max-width: 576px){
+  .brand-img{ height: 38px; max-width: 150px; }
+}
+
     </style>
   </head>
 
@@ -401,10 +415,11 @@
       <div class="container py-3">
         <nav class="nav-shell navbar navbar-expand-lg px-3 px-lg-4 py-3">
           <a class="navbar-brand d-flex align-items-center gap-3" href="index.html" aria-label="Green Orchid Residence">
-            <img class="brand-img" src="assets/img/logo green orchid.png" alt="Logo Green Orchid Residence" width="44" height="44" loading="eager" decoding="async" />
+            <img class="brand-img" src="assets/img/logo.png"
+            alt="Logo Green Orchid Residence"
+            width="160" height="44"
+            loading="eager" decoding="async" />       
             <span class="d-flex flex-column">
-              <span class="brand-title font-display">Green Orchid Residence</span>
-              <span class="brand-subtitle">Hunian modern • Sejuk • Tertata</span>
             </span>
           </a>
 
@@ -461,8 +476,11 @@
                   </h1>
 
                   <p class="text-muted hero-desc mb-4">
-                    Halaman unit dibuat <strong>ringkas</strong>: kamu cukup pilih tipe → klik kartu → masuk ke halaman detail.
+                    Di halaman ini kamu bisa melihat seluruh tipe unit yang tersedia di Green Orchid Residence.
+                    Pilih tipe yang sesuai kebutuhan, lalu klik kartu unit untuk melihat detail spesifikasi, denah,
+                    dan informasi harga secara lengkap.
                   </p>
+                  
 
                   <div class="d-flex flex-wrap gap-2 mb-3">
                     <span class="badge-soft">✅ One Gate • Security 24 Jam</span>
@@ -484,8 +502,6 @@
                   </div>
 
                   <div class="d-flex flex-wrap gap-2 mt-3">
-                    <a class="btn-soft" href="#list">Lihat daftar unit</a>
-                    <button class="btn-soft" type="button" data-bs-toggle="modal" data-bs-target="#modalPricelist">Buka pricelist</button>
                   </div>
                 </div>
               </article>
@@ -569,7 +585,6 @@
 
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="text-muted"><span class="fw-bold text-body">Mulai dari</span><br><span class="fw-semibold">Hubungi marketing</span></div>
-                    <a class="btn-soft" href="detail-unit.html?unit=orchid-36-72" aria-label="Detail Orchid 36/72">Detail ↗</a>
                   </div>
                 </div>
 
@@ -606,7 +621,6 @@
 
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="text-muted"><span class="fw-bold text-body">Mulai dari</span><br><span class="fw-semibold">Hubungi marketing</span></div>
-                    <a class="btn-soft" href="detail-unit.html?unit=orchid-45-90" aria-label="Detail Orchid 45/90">Detail ↗</a>
                   </div>
                 </div>
 
@@ -641,7 +655,6 @@
 
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="text-muted"><span class="fw-bold text-body">Mulai dari</span><br><span class="fw-semibold">Hubungi marketing</span></div>
-                    <a class="btn-soft" href="detail-unit.html?unit=orchid-60-120" aria-label="Detail Orchid 60/120">Detail ↗</a>
                   </div>
                 </div>
 
@@ -676,7 +689,6 @@
 
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="text-muted"><span class="fw-bold text-body">Mulai dari</span><br><span class="fw-semibold">Hubungi marketing</span></div>
-                    <a class="btn-soft" href="detail-unit.html?unit=orchid-corner" aria-label="Detail Orchid Corner">Detail ↗</a>
                   </div>
                 </div>
 
@@ -711,7 +723,6 @@
 
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="text-muted"><span class="fw-bold text-body">Mulai dari</span><br><span class="fw-semibold">Hubungi marketing</span></div>
-                    <a class="btn-soft" href="detail-unit.html?unit=orchid-a-plus" aria-label="Detail Orchid A+">Detail ↗</a>
                   </div>
                 </div>
 
@@ -746,7 +757,6 @@
 
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="text-muted"><span class="fw-bold text-body">Mulai dari</span><br><span class="fw-semibold">Hubungi marketing</span></div>
-                    <a class="btn-soft" href="detail-unit.html?unit=orchid-b-plus" aria-label="Detail Orchid B+">Detail ↗</a>
                   </div>
                 </div>
 
@@ -838,7 +848,6 @@
 
             <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mt-3">
               <div class="text-muted">© <span id="year"></span> Green Orchid Residence. All rights reserved.</div>
-              <div class="text-muted">Neumorphism Soft UI • Bootstrap</div>
             </div>
           </div>
         </div>
