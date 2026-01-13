@@ -479,6 +479,20 @@
     @media (max-width: 991.98px){
       .nav-shell{ border-radius: 26px; }
     }
+    /* Logo navbar: aman untuk gambar landscape */
+.brand-img{
+  height: 44px;        /* tinggi konsisten sama navbar */
+  width: auto;         /* biar rasio gak rusak */
+  max-width: 180px;    /* batas biar gak kepanjangan */
+  object-fit: contain; /* kalau ada bounding box, tetap rapi */
+  display: block;
+}
+
+/* versi mobile: sedikit dikecilin biar muat */
+@media (max-width: 576px){
+  .brand-img{ height: 38px; max-width: 150px; }
+}
+
   </style>
 </head>
 
@@ -489,10 +503,12 @@
     <div class="container py-3">
       <nav class="nav-shell navbar navbar-expand-lg px-3 px-lg-4 py-3">
         <a class="navbar-brand d-flex align-items-center gap-3" href="index.html" aria-label="Green Orchid Residence">
-          <img class="brand-img" src="assets/img/logo green orchid.png" alt="Logo Green Orchid Residence" width="44" height="44" loading="eager" decoding="async" />
+          <img class="brand-img" src="assets/img/logo.png"
+     alt="Logo Green Orchid Residence"
+     width="160" height="44"
+     loading="eager" decoding="async" />
           <span class="d-flex flex-column">
-            <span class="brand-title font-display">Green Orchid Residence</span>
-            <span class="brand-subtitle">Hunian modern • Sejuk • Tertata</span>
+
           </span>
         </a>
 
@@ -654,13 +670,20 @@
 
               <div class="hr-soft"></div>
 
-              <div class="fw-black font-display mb-2">Artikel terkait</div>
-              <div class="text-muted fw-semibold mb-2">3 artikel yang mungkin kamu suka.</div>
-              <div class="row g-3" id="relatedGrid"></div>
+<!-- GANTI BAGIAN "Artikel terkait" INI SAJA -->
+<div class="hr-soft"></div>
 
-              <div class="hr-soft"></div>
+<div class="fw-black font-display mb-2">Daftar isi</div>
+<div class="text-muted fw-semibold mb-2">Navigasi cepat isi artikel ini.</div>
 
-              <a class="btn-primary-soft w-100" href="artikel.html">Kembali ke Artikel</a>
+<div class="toc-box">
+  <ol class="toc-list" id="tocListRelated"></ol>
+</div>
+
+<div class="hr-soft"></div>
+
+<a class="btn-primary-soft w-100" href="artikel.html">Kembali ke Artikel</a>
+
             </aside>
           </div>
 
@@ -734,7 +757,6 @@
 
           <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mt-3">
             <div class="text-muted">© <span id="year"></span> Green Orchid Residence. All rights reserved.</div>
-            <div class="text-muted">Neumorphism Soft UI • Bootstrap</div>
           </div>
         </div>
       </div>
@@ -898,456 +920,455 @@
       const $$ = (s, root=document) => Array.from(root.querySelectorAll(s));
       const esc = (str="") => String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 
-// data artikel (9) — versi lengkap + tiap artikel punya 3 foto (gallery)
-const ARTICLES = [
-  {
-    id: 1,
-    category: "KPR",
-    title: "Panduan KPR Pemula: dari DP sampai akad",
-    desc: "Langkah paling penting agar proses KPR lebih rapi dan minim drama.",
-    date: "10 Jan 2026",
-    read: "6 menit baca",
-    heroImg: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1400&q=60",
-    heroCap: "Foto: ilustrasi rumah modern yang nyaman untuk keluarga.",
-    gallery: [
-      { img:"https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=60", cap:"Foto: ruang keluarga minimalis yang nyaman." },
-      { img:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=60", cap:"Foto: interior rapi yang membuat rumah terasa luas." },
-      { img:"https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=60", cap:"Foto: persiapan dokumen & simulasi cicilan." }
-    ],
-    promoGif1: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif",
-    promoGif2: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif",
-    author: {
-      name: "Tim Green Orchid",
-      role: "Marketing & Customer Care",
-      bio: "Membantu calon pembeli memahami unit, proses KPR, dan tips hunian yang nyaman."
-    },
-    conclusion:
-      "Mulai dari menyiapkan DP, cek SLIK OJK, hingga simulasi cicilan—kuncinya adalah rapi di dokumen dan realistis di kemampuan bayar.",
-    faq: [
-      { q:"Berapa DP minimal untuk KPR?", a:"Tergantung kebijakan bank & program. Umumnya ada opsi mulai dari 10–20%. Tanya marketing untuk skema yang tersedia." },
-      { q:"Apa yang paling sering bikin KPR ditolak?", a:"Riwayat kredit buruk, data dokumen tidak konsisten, dan rasio cicilan terlalu tinggi." },
-      { q:"Kapan waktu terbaik mengajukan KPR?", a:"Saat dokumen siap dan kondisi keuangan stabil minimal 3–6 bulan terakhir." }
-    ],
-    contentHtml: `
-      <p>Kalau kamu baru pertama kali mengajukan KPR, jangan mulai dari “bank mana” dulu. Mulailah dari <strong>kesiapan dokumen</strong> dan <strong>kesiapan cashflow bulanan</strong>.</p>
+      // data artikel (9) — versi lengkap + tiap artikel punya 3 foto (gallery)
+      const ARTICLES = [
+        {
+          id: 1,
+          category: "KPR",
+          title: "Panduan KPR Pemula: dari DP sampai akad",
+          desc: "Langkah paling penting agar proses KPR lebih rapi dan minim drama.",
+          date: "10 Jan 2026",
+          read: "6 menit baca",
+          heroImg: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1400&q=60",
+          heroCap: "Foto: ilustrasi rumah modern yang nyaman untuk keluarga.",
+          gallery: [
+            { img:"https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=60", cap:"Foto: ruang keluarga minimalis yang nyaman." },
+            { img:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=60", cap:"Foto: interior rapi yang membuat rumah terasa luas." },
+            { img:"https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=60", cap:"Foto: persiapan dokumen & simulasi cicilan." }
+          ],
+          promoGif1: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif",
+          promoGif2: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif",
+          author: {
+            name: "Tim Green Orchid",
+            role: "Marketing & Customer Care",
+            bio: "Membantu calon pembeli memahami unit, proses KPR, dan tips hunian yang nyaman."
+          },
+          conclusion:
+            "Mulai dari menyiapkan DP, cek SLIK OJK, hingga simulasi cicilan—kuncinya adalah rapi di dokumen dan realistis di kemampuan bayar.",
+          faq: [
+            { q:"Berapa DP minimal untuk KPR?", a:"Tergantung kebijakan bank & program. Umumnya ada opsi mulai dari 10–20%. Tanya marketing untuk skema yang tersedia." },
+            { q:"Apa yang paling sering bikin KPR ditolak?", a:"Riwayat kredit buruk, data dokumen tidak konsisten, dan rasio cicilan terlalu tinggi." },
+            { q:"Kapan waktu terbaik mengajukan KPR?", a:"Saat dokumen siap dan kondisi keuangan stabil minimal 3–6 bulan terakhir." }
+          ],
+          contentHtml: `
+            <p>Kalau kamu baru pertama kali mengajukan KPR, jangan mulai dari “bank mana” dulu. Mulailah dari <strong>kesiapan dokumen</strong> dan <strong>kesiapan cashflow bulanan</strong>.</p>
 
-      <h2>1. Pahami komponen biaya di awal</h2>
-      <p>Selain DP, kamu perlu menyiapkan biaya administrasi, appraisal, asuransi, dan biaya akad (tergantung bank).</p>
-      <h3>Checklist cepat</h3>
-      <ul>
-        <li>DP (uang muka)</li>
-        <li>Biaya proses bank & appraisal</li>
-        <li>Biaya notaris/akad</li>
-        <li>Dana cadangan 3–6 bulan cicilan</li>
-      </ul>
+            <h2>1. Pahami komponen biaya di awal</h2>
+            <p>Selain DP, kamu perlu menyiapkan biaya administrasi, appraisal, asuransi, dan biaya akad (tergantung bank).</p>
+            <h3>Checklist cepat</h3>
+            <ul>
+              <li>DP (uang muka)</li>
+              <li>Biaya proses bank & appraisal</li>
+              <li>Biaya notaris/akad</li>
+              <li>Dana cadangan 3–6 bulan cicilan</li>
+            </ul>
 
-      <blockquote>
-        <p>“KPR yang aman bukan yang cicilannya paling kecil, tapi yang masih nyaman saat kondisi keuangan berubah.”</p>
-        <footer>— Catatan tim marketing</footer>
-      </blockquote>
+            <blockquote>
+              <p>“KPR yang aman bukan yang cicilannya paling kecil, tapi yang masih nyaman saat kondisi keuangan berubah.”</p>
+              <footer>— Catatan tim marketing</footer>
+            </blockquote>
 
-      <h2>2. Simulasi cicilan yang realistis</h2>
-      <p>Idealnya cicilan total (termasuk cicilan lain) tidak terlalu berat dibanding pemasukan bulanan.</p>
-      <h3>Trik sederhana</h3>
-      <p>Pilih tenor yang masuk akal, tapi tetap perhatikan total bunga. Jangan hanya fokus “cicilan kecil”.</p>
+            <h2>2. Simulasi cicilan yang realistis</h2>
+            <p>Idealnya cicilan total (termasuk cicilan lain) tidak terlalu berat dibanding pemasukan bulanan.</p>
+            <h3>Trik sederhana</h3>
+            <p>Pilih tenor yang masuk akal, tapi tetap perhatikan total bunga. Jangan hanya fokus “cicilan kecil”.</p>
 
-      <h2>3. Rapikan dokumen sejak awal</h2>
-      <p>KTP, NPWP, slip gaji/rek koran, dan bukti usaha (untuk wiraswasta) harus konsisten.</p>
+            <h2>3. Rapikan dokumen sejak awal</h2>
+            <p>KTP, NPWP, slip gaji/rek koran, dan bukti usaha (untuk wiraswasta) harus konsisten.</p>
 
-      <h2>4. Pastikan skor kredit aman</h2>
-      <p>Kalau ada tunggakan, selesaikan dulu. Ini sering jadi penyebab utama pengajuan mandek.</p>
+            <h2>4. Pastikan skor kredit aman</h2>
+            <p>Kalau ada tunggakan, selesaikan dulu. Ini sering jadi penyebab utama pengajuan mandek.</p>
 
-      <h2>5. Siapkan rencana cadangan</h2>
-      <p>Punya dana darurat dan skenario “kalau income turun” itu penting, apalagi untuk jangka panjang.</p>
-    `
-  },
+            <h2>5. Siapkan rencana cadangan</h2>
+            <p>Punya dana darurat dan skenario “kalau income turun” itu penting, apalagi untuk jangka panjang.</p>
+          `
+        },
 
-  {
-    id: 2,
-    category: "KEUANGAN",
-    title: "BI Checking / SLIK OJK: cara cek & memperbaiki skor",
-    desc: "Apa yang bikin pengajuan KPR tersendat dan cara beresinnya dengan aman.",
-    date: "10 Jan 2026",
-    read: "7 menit baca",
-    heroImg: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=60",
-    heroCap: "Foto: dokumen kredit dan catatan finansial untuk referensi pengajuan KPR.",
-    gallery: [
-      { img:"https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=900&q=60", cap:"Foto: kalkulasi finansial sebelum pengajuan." },
-      { img:"https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=60", cap:"Foto: dokumen rapi mempercepat proses." },
-      { img:"https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=900&q=60", cap:"Foto: evaluasi catatan kredit & budgeting." }
-    ],
-    promoGif1: "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif",
-    promoGif2: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
-    author: {
-      name: "Tim Green Orchid",
-      role: "Marketing & Customer Care",
-      bio: "Membantu cek kesiapan dokumen dan alur pengajuan KPR."
-    },
-    conclusion:
-      "Cek lebih awal, rapikan tunggakan, dan hindari pengajuan kredit beruntun saat mau KPR.",
-    faq: [
-      { q:"SLIK OJK itu apa?", a:"Sistem informasi layanan keuangan berisi riwayat kredit debitur (pengganti BI Checking)." },
-      { q:"Berapa lama perbaikan skor kredit?", a:"Tergantung kasus. Setelah pelunasan, update bisa butuh beberapa waktu sesuai pelaporan." },
-      { q:"Apa yang harus dihindari sebelum KPR?", a:"Nambah cicilan baru atau telat bayar tagihan kartu kredit/pinjaman." }
-    ],
-    contentHtml: `
-      <p>SLIK OJK adalah salah satu faktor penting penilaian bank saat memproses KPR. Jadi lebih baik cek dari awal.</p>
+        {
+          id: 2,
+          category: "KEUANGAN",
+          title: "BI Checking / SLIK OJK: cara cek & memperbaiki skor",
+          desc: "Apa yang bikin pengajuan KPR tersendat dan cara beresinnya dengan aman.",
+          date: "10 Jan 2026",
+          read: "7 menit baca",
+          heroImg: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=60",
+          heroCap: "Foto: dokumen kredit dan catatan finansial untuk referensi pengajuan KPR.",
+          gallery: [
+            { img:"https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=900&q=60", cap:"Foto: kalkulasi finansial sebelum pengajuan." },
+            { img:"https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=60", cap:"Foto: dokumen rapi mempercepat proses." },
+            { img:"https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=900&q=60", cap:"Foto: evaluasi catatan kredit & budgeting." }
+          ],
+          promoGif1: "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif",
+          promoGif2: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
+          author: {
+            name: "Tim Green Orchid",
+            role: "Marketing & Customer Care",
+            bio: "Membantu cek kesiapan dokumen dan alur pengajuan KPR."
+          },
+          conclusion:
+            "Cek lebih awal, rapikan tunggakan, dan hindari pengajuan kredit beruntun saat mau KPR.",
+          faq: [
+            { q:"SLIK OJK itu apa?", a:"Sistem informasi layanan keuangan berisi riwayat kredit debitur (pengganti BI Checking)." },
+            { q:"Berapa lama perbaikan skor kredit?", a:"Tergantung kasus. Setelah pelunasan, update bisa butuh beberapa waktu sesuai pelaporan." },
+            { q:"Apa yang harus dihindari sebelum KPR?", a:"Nambah cicilan baru atau telat bayar tagihan kartu kredit/pinjaman." }
+          ],
+          contentHtml: `
+            <p>SLIK OJK adalah salah satu faktor penting penilaian bank saat memproses KPR. Jadi lebih baik cek dari awal.</p>
 
-      <h2>1. Kenapa skor kredit berpengaruh?</h2>
-      <p>Bank menilai kebiasaan pembayaran kamu. Telat bayar kecil tapi sering bisa jadi red flag.</p>
+            <h2>1. Kenapa skor kredit berpengaruh?</h2>
+            <p>Bank menilai kebiasaan pembayaran kamu. Telat bayar kecil tapi sering bisa jadi red flag.</p>
 
-      <h2>2. Cara cek SLIK OJK</h2>
-      <h3>Siapkan dokumen</h3>
-      <ul>
-        <li>KTP</li>
-        <li>NPWP (jika ada)</li>
-        <li>Dokumen pendukung lain sesuai kebutuhan</li>
-      </ul>
+            <h2>2. Cara cek SLIK OJK</h2>
+            <h3>Siapkan dokumen</h3>
+            <ul>
+              <li>KTP</li>
+              <li>NPWP (jika ada)</li>
+              <li>Dokumen pendukung lain sesuai kebutuhan</li>
+            </ul>
 
-      <blockquote>
-        <p>“Kalau mau KPR, bersih dulu riwayat cicilan. Itu fondasi paling aman.”</p>
-        <footer>— Catatan tim</footer>
-      </blockquote>
+            <blockquote>
+              <p>“Kalau mau KPR, bersih dulu riwayat cicilan. Itu fondasi paling aman.”</p>
+              <footer>— Catatan tim</footer>
+            </blockquote>
 
-      <h2>3. Cara memperbaiki catatan kredit</h2>
-      <p>Lunasi tunggakan, minta surat keterangan, dan pastikan pelaporan sudah diperbarui.</p>
-    `
-  },
+            <h2>3. Cara memperbaiki catatan kredit</h2>
+            <p>Lunasi tunggakan, minta surat keterangan, dan pastikan pelaporan sudah diperbarui.</p>
+          `
+        },
 
-  {
-    id: 3,
-    category: "DESAIN",
-    title: "Renovasi Hemat: 7 prioritas yang bikin rumah makin nyaman",
-    desc: "Urutan renovasi yang masuk akal biar budget nggak kebakar duluan.",
-    date: "10 Jan 2026",
-    read: "5 menit baca",
-    heroImg: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=60",
-    heroCap: "Foto: proses renovasi ringan yang fokus pada prioritas fungsi.",
-    gallery: [
-      { img:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=60", cap:"Foto: pekerjaan renovasi bertahap sesuai prioritas." },
-      { img:"https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=900&q=60", cap:"Foto: penataan ruang agar lebih fungsional." },
-      { img:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=60", cap:"Foto: sentuhan interior sederhana yang berdampak besar." }
-    ],
-    promoGif1: "https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif",
-    promoGif2: "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif",
-    author: {
-      name:"Tim Green Orchid",
-      role:"Marketing & Customer Care",
-      bio:"Berbagi tips renovasi hemat yang tetap rapi dan fungsional."
-    },
-    conclusion: "Utamakan perbaikan yang berdampak besar: kebocoran, ventilasi, pencahayaan, lalu estetika.",
-    faq: [
-      { q:"Renovasi dulu atau isi rumah dulu?", a:"Kalau ada masalah struktur/kebocoran, renovasi dulu. Kalau hanya estetika, bisa bertahap." },
-      { q:"Biar hemat, mulai dari mana?", a:"Mulai dari area paling sering dipakai: dapur, kamar mandi, dan sirkulasi udara." },
-      { q:"Kapan perlu tenaga profesional?", a:"Untuk listrik, plumbing besar, dan perubahan struktur." }
-    ],
-    contentHtml: `
-      <p>Renovasi hemat itu bukan berarti murahan. Kuncinya: <strong>prioritas</strong> dan <strong>bertahap</strong>.</p>
+        {
+          id: 3,
+          category: "DESAIN",
+          title: "Renovasi Hemat: 7 prioritas yang bikin rumah makin nyaman",
+          desc: "Urutan renovasi yang masuk akal biar budget nggak kebakar duluan.",
+          date: "10 Jan 2026",
+          read: "5 menit baca",
+          heroImg: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=60",
+          heroCap: "Foto: proses renovasi ringan yang fokus pada prioritas fungsi.",
+          gallery: [
+            { img:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=60", cap:"Foto: pekerjaan renovasi bertahap sesuai prioritas." },
+            { img:"https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=900&q=60", cap:"Foto: penataan ruang agar lebih fungsional." },
+            { img:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=60", cap:"Foto: sentuhan interior sederhana yang berdampak besar." }
+          ],
+          promoGif1: "https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif",
+          promoGif2: "https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif",
+          author: {
+            name:"Tim Green Orchid",
+            role:"Marketing & Customer Care",
+            bio:"Berbagi tips renovasi hemat yang tetap rapi dan fungsional."
+          },
+          conclusion: "Utamakan perbaikan yang berdampak besar: kebocoran, ventilasi, pencahayaan, lalu estetika.",
+          faq: [
+            { q:"Renovasi dulu atau isi rumah dulu?", a:"Kalau ada masalah struktur/kebocoran, renovasi dulu. Kalau hanya estetika, bisa bertahap." },
+            { q:"Biar hemat, mulai dari mana?", a:"Mulai dari area paling sering dipakai: dapur, kamar mandi, dan sirkulasi udara." },
+            { q:"Kapan perlu tenaga profesional?", a:"Untuk listrik, plumbing besar, dan perubahan struktur." }
+          ],
+          contentHtml: `
+            <p>Renovasi hemat itu bukan berarti murahan. Kuncinya: <strong>prioritas</strong> dan <strong>bertahap</strong>.</p>
 
-      <h2>1. Bereskan masalah utama dulu</h2>
-      <p>Kebocoran, rembes, dan instalasi listrik bermasalah harus jadi prioritas.</p>
+            <h2>1. Bereskan masalah utama dulu</h2>
+            <p>Kebocoran, rembes, dan instalasi listrik bermasalah harus jadi prioritas.</p>
 
-      <h2>2. Optimalkan ventilasi & cahaya</h2>
-      <h3>Efeknya besar</h3>
-      <p>Rumah lebih sehat, lebih hemat listrik, dan lebih nyaman.</p>
+            <h2>2. Optimalkan ventilasi & cahaya</h2>
+            <h3>Efeknya besar</h3>
+            <p>Rumah lebih sehat, lebih hemat listrik, dan lebih nyaman.</p>
 
-      <blockquote>
-        <p>“Kalau budget terbatas, jangan mulai dari dekor. Mulai dari kenyamanan dan keamanan.”</p>
-        <footer>— Tips renovasi</footer>
-      </blockquote>
+            <blockquote>
+              <p>“Kalau budget terbatas, jangan mulai dari dekor. Mulai dari kenyamanan dan keamanan.”</p>
+              <footer>— Tips renovasi</footer>
+            </blockquote>
 
-      <h2>3. Baru estetika</h2>
-      <p>Cat, pencahayaan, dan storage rapi biasanya memberi efek “baru” paling terasa.</p>
-    `
-  },
+            <h2>3. Baru estetika</h2>
+            <p>Cat, pencahayaan, dan storage rapi biasanya memberi efek “baru” paling terasa.</p>
+          `
+        },
 
-  {
-    id: 4,
-    category: "RUMAH SEHAT",
-    title: "Rumah Sehat: ventilasi, cahaya, dan sirkulasi yang benar",
-    desc: "Biar rumah nggak lembap, minim jamur, dan nyaman jangka panjang.",
-    date: "10 Jan 2026",
-    read: "6 menit baca",
-    heroImg: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1400&q=60",
-    heroCap: "Foto: ruang keluarga dengan cahaya alami dan sirkulasi yang baik.",
-    gallery: [
-      { img:"https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=900&q=60", cap:"Foto: ruang dengan cahaya alami yang stabil." },
-      { img:"https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=900&q=60", cap:"Foto: ventilasi dan bukaan yang membuat udara bergerak." },
-      { img:"https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=60", cap:"Foto: tata ruang rapi mendukung sirkulasi harian." }
-    ],
-    promoGif1: "https://media.giphy.com/media/26BRrSvJUa0crqw4E/giphy.gif",
-    promoGif2: "https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif",
-    author: {
-      name:"Tim Green Orchid",
-      role:"Marketing & Customer Care",
-      bio:"Berbagi tips hunian sehat dan nyaman."
-    },
-    conclusion: "Kombinasi ventilasi, sinar matahari, dan alur udara membuat rumah lebih sehat dan hemat energi.",
-    faq: [
-      { q:"Apa tanda rumah kurang ventilasi?", a:"Lembap, bau apek, jamur muncul, dan sering pengap." },
-      { q:"Solusi cepat rumah lembap?", a:"Perbaiki ventilasi, cek sumber rembes, dan pastikan ada sinar matahari masuk." },
-      { q:"Berapa ideal bukaan jendela?", a:"Tergantung desain. Intinya ada aliran udara silang dan pencahayaan cukup." }
-    ],
-    contentHtml: `
-      <p>Rumah sehat bukan soal mahal, tapi soal alur udara dan pencahayaan yang benar.</p>
+        {
+          id: 4,
+          category: "RUMAH SEHAT",
+          title: "Rumah Sehat: ventilasi, cahaya, dan sirkulasi yang benar",
+          desc: "Biar rumah nggak lembap, minim jamur, dan nyaman jangka panjang.",
+          date: "10 Jan 2026",
+          read: "6 menit baca",
+          heroImg: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1400&q=60",
+          heroCap: "Foto: ruang keluarga dengan cahaya alami dan sirkulasi yang baik.",
+          gallery: [
+            { img:"https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=900&q=60", cap:"Foto: ruang dengan cahaya alami yang stabil." },
+            { img:"https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=900&q=60", cap:"Foto: ventilasi dan bukaan yang membuat udara bergerak." },
+            { img:"https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=60", cap:"Foto: tata ruang rapi mendukung sirkulasi harian." }
+          ],
+          promoGif1: "https://media.giphy.com/media/26BRrSvJUa0crqw4E/giphy.gif",
+          promoGif2: "https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif",
+          author: {
+            name:"Tim Green Orchid",
+            role:"Marketing & Customer Care",
+            bio:"Berbagi tips hunian sehat dan nyaman."
+          },
+          conclusion: "Kombinasi ventilasi, sinar matahari, dan alur udara membuat rumah lebih sehat dan hemat energi.",
+          faq: [
+            { q:"Apa tanda rumah kurang ventilasi?", a:"Lembap, bau apek, jamur muncul, dan sering pengap." },
+            { q:"Solusi cepat rumah lembap?", a:"Perbaiki ventilasi, cek sumber rembes, dan pastikan ada sinar matahari masuk." },
+            { q:"Berapa ideal bukaan jendela?", a:"Tergantung desain. Intinya ada aliran udara silang dan pencahayaan cukup." }
+          ],
+          contentHtml: `
+            <p>Rumah sehat bukan soal mahal, tapi soal alur udara dan pencahayaan yang benar.</p>
 
-      <h2>1. Ventilasi silang</h2>
-      <p>Pastikan ada bukaan di dua sisi agar udara bergerak.</p>
+            <h2>1. Ventilasi silang</h2>
+            <p>Pastikan ada bukaan di dua sisi agar udara bergerak.</p>
 
-      <h2>2. Cahaya alami</h2>
-      <h3>Efek ke suasana</h3>
-      <p>Ruang terasa lebih luas dan hemat listrik.</p>
+            <h2>2. Cahaya alami</h2>
+            <h3>Efek ke suasana</h3>
+            <p>Ruang terasa lebih luas dan hemat listrik.</p>
 
-      <blockquote>
-        <p>“Rumah yang terang dan berangin biasanya lebih betah ditinggali.”</p>
-        <footer>— Catatan praktis</footer>
-      </blockquote>
+            <blockquote>
+              <p>“Rumah yang terang dan berangin biasanya lebih betah ditinggali.”</p>
+              <footer>— Catatan praktis</footer>
+            </blockquote>
 
-      <h2>3. Cegah jamur & lembap</h2>
-      <p>Perhatikan area kamar mandi, dapur, dan sudut-sudut rumah.</p>
-    `
-  },
+            <h2>3. Cegah jamur & lembap</h2>
+            <p>Perhatikan area kamar mandi, dapur, dan sudut-sudut rumah.</p>
+          `
+        },
 
-  {
-    id: 5,
-    category: "KEAMANAN",
-    title: "One Gate System: kenapa lebih aman & tertata?",
-    desc: "Poin penting yang sering dicari keluarga sebelum memutuskan beli rumah.",
-    date: "10 Jan 2026",
-    read: "4 menit baca",
-    heroImg: "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=60",
-    heroCap: "Foto: gerbang perumahan sebagai kontrol akses keluar masuk.",
-    gallery: [
-      { img:"https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=900&q=60", cap:"Foto: akses masuk perumahan yang terkontrol." },
-      { img:"https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=900&q=60", cap:"Foto: lingkungan rapi mendukung kenyamanan." },
-      { img:"https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=900&q=60", cap:"Foto: pencahayaan area membantu keamanan malam hari." }
-    ],
-    promoGif1: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif",
-    promoGif2: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
-    author: {
-      name:"Tim Green Orchid",
-      role:"Marketing & Customer Care",
-      bio:"Membantu jelaskan benefit lingkungan tertata dan aman."
-    },
-    conclusion: "One gate memudahkan kontrol akses, meningkatkan rasa aman, dan membuat lingkungan lebih tertib.",
-    faq: [
-      { q:"One gate selalu lebih aman?", a:"Lebih aman jika didukung SOP security, pencatatan tamu, dan penerangan area." },
-      { q:"Apa keuntungan untuk keluarga?", a:"Lebih tenang, akses lebih terkontrol, dan lingkungan lebih rapi." },
-      { q:"Apakah ada jam operasional?", a:"Tergantung pengelolaan. Umumnya akses utama tetap terjaga 24 jam." }
-    ],
-    contentHtml: `
-      <p>One gate system adalah konsep akses masuk-keluar yang terkontrol.</p>
+        {
+          id: 5,
+          category: "KEAMANAN",
+          title: "One Gate System: kenapa lebih aman & tertata?",
+          desc: "Poin penting yang sering dicari keluarga sebelum memutuskan beli rumah.",
+          date: "10 Jan 2026",
+          read: "4 menit baca",
+          heroImg: "https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=60",
+          heroCap: "Foto: gerbang perumahan sebagai kontrol akses keluar masuk.",
+          gallery: [
+            { img:"https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=900&q=60", cap:"Foto: akses masuk perumahan yang terkontrol." },
+            { img:"https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=900&q=60", cap:"Foto: lingkungan rapi mendukung kenyamanan." },
+            { img:"https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=900&q=60", cap:"Foto: pencahayaan area membantu keamanan malam hari." }
+          ],
+          promoGif1: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif",
+          promoGif2: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
+          author: {
+            name:"Tim Green Orchid",
+            role:"Marketing & Customer Care",
+            bio:"Membantu jelaskan benefit lingkungan tertata dan aman."
+          },
+          conclusion: "One gate memudahkan kontrol akses, meningkatkan rasa aman, dan membuat lingkungan lebih tertib.",
+          faq: [
+            { q:"One gate selalu lebih aman?", a:"Lebih aman jika didukung SOP security, pencatatan tamu, dan penerangan area." },
+            { q:"Apa keuntungan untuk keluarga?", a:"Lebih tenang, akses lebih terkontrol, dan lingkungan lebih rapi." },
+            { q:"Apakah ada jam operasional?", a:"Tergantung pengelolaan. Umumnya akses utama tetap terjaga 24 jam." }
+          ],
+          contentHtml: `
+            <p>One gate system adalah konsep akses masuk-keluar yang terkontrol.</p>
 
-      <h2>1. Kontrol akses lebih rapi</h2>
-      <p>Arus kendaraan dan tamu bisa dipantau lebih mudah.</p>
+            <h2>1. Kontrol akses lebih rapi</h2>
+            <p>Arus kendaraan dan tamu bisa dipantau lebih mudah.</p>
 
-      <h2>2. Lingkungan lebih tertata</h2>
-      <h3>Efek samping yang bagus</h3>
-      <p>Area jadi lebih tenang dan tidak “ramai lewat”.</p>
+            <h2>2. Lingkungan lebih tertata</h2>
+            <h3>Efek samping yang bagus</h3>
+            <p>Area jadi lebih tenang dan tidak “ramai lewat”.</p>
 
-      <blockquote>
-        <p>“Keamanan itu sistem + kebiasaan. One gate membantu keduanya.”</p>
-        <footer>— Catatan lingkungan</footer>
-      </blockquote>
+            <blockquote>
+              <p>“Keamanan itu sistem + kebiasaan. One gate membantu keduanya.”</p>
+              <footer>— Catatan lingkungan</footer>
+            </blockquote>
 
-      <h2>3. Dukungan security 24 jam</h2>
-      <p>Jika ada, ini menambah rasa aman penghuni.</p>
-    `
-  },
+            <h2>3. Dukungan security 24 jam</h2>
+            <p>Jika ada, ini menambah rasa aman penghuni.</p>
+          `
+        },
 
-  {
-    id: 6,
-    category: "KPR",
-    title: "Simulasi KPR: cara baca tenor, bunga, dan cicilan",
-    desc: "Supaya kamu nggak salah ambil tenor dan tetap aman di pengeluaran bulanan.",
-    date: "10 Jan 2026",
-    read: "8 menit baca",
-    heroImg: "https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1400&q=60",
-    heroCap: "Foto: simulasi cicilan membantu menentukan tenor yang aman.",
-    gallery: [
-      { img:"https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=900&q=60", cap:"Foto: hitung beberapa skenario tenor." },
-      { img:"https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=60", cap:"Foto: rapikan dokumen untuk proses bank." },
-      { img:"https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=60", cap:"Foto: dokumen rapi mempercepat approval." }
-    ],
-    promoGif1: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif",
-    promoGif2: "https://media.giphy.com/media/26BRrSvJUa0crqw4E/giphy.gif",
-    author: {
-      name:"Tim Green Orchid",
-      role:"Marketing & Customer Care",
-      bio:"Mendampingi simulasi KPR dan persiapan dokumen."
-    },
-    conclusion: "Jangan hanya lihat cicilan bulanan: pahami juga total bunga dan kemampuan bayar jangka panjang.",
-    faq: [
-      { q:"Tenor panjang selalu lebih baik?", a:"Cicilan lebih kecil, tapi total bunga bisa lebih besar. Pilih sesuai kemampuan dan target finansial." },
-      { q:"Bunga fixed vs floating?", a:"Fixed stabil di awal, floating bisa berubah. Pahami periodenya sebelum tanda tangan." },
-      { q:"Apa itu rasio cicilan?", a:"Perbandingan total cicilan bulanan dengan penghasilan. Bank biasanya punya batas aman." }
-    ],
-    contentHtml: `
-      <p>Simulasi KPR itu alat paling sederhana untuk menghindari keputusan impulsif.</p>
+        {
+          id: 6,
+          category: "KPR",
+          title: "Simulasi KPR: cara baca tenor, bunga, dan cicilan",
+          desc: "Supaya kamu nggak salah ambil tenor dan tetap aman di pengeluaran bulanan.",
+          date: "10 Jan 2026",
+          read: "8 menit baca",
+          heroImg: "https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=1400&q=60",
+          heroCap: "Foto: simulasi cicilan membantu menentukan tenor yang aman.",
+          gallery: [
+            { img:"https://images.unsplash.com/photo-1554224154-22dec7ec8818?auto=format&fit=crop&w=900&q=60", cap:"Foto: hitung beberapa skenario tenor." },
+            { img:"https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=60", cap:"Foto: rapikan dokumen untuk proses bank." },
+            { img:"https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=60", cap:"Foto: dokumen rapi mempercepat approval." }
+          ],
+          promoGif1: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif",
+          promoGif2: "https://media.giphy.com/media/26BRrSvJUa0crqw4E/giphy.gif",
+          author: {
+            name:"Tim Green Orchid",
+            role:"Marketing & Customer Care",
+            bio:"Mendampingi simulasi KPR dan persiapan dokumen."
+          },
+          conclusion: "Jangan hanya lihat cicilan bulanan: pahami juga total bunga dan kemampuan bayar jangka panjang.",
+          faq: [
+            { q:"Tenor panjang selalu lebih baik?", a:"Cicilan lebih kecil, tapi total bunga bisa lebih besar. Pilih sesuai kemampuan dan target finansial." },
+            { q:"Bunga fixed vs floating?", a:"Fixed stabil di awal, floating bisa berubah. Pahami periodenya sebelum tanda tangan." },
+            { q:"Apa itu rasio cicilan?", a:"Perbandingan total cicilan bulanan dengan penghasilan. Bank biasanya punya batas aman." }
+          ],
+          contentHtml: `
+            <p>Simulasi KPR itu alat paling sederhana untuk menghindari keputusan impulsif.</p>
 
-      <h2>1. Tenor vs total bunga</h2>
-      <p>Tenor panjang menurunkan cicilan bulanan, tapi total bunga bisa lebih tinggi.</p>
+            <h2>1. Tenor vs total bunga</h2>
+            <p>Tenor panjang menurunkan cicilan bulanan, tapi total bunga bisa lebih tinggi.</p>
 
-      <h2>2. Pahami bunga</h2>
-      <h3>Fixed</h3>
-      <p>Bunga tetap selama periode tertentu.</p>
-      <h3>Floating</h3>
-      <p>Bisa naik turun mengikuti kebijakan bank/pasar.</p>
+            <h2>2. Pahami bunga</h2>
+            <h3>Fixed</h3>
+            <p>Bunga tetap selama periode tertentu.</p>
+            <h3>Floating</h3>
+            <p>Bisa naik turun mengikuti kebijakan bank/pasar.</p>
 
-      <blockquote>
-        <p>“KPR aman itu yang cicilannya masih nyaman meski ada perubahan kecil di keuangan.”</p>
-        <footer>— Catatan tim</footer>
-      </blockquote>
+            <blockquote>
+              <p>“KPR aman itu yang cicilannya masih nyaman meski ada perubahan kecil di keuangan.”</p>
+              <footer>— Catatan tim</footer>
+            </blockquote>
 
-      <h2>3. Tips memilih</h2>
-      <p>Ambil tenor yang aman, dan tetap sisihkan dana darurat.</p>
-    `
-  },
+            <h2>3. Tips memilih</h2>
+            <p>Ambil tenor yang aman, dan tetap sisihkan dana darurat.</p>
+          `
+        },
 
-  {
-    id: 7,
-    category: "DENAH",
-    title: "Cara menilai denah rumah: alur ruang & fungsi harian",
-    desc: "Biar kamu bisa membayangkan aktivitas harian sebelum beli.",
-    date: "10 Jan 2026",
-    read: "6 menit baca",
-    heroImg: "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1400&q=60",
-    heroCap: "Foto: alur ruang mempengaruhi kenyamanan harian.",
-    gallery: [
-      { img:"https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=60", cap:"Foto: tata ruang rapi membuat aktivitas nyaman." },
-      { img:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=60", cap:"Foto: interior minimalis memudahkan alur gerak." },
-      { img:"https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=60", cap:"Foto: ruang keluarga sebagai pusat aktivitas." }
-    ],
-    promoGif1: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
-    promoGif2: "https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif",
-    author: {
-      name:"Tim Green Orchid",
-      role:"Marketing & Customer Care",
-      bio:"Membantu memilih tipe unit sesuai kebutuhan keluarga."
-    },
-    conclusion: "Denah bagus itu yang alur ruangnya masuk akal: dapur dekat makan, kamar privat tidak terganggu, dan sirkulasi rapi.",
-    faq: [
-      { q:"Yang paling penting dari denah?", a:"Alur ruang harian: masuk rumah, aktivitas, area privat, dan area servis." },
-      { q:"Bagaimana cek sirkulasi?", a:"Pastikan jalur tidak berputar/sempit dan akses kamar mandi mudah." },
-      { q:"Kapan butuh ruang tambahan?", a:"Jika ada rencana keluarga bertambah atau WFH." }
-    ],
-    contentHtml: `
-      <p>Denah adalah “mesin” rumah. Kalau alurnya enak, hidup sehari-hari jadi lebih ringan.</p>
+        {
+          id: 7,
+          category: "DENAH",
+          title: "Cara menilai denah rumah: alur ruang & fungsi harian",
+          desc: "Biar kamu bisa membayangkan aktivitas harian sebelum beli.",
+          date: "10 Jan 2026",
+          read: "6 menit baca",
+          heroImg: "https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?auto=format&fit=crop&w=1400&q=60",
+          heroCap: "Foto: alur ruang mempengaruhi kenyamanan harian.",
+          gallery: [
+            { img:"https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=60", cap:"Foto: tata ruang rapi membuat aktivitas nyaman." },
+            { img:"https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=60", cap:"Foto: interior minimalis memudahkan alur gerak." },
+            { img:"https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=60", cap:"Foto: ruang keluarga sebagai pusat aktivitas." }
+          ],
+          promoGif1: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
+          promoGif2: "https://media.giphy.com/media/3o7aCTfyhYawdOXcFW/giphy.gif",
+          author: {
+            name:"Tim Green Orchid",
+            role:"Marketing & Customer Care",
+            bio:"Membantu memilih tipe unit sesuai kebutuhan keluarga."
+          },
+          conclusion: "Denah bagus itu yang alur ruangnya masuk akal: dapur dekat makan, kamar privat tidak terganggu, dan sirkulasi rapi.",
+          faq: [
+            { q:"Yang paling penting dari denah?", a:"Alur ruang harian: masuk rumah, aktivitas, area privat, dan area servis." },
+            { q:"Bagaimana cek sirkulasi?", a:"Pastikan jalur tidak berputar/sempit dan akses kamar mandi mudah." },
+            { q:"Kapan butuh ruang tambahan?", a:"Jika ada rencana keluarga bertambah atau WFH." }
+          ],
+          contentHtml: `
+            <p>Denah adalah “mesin” rumah. Kalau alurnya enak, hidup sehari-hari jadi lebih ringan.</p>
 
-      <h2>1. Pisahkan area publik & privat</h2>
-      <p>Ruang tamu dan ruang keluarga sebaiknya tidak mengganggu kamar.</p>
+            <h2>1. Pisahkan area publik & privat</h2>
+            <p>Ruang tamu dan ruang keluarga sebaiknya tidak mengganggu kamar.</p>
 
-      <h2>2. Area servis harus gampang</h2>
-      <h3>Dapur, cuci, jemur</h3>
-      <p>Kalau alurnya ribet, capek tiap hari.</p>
+            <h2>2. Area servis harus gampang</h2>
+            <h3>Dapur, cuci, jemur</h3>
+            <p>Kalau alurnya ribet, capek tiap hari.</p>
 
-      <blockquote>
-        <p>“Denah terbaik adalah denah yang paling sesuai kebiasaan keluarga, bukan yang paling ramai desainnya.”</p>
-        <footer>— Catatan tim</footer>
-      </blockquote>
+            <blockquote>
+              <p>“Denah terbaik adalah denah yang paling sesuai kebiasaan keluarga, bukan yang paling ramai desainnya.”</p>
+              <footer>— Catatan tim</footer>
+            </blockquote>
 
-      <h2>3. Cek kemungkinan upgrade</h2>
-      <p>Apakah ada area yang bisa dikembangkan tanpa merusak struktur utama.</p>
-    `
-  },
+            <h2>3. Cek kemungkinan upgrade</h2>
+            <p>Apakah ada area yang bisa dikembangkan tanpa merusak struktur utama.</p>
+          `
+        },
 
-  {
-    id: 8,
-    category: "INVESTASI",
-    title: "Beli rumah untuk investasi: apa yang wajib dicek?",
-    desc: "Lokasi, akses, dan fasilitas sering jadi pembeda nilai jual kembali.",
-    date: "10 Jan 2026",
-    read: "7 menit baca",
-    heroImg: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1400&q=60",
-    heroCap: "Foto: rumah modern di lokasi strategis cenderung punya nilai lebih stabil.",
-    gallery: [
-      { img:"https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=900&q=60", cap:"Foto: akses kawasan memengaruhi nilai." },
-      { img:"https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=900&q=60", cap:"Foto: lingkungan tertata menambah daya tarik." },
-      { img:"https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=900&q=60", cap:"Foto: pencahayaan alami membuat rumah lebih diminati." }
-    ],
-    promoGif1: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif",
-    promoGif2: "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif",
-    author: {
-      name:"Tim Green Orchid",
-      role:"Marketing & Customer Care",
-      bio:"Membantu calon pembeli menilai value jangka panjang."
-    },
-    conclusion: "Value investasi kuat jika akses bagus, kawasan tertata, dan demand sewa/jual kembali tinggi.",
-    faq: [
-      { q:"Apa faktor investasi paling utama?", a:"Lokasi, akses, dan perkembangan area." },
-      { q:"Rumah kecil bisa bagus untuk investasi?", a:"Bisa, kalau demand tinggi dan biaya maintenance rendah." },
-      { q:"Apa pentingnya fasilitas?", a:"Fasilitas sekitar meningkatkan minat pembeli/penyewa." }
-    ],
-    contentHtml: `
-      <p>Investasi rumah itu bukan cuma soal harga hari ini, tapi soal <strong>permintaan</strong> di masa depan.</p>
+        {
+          id: 8,
+          category: "INVESTASI",
+          title: "Beli rumah untuk investasi: apa yang wajib dicek?",
+          desc: "Lokasi, akses, dan fasilitas sering jadi pembeda nilai jual kembali.",
+          date: "10 Jan 2026",
+          read: "7 menit baca",
+          heroImg: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1400&q=60",
+          heroCap: "Foto: rumah modern di lokasi strategis cenderung punya nilai lebih stabil.",
+          gallery: [
+            { img:"https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=900&q=60", cap:"Foto: akses kawasan memengaruhi nilai." },
+            { img:"https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=900&q=60", cap:"Foto: lingkungan tertata menambah daya tarik." },
+            { img:"https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=900&q=60", cap:"Foto: pencahayaan alami membuat rumah lebih diminati." }
+          ],
+          promoGif1: "https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif",
+          promoGif2: "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif",
+          author: {
+            name:"Tim Green Orchid",
+            role:"Marketing & Customer Care",
+            bio:"Membantu calon pembeli menilai value jangka panjang."
+          },
+          conclusion: "Value investasi kuat jika akses bagus, kawasan tertata, dan demand sewa/jual kembali tinggi.",
+          faq: [
+            { q:"Apa faktor investasi paling utama?", a:"Lokasi, akses, dan perkembangan area." },
+            { q:"Rumah kecil bisa bagus untuk investasi?", a:"Bisa, kalau demand tinggi dan biaya maintenance rendah." },
+            { q:"Apa pentingnya fasilitas?", a:"Fasilitas sekitar meningkatkan minat pembeli/penyewa." }
+          ],
+          contentHtml: `
+            <p>Investasi rumah itu bukan cuma soal harga hari ini, tapi soal <strong>permintaan</strong> di masa depan.</p>
 
-      <h2>1. Lokasi & akses</h2>
-      <p>Perhatikan kemudahan menuju pusat aktivitas, sekolah, dan jalan utama.</p>
+            <h2> Lokasi & akses</h2>
+            <p>Perhatikan kemudahan menuju pusat aktivitas, sekolah, dan jalan utama.</p>
 
-      <h2>2. Lingkungan & keamanan</h2>
-      <h3>One gate + tertata</h3>
-      <p>Biasanya jadi nilai tambah di mata keluarga.</p>
+            <h2> Lingkungan & keamanan</h2>
+            <h3>One gate + tertata</h3>
+            <p>Biasanya jadi nilai tambah di mata keluarga.</p>
 
-      <blockquote>
-        <p>“Nilai investasi terbaik datang dari kawasan yang hidup dan tertata.”</p>
-        <footer>— Catatan investasi</footer>
-      </blockquote>
+            <blockquote>
+              <p>“Nilai investasi terbaik datang dari kawasan yang hidup dan tertata.”</p>
+              <footer>— Catatan investasi</footer>
+            </blockquote>
 
-      <h2>3. Potensi kenaikan nilai</h2>
-      <p>Cek rencana pembangunan area sekitar, tapi tetap realistis.</p>
-    `
-  },
+            <h2> Potensi kenaikan nilai</h2>
+            <p>Cek rencana pembangunan area sekitar, tapi tetap realistis.</p>
+          `
+        },
 
-  {
-    id: 9,
-    category: "SURVEY",
-    title: "Checklist survey rumah: yang wajib kamu cek di lokasi",
-    desc: "Biar kamu tahu apa yang harus ditanya dan dicek sebelum tanda tangan.",
-    date: "10 Jan 2026",
-    read: "5 menit baca",
-    heroImg: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1400&q=60",
-    heroCap: "Foto: survey lokasi membantu menghindari penyesalan setelah pembelian.",
-    gallery: [
-      { img:"https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=900&q=60", cap:"Foto: observasi kondisi rumah saat survey." },
-      { img:"https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=900&q=60", cap:"Foto: cek pencahayaan & ventilasi." },
-      { img:"https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=60", cap:"Foto: cek area keluarga & kualitas finishing." }
-    ],
-    promoGif1: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif",
-    promoGif2: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
-    author: {
-      name:"Tim Green Orchid",
-      role:"Marketing & Customer Care",
-      bio:"Membantu menyiapkan checklist survey dan pertanyaan penting."
-    },
-    conclusion: "Survey itu wajib: cek struktur, air, listrik, dan lingkungan sekitar sebelum memutuskan.",
-    faq: [
-      { q:"Apa yang paling sering terlewat saat survey?", a:"Tekanan air, titik rembes, dan kualitas penerangan malam." },
-      { q:"Survey sebaiknya jam berapa?", a:"Minimal 2 waktu: siang (cahaya/ventilasi) dan sore/malam (lingkungan)." },
-      { q:"Boleh bawa orang ahli?", a:"Boleh dan disarankan kalau kamu ragu menilai kondisi teknis." }
-    ],
-    contentHtml: `
-      <p>Survey adalah momen paling penting sebelum kamu “fix”. Jangan buru-buru.</p>
+        {
+          id: 9,
+          category: "SURVEY",
+          title: "Checklist survey rumah: yang wajib kamu cek di lokasi",
+          desc: "Biar kamu tahu apa yang harus ditanya dan dicek sebelum tanda tangan.",
+          date: "10 Jan 2026",
+          read: "5 menit baca",
+          heroImg: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1400&q=60",
+          heroCap: "Foto: survey lokasi membantu menghindari penyesalan setelah pembelian.",
+          gallery: [
+            { img:"https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=900&q=60", cap:"Foto: observasi kondisi rumah saat survey." },
+            { img:"https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=900&q=60", cap:"Foto: cek pencahayaan & ventilasi." },
+            { img:"https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=60", cap:"Foto: cek area keluarga & kualitas finishing." }
+          ],
+          promoGif1: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif",
+          promoGif2: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
+          author: {
+            name:"Tim Green Orchid",
+            role:"Marketing & Customer Care",
+            bio:"Membantu menyiapkan checklist survey dan pertanyaan penting."
+          },
+          conclusion: "Survey itu wajib: cek struktur, air, listrik, dan lingkungan sekitar sebelum memutuskan.",
+          faq: [
+            { q:"Apa yang paling sering terlewat saat survey?", a:"Tekanan air, titik rembes, dan kualitas penerangan malam." },
+            { q:"Survey sebaiknya jam berapa?", a:"Minimal 2 waktu: siang (cahaya/ventilasi) dan sore/malam (lingkungan)." },
+            { q:"Boleh bawa orang ahli?", a:"Boleh dan disarankan kalau kamu ragu menilai kondisi teknis." }
+          ],
+          contentHtml: `
+            <p>Survey adalah momen paling penting sebelum kamu “fix”. Jangan buru-buru.</p>
 
-      <h2>1. Cek struktur & finishing</h2>
-      <p>Perhatikan retak halus, pintu/jendela, dan kualitas cat.</p>
+            <h2>1. Cek struktur & finishing</h2>
+            <p>Perhatikan retak halus, pintu/jendela, dan kualitas cat.</p>
 
-      <h2>2. Cek air & listrik</h2>
-      <h3>Air</h3>
-      <p>Tekanan, bau, dan kelancaran pembuangan.</p>
-      <h3>Listrik</h3>
-      <p>Posisi MCB, titik stop kontak, dan lampu.</p>
+            <h2>2. Cek air & listrik</h2>
+            <h3>Air</h3>
+            <p>Tekanan, bau, dan kelancaran pembuangan.</p>
+            <h3>Listrik</h3>
+            <p>Posisi MCB, titik stop kontak, dan lampu.</p>
 
-      <blockquote>
-        <p>“Survey yang teliti menghemat biaya perbaikan di belakang.”</p>
-        <footer>— Checklist tim</footer>
-      </blockquote>
+            <blockquote>
+              <p>“Survey yang teliti menghemat biaya perbaikan di belakang.”</p>
+              <footer>— Checklist tim</footer>
+            </blockquote>
 
-      <h2>3. Cek lingkungan</h2>
-      <p>Drainase, akses, dan suasana sekitar.</p>
-    `
-  }
-];
-
+            <h2>3. Cek lingkungan</h2>
+            <p>Drainase, akses, dan suasana sekitar.</p>
+          `
+        }
+      ];
 
       // get id
       const params = new URLSearchParams(location.search);
@@ -1449,6 +1470,12 @@ const ARTICLES = [
           sub.appendChild(sli);
         }
       });
+
+      // ✅ DUPLIKASI TOC KE "Daftar isi" SAMPING (FIX)
+      const tocListRelated = document.getElementById("tocListRelated");
+      if (tocListRelated) {
+        tocListRelated.innerHTML = tocList.innerHTML;
+      }
 
       // FAQ
       const faqWrap = $("#faqWrap");
