@@ -330,6 +330,20 @@
     @media (max-width: 991.98px){
       .nav-shell{ border-radius: 26px; }
     }
+    /* Logo navbar: aman untuk gambar landscape */
+.brand-img{
+  height: 44px;        /* tinggi konsisten sama navbar */
+  width: auto;         /* biar rasio gak rusak */
+  max-width: 180px;    /* batas biar gak kepanjangan */
+  object-fit: contain; /* kalau ada bounding box, tetap rapi */
+  display: block;
+}
+
+/* versi mobile: sedikit dikecilin biar muat */
+@media (max-width: 576px){
+  .brand-img{ height: 38px; max-width: 150px; }
+}
+
   </style>
 </head>
 
@@ -341,10 +355,13 @@
         <div class="container py-3">
           <nav class="nav-shell navbar navbar-expand-lg px-3 px-lg-4 py-3">
             <a class="navbar-brand d-flex align-items-center gap-3" href="index.html" aria-label="Green Orchid Residence">
-              <img class="brand-img" src="assets/img/logo green orchid.png" alt="Logo Green Orchid Residence" width="44" height="44" loading="eager" decoding="async" />
+              <img class="brand-img" src="assets/img/logo.png"
+     alt="Logo Green Orchid Residence"
+     width="160" height="44"
+     loading="eager" decoding="async" />
+
               <span class="d-flex flex-column">
-                <span class="brand-title font-display">Green Orchid Residence</span>
-                <span class="brand-subtitle">Hunian modern • Sejuk • Tertata</span>
+
               </span>
             </a>
   
@@ -430,7 +447,6 @@
               </div>
               <div class="article-actions">
                 <a class="btn-primary-soft flex-grow-1" href="artikel-detail.html?id=1">Baca Selengkapnya</a>
-                <a class="btn-soft" href="artikel-detail.html?id=1#faq">FAQ ↗</a>
               </div>
             </article>
           </div>
@@ -453,7 +469,6 @@
               </div>
               <div class="article-actions">
                 <a class="btn-primary-soft flex-grow-1" href="artikel-detail.html?id=2">Baca Selengkapnya</a>
-                <a class="btn-soft" href="artikel-detail.html?id=2#toc">TOC ↗</a>
               </div>
             </article>
           </div>
@@ -476,7 +491,6 @@
               </div>
               <div class="article-actions">
                 <a class="btn-primary-soft flex-grow-1" href="artikel-detail.html?id=3">Baca Selengkapnya</a>
-                <a class="btn-soft" href="artikel-detail.html?id=3#kesimpulan">Kesimpulan ↗</a>
               </div>
             </article>
           </div>
@@ -499,7 +513,6 @@
               </div>
               <div class="article-actions">
                 <a class="btn-primary-soft flex-grow-1" href="artikel-detail.html?id=4">Baca Selengkapnya</a>
-                <a class="btn-soft" href="artikel-detail.html?id=4#baca-juga">Baca juga ↗</a>
               </div>
             </article>
           </div>
@@ -522,7 +535,6 @@
               </div>
               <div class="article-actions">
                 <a class="btn-primary-soft flex-grow-1" href="artikel-detail.html?id=5">Baca Selengkapnya</a>
-                <a class="btn-soft" href="artikel-detail.html?id=5#share">Share ↗</a>
               </div>
             </article>
           </div>
@@ -545,7 +557,6 @@
               </div>
               <div class="article-actions">
                 <a class="btn-primary-soft flex-grow-1" href="artikel-detail.html?id=6">Baca Selengkapnya</a>
-                <a class="btn-soft" href="artikel-detail.html?id=6#faq">FAQ ↗</a>
               </div>
             </article>
           </div>
@@ -568,7 +579,6 @@
               </div>
               <div class="article-actions">
                 <a class="btn-primary-soft flex-grow-1" href="artikel-detail.html?id=7">Baca Selengkapnya</a>
-                <a class="btn-soft" href="artikel-detail.html?id=7#toc">TOC ↗</a>
               </div>
             </article>
           </div>
@@ -591,7 +601,6 @@
               </div>
               <div class="article-actions">
                 <a class="btn-primary-soft flex-grow-1" href="artikel-detail.html?id=8">Baca Selengkapnya</a>
-                <a class="btn-soft" href="artikel-detail.html?id=8#kesimpulan">Kesimpulan ↗</a>
               </div>
             </article>
           </div>
@@ -614,7 +623,6 @@
               </div>
               <div class="article-actions">
                 <a class="btn-primary-soft flex-grow-1" href="artikel-detail.html?id=9">Baca Selengkapnya</a>
-                <a class="btn-soft" href="artikel-detail.html?id=9#baca-juga">Baca juga ↗</a>
               </div>
             </article>
           </div>
@@ -688,7 +696,6 @@
 
           <div class="d-flex flex-column flex-md-row justify-content-between gap-2 text-muted fw-semibold">
             <div>© <span id="year"></span> Green Orchid Residence. All rights reserved.</div>
-            <div>Neumorphism Soft UI • Bootstrap</div>
           </div>
         </div>
       </div>
